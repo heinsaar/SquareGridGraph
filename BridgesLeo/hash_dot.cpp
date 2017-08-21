@@ -1,6 +1,6 @@
 // HashDot.cpp
 
-#include "HashDot.h"
+#include "hash_dot.h"
 
 void HashDot::input_downtown_area()
 {

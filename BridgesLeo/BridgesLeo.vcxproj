@@ -146,13 +146,13 @@
     <ClCompile Include="town_model.cpp" />
     <ClCompile Include="town_scanning.cpp" />
     <ClCompile Include="hash_dot.cpp" />
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Town.h" />
-    <ClInclude Include="HashDot.h" />
-    <ClInclude Include="HelpFuncs.h" />
-    <ClInclude Include="Grid.h" />
+    <ClInclude Include="town.h" />
+    <ClInclude Include="hash_dot.h" />
+    <ClInclude Include="help_funcs.h" />
+    <ClInclude Include="grid.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

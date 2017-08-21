@@ -15,12 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="town_bridges.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="town_clockwise.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -39,18 +33,24 @@
     <ClCompile Include="hash_dot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="town_bridges.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HelpFuncs.h">
+    <ClInclude Include="town.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HashDot.h">
+    <ClInclude Include="hash_dot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Town.h">
+    <ClInclude Include="help_funcs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Grid.h">
+    <ClInclude Include="grid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,8 +6,8 @@
 #pragma warning (disable : 4786) // Characters truncated
 #pragma warning (disable : 4715) // Not all control paths return a value
 
-#include "Grid.h"
-#include "HashDot.h"
+#include "grid.h"
+#include "hash_dot.h"
 
 #include <algorithm>
 #include <list>

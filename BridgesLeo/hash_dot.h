@@ -5,7 +5,7 @@
 
 #pragma warning (disable : 4786)
 
-#include "HelpFuncs.h"
+#include "help_funcs.h"
 
 #include <iostream>
 #include <string>
@@ -18,8 +18,8 @@ using std::vector;
 class HashDot {
 public:
     string get_line(int n) const;
-    int height() const;
-    int length() const;
+    int  height() const;
+    int  length() const;
     void input_downtown_area();
     void input_hash_dot();
     void random(int n, int m, int d);
