@@ -8,7 +8,7 @@ void Town::_Connect_group(_Scanner s)
     _Record_connection((**s).b_id_);
 
     int dist = 1; // seek depth
-    int max_depth = std::max(town_.max_x(), town_.max_y());
+    int max_depth = std::max(grid_.max_x(), grid_.max_y());
 
     _Direction from = NONE;	  // first move always from
     _Move_clockwise(s, from); // an EXTERNAL_CORNER

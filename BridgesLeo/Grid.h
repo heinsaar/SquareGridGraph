@@ -10,7 +10,9 @@
 using std::pair;
 using std::vector;
 
-	// TEMPLATE CLASS Grid
+extern int X;
+extern int Y;
+
 template<class _Ker>
 class Grid {
 protected:
@@ -29,17 +31,16 @@ protected:
 		_Ker kernel;
 	};
 
-	struct _Acc;
 	friend struct _Acc;
 
 	struct _Acc {
 		typedef _Nodeiter& _Nodeitref;
 		typedef	_Ker& _Kernelref;
-		static _Nodeitref left(  _Nodeiter p) { return ((_Nodeitref)(*p).left);   }
-		static _Nodeitref right( _Nodeiter p) { return ((_Nodeitref)(*p).right);  }
-		static _Nodeitref up(    _Nodeiter p) { return ((_Nodeitref)(*p).up);     }
-		static _Nodeitref down(  _Nodeiter p) { return ((_Nodeitref)(*p).down);   }
-		static _Kernelref kernel(_Nodeiter p) { return ((_Kernelref)(*p).kernel); }
+		static _Nodeitref left(  _Nodeiter p) { return ((_Nodeitref)p->left);   }
+		static _Nodeitref right( _Nodeiter p) { return ((_Nodeitref)p->right);  }
+		static _Nodeitref up(    _Nodeiter p) { return ((_Nodeitref)p->up);     }
+		static _Nodeitref down(  _Nodeiter p) { return ((_Nodeitref)p->down);   }
+		static _Kernelref kernel(_Nodeiter p) { return ((_Kernelref)p->kernel); }
 	};
 
 public:
@@ -107,11 +108,11 @@ public:
 
 	// LOCATION
 		bool is_upmost()     const { return y_ == 0;  }
-        bool is_rightmost()  const { return x_ == 10; } // max_x(); } // Leo: generalize back to max_x()
-        bool is_downmost()   const { return y_ == 10; } // max_y(); } // Leo: generalize back to max_y()
+        bool is_rightmost()  const { return x_ == X; } // max_x(); } // Leo: generalize back to max_x()
+        bool is_downmost()   const { return y_ == Y; } // max_y(); } // Leo: generalize back to max_y()
 		bool is_leftmost()   const { return x_ == 0;  }
 		bool is_at_edge()    const { return	(is_upmost() || is_leftmost() || is_rightmost() || is_downmost()); }
-		_Location location() const { return _Location(x_,y_); }
+        _Location location() const { return { x_, y_ }; }
 		_Coord x()           const { return x_; }
 		_Coord y()           const { return y_; }
 		
@@ -120,8 +121,8 @@ public:
 		bool operator!=(const const_walker& w) const { return (!(*this == w)); }
 	protected:
 		_Nodeiter curr_;
-        _Coord    x_;
-        _Coord    y_;
+        _Coord       x_;
+        _Coord       y_;
 	};
 
 		// CLASS walker
@@ -207,21 +208,22 @@ public:
         w.move_right(x).move_down(y);
         return w;
     }
+
 protected:
 
 // CONNECTING THE NODES
     void _Connect_right(_Nodeiter curr)
     {
         _Nodeiter right = curr + 1;
-        (*curr).right = right;
-        (*right).left = curr;
+        curr->right = right;
+        right->left = curr;
     }
 
     void _Connect_down(_Nodeiter curr)
     {
-        _Nodeiter south = curr + max_x_;
-        (*curr).down = south;
-        (*south).up = curr;
+        _Nodeiter down = curr + max_x_;
+        curr->down = down;
+        down->up = curr;
     }
 
     void _Connect_horizontally()
@@ -239,11 +241,9 @@ protected:
     }
 
 private:
-	int max_x_;
-	int max_y_;
-
-// IMPLEMENTATION
-	_Imp grid_;
+	_Coord max_x_;
+	_Coord max_y_;
+	_Imp   grid_;
 };
 
 #endif /* _CARTESIAN_LATTICE_ */

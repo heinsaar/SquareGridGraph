@@ -3,6 +3,9 @@
 // INCLUDE
 #include "Town.h"
 
+int X = 120;
+int Y = 45;
+
 // MAIN
 int main()
 {
@@ -12,22 +15,21 @@ int main()
     hashdot.input_downtown_area();
     hashdot.input_hash_dot();
     */
+
     //	FOREVER
-    DO
+//    DO
     {
         HashDot hashdot;
 
-//		hashdot.random(120,45, 10);	// full screen beauty
-		hashdot.random(10, 10, 5);	// middle size view
-//      hashdot.random(30, 15, 4);	// small view
+		hashdot.random(X, Y, 10);
 
         Town town(hashdot);
         town.HashDotView();
         town.BuildBridges();
         town.ModelView();
         town.ViewStatistics();
-        display("\n Next downtown...");
+//        display("\n Next downtown...");
     }
-    CONTINUE_UPON_REQUEST;
+//    CONTINUE_UPON_REQUEST;
 }
 

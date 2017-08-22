@@ -2,8 +2,7 @@
 
 #include "Town.h"
 
-// CONSTRUCTOR
-Town::Town(HashDot buildings) : town_(buildings.length() + 1, buildings.height() + 1)
+Town::Town(HashDot buildings) : grid_(buildings.length() + 1, buildings.height() + 1)
 {
     _Process_hash_dot(buildings);
     _Enumerate_buildings();
@@ -28,9 +27,9 @@ void Town::ModelView()
     _Scanner s;
 
     NEW_LINE;
-    for (int y = 0; y < town_.max_y(); ++y) {
-        town_.locate(s, 0, y); SGL_SPACE;
-        for (int x = 0; x < town_.max_x(); ++x) {
+    for (int y = 0; y < grid_.max_y(); ++y) {
+        grid_.locate(s, 0, y); SGL_SPACE;
+        for (int x = 0; x < grid_.max_x(); ++x) {
             if (_Is_free(*s))
                 display(" ");
             else if (_Is_on_building(s))

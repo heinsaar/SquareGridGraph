@@ -56,8 +56,8 @@ void Town::_Enumerate_buildings()
 {
 	_Scanner s;
 	_ID id = 1;
-	for (int y = 0; y < town_.max_y(); ++y) {
-		town_.locate(s, 0, y);
+	for (int y = 0; y < grid_.max_y(); ++y) {
+		grid_.locate(s, 0, y);
 		while (!s.is_rightmost()) {
 			if (_Is_on_contour(s)) {						
 				_Set_contour_id(s, id);
@@ -73,8 +73,8 @@ Town::_Buildingptr Town::_Building_location(const _ID& n)
 {
 	_Scanner s;
 			
-	for (int y = 0; y < town_.max_y(); ++y) {
-		town_.locate(s, 0, y);
+	for (int y = 0; y < grid_.max_y(); ++y) {
+		grid_.locate(s, 0, y);
 		while (!s.is_rightmost()) {
 			if (!_Is_free(*s))
 				if ((**s).b_id_ == n)

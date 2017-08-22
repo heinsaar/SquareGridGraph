@@ -41,7 +41,7 @@ void Town::_Connect_buildings(_Buildingptr a, _Buildingptr b, const _Direction& 
 	if ((**a).b_id_ > 9) SGL_SPACE
 	else DBL_SPACE
 	display((**b).b_id_);				*/
-	int n = town_.distance(a, b);
+	int n = grid_.distance(a, b);
 
 	vector<_Panel> panels(n);
 

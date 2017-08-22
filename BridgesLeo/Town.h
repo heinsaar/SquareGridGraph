@@ -127,7 +127,7 @@ private:
 	list<_ID> isolated_;
 
 // IMPLEMENTATION
-	Grid<_Block*> town_;
+	Grid<_Block*> grid_;
 };
 
 #endif /* _DOWNTOWN_MODEL_ */
