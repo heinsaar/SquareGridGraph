@@ -92,5 +92,5 @@ void Town::_Move_clockwise(_Scanner& s, _Direction& from)
 {
 	_Direction& to = from;
 				to = _Orient(**s, from);
-		_Move(s, to);
+	 _Move(s,   to);
 }

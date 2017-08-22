@@ -70,7 +70,7 @@ public:
                 curr_ = _Acc::left(curr_);
                 --x_;
             }
-            return (*this);
+            return *this;;
         }
 		const_walker& move_right(int n = 1)
         {
@@ -79,7 +79,7 @@ public:
                 curr_ = _Acc::right(curr_);
                 ++x_;
             }
-            return (*this);
+            return *this;;
         }
         const_walker& move_up(int n = 1)
         {
@@ -88,7 +88,7 @@ public:
                 curr_ = _Acc::up(curr_);
                 --y_;
             }
-            return (*this);
+            return *this;;
         }
         const_walker& move_down(int n = 1)
         {
@@ -97,14 +97,14 @@ public:
                 curr_ = _Acc::down(curr_);
                 ++y_;
             }
-            return (*this);
+            return *this;;
         }
 
 	// DIAGONAL MOVE
-		const_walker& move_upright(int n = 1)   { return (*this).move_up(n).move_right(n);   }
-		const_walker& move_downright(int n = 1) { return (*this).move_down(n).move_right(n); }
-		const_walker& move_downleft(int n = 1)  { return (*this).move_down(n).move_left(n);  }
-		const_walker& move_upleft(int n = 1)    { return (*this).move_up(n).move_left(n);    }
+		const_walker& move_upright(int n = 1)   { return *this;.move_up(n).move_right(n);   }
+		const_walker& move_downright(int n = 1) { return *this;.move_down(n).move_right(n); }
+		const_walker& move_downleft(int n = 1)  { return *this;.move_down(n).move_left(n);  }
+		const_walker& move_upleft(int n = 1)    { return *this;.move_up(n).move_left(n);    }
 
 	// LOCATION
 		bool is_upmost()     const { return y_ == 0;  }
@@ -139,22 +139,22 @@ public:
 			{for (; 0 < n; --n)
 				{curr_ = _Acc::left(curr_);
 					--x_; }				
-			return (*this); }
+			return *this;; }
 		walker& move_right(int n = 1)
 			{for (; 0 < n; --n)
 				{curr_ = _Acc::right(curr_);
 					++x_; }
-			return (*this); }
+			return *this;; }
 		walker& move_up(int n = 1)
 			{for (; 0 < n; --n)
 				{curr_ = _Acc::up(curr_);
 					--y_; }
-			return (*this); }
+			return *this;; }
 		walker& move_down(int n = 1)
 			{for (; 0 < n; --n)
 				{curr_ = _Acc::down(curr_);
 					++y_; }
-			return (*this); }
+			return *this;; }
 
 	// DIAGONAL MOVE
 		walker& move_upright(int n = 1)	  { return this->move_up(n).move_right(n); }

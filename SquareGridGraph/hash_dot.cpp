@@ -36,17 +36,16 @@ void HashDot::random(int n, int m, int d)
 
 HashDot& HashDot::operator=(const HashDot& hd)
 {
-    if (this == &hd)
-        ;
-    else {
-        store_ = hd.store_;
+    if (this != &hd)
+    {
+        store_  = hd.store_;
         height_ = hd.height_;
         length_ = hd.length_;
     }
-    return (*this);
+    return *this;
 }
 
-string HashDot::get_line(int n)       const { return store_[n]; }
-int HashDot::height()                 const { return height_; }
-int HashDot::length()                 const { return length_; }
+string HashDot::get_line(int n)      const { return store_[n]; }
+int HashDot::height()                const { return height_; }
+int HashDot::length()                const { return length_; }
 char HashDot::random_hash_dot(int d) const { return (rand() % 200 < d) ? '#' : '.'; }
