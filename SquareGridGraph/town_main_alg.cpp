@@ -18,13 +18,14 @@ void Town::_Connect_group(_Scanner s)
         do {
             if (_Is_on_building(s)) { // may be on a bridge!
                 bool found = _Connect_isolated(s, dist);
-                if (isolated_.empty())
+                if (unvisited_.empty())
                     return;
                 if (found)
                     _Reset(dist); // reset seek depth
             }
             _Move_clockwise(s, from);
         } while (s != start);
+
         if (from == LEFT) // done full cycle
             ++dist;
     }
@@ -34,9 +35,8 @@ void Town::_Connect_group(_Scanner s)
 // THE MAIN ALGORITHM
 void Town::_Build_bridges()
 {
-    _Buildingptr b;
-    while (!isolated_.empty()) {
-        b = _Building_location(isolated_.front());
+    while (!unvisited_.empty()) {
+        _Buildingptr b = _Get_building_location(unvisited_.front());
         _Connect_group(b);
         ++disconnected_groups_;
     }

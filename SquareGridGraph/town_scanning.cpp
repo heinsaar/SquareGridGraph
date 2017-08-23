@@ -61,15 +61,14 @@ void Town::_Enumerate_buildings()
 		while (!s.is_rightmost()) {
 			if (_Is_on_contour(s)) {						
 				_Set_contour_id(s, id);
-				isolated_.push_back(id);
-				++id;
+				unvisited_.push_back(id++);
 			}
 			s.move_right();
 		}
 	}
 }
 
-Town::_Buildingptr Town::_Building_location(const _ID& n)
+Town::_Buildingptr Town::_Get_building_location(const _ID& n)
 {
 	_Scanner s;
 			

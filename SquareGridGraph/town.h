@@ -96,7 +96,7 @@ private:
 			bool _Is_bridge_start(const _Block&, _Direction);
 			void _Set_contour_id(const _Scanner&, const _ID&);
 			void _Enumerate_buildings();
-	_Buildingptr _Building_location(const _ID&);
+	_Buildingptr _Get_building_location(const _ID&);
 	_Buildingptr _Seek_up(const _Scanner&, int);
 	_Buildingptr _Seek_right(const _Scanner&, int);
 	_Buildingptr _Seek_down(const _Scanner&, int);
@@ -124,7 +124,7 @@ private:
 
 // DYNAMIC STATISTICS FOR THE MAIN ALGORITHM
 	list<_ID> connected_;
-	list<_ID> isolated_;
+	list<_ID> unvisited_;
 
 // IMPLEMENTATION
 	Grid<_Block*> grid_;

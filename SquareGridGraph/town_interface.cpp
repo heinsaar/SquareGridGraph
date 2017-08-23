@@ -71,7 +71,7 @@ void Town::HashDotView()
 {
     ISOLATE;
     for (int n = 0; n < h_d_.height(); ++n) {
-        SGL_SPACE; display(h_d_.get_line(n));
+        SGL_SPACE; display(h_d_.getLine(n));
         NEW_LINE;
     }
     ISOLATE;

@@ -78,7 +78,7 @@ void Town::_Create_downtown_model(const HashDot& buildings)
 
 	for (int h = 0; h < buildings.height(); ++h) {
 		grid_.locate(b_p, 0, h);
-		string hd_str = buildings.get_line(h);
+		string hd_str = buildings.getLine(h);
 		for (_Symbolptr s_p = hd_str.begin();
 						s_p < hd_str.end();
 					  ++s_p , b_p.move_right()) {

@@ -23,24 +23,24 @@ bool Town::_Is_connected(_ID id)
 void Town::_Record_connection(const _ID& b_id)
 {
 	connected_.push_back(b_id);
-	isolated_.remove(b_id);
+	unvisited_.remove(b_id);
 }
 
 void Town::_Set_seek_directions(_Directions& dirs, const _Block& b)
 {
-	if (_Is_free(b.up))	dirs.push(UP);
-	if (_Is_free(b.right))	dirs.push(RIGHT);
-	if (_Is_free(b.down))	dirs.push(DOWN);
-	if (_Is_free(b.left))	dirs.push(LEFT);
+	if (_Is_free(b.up))	   dirs.push(UP);
+	if (_Is_free(b.right)) dirs.push(RIGHT);
+	if (_Is_free(b.down))  dirs.push(DOWN);
+	if (_Is_free(b.left))  dirs.push(LEFT);
 }
 
 void Town::_Connect_buildings(_Buildingptr a, _Buildingptr b, const _Direction& ab)
 {
-/*	display("\n Connecting buildings... ");
-	display((**a).b_id_);
-	if ((**a).b_id_ > 9) SGL_SPACE
-	else DBL_SPACE
-	display((**b).b_id_);				*/
+//  display("\n Connecting buildings... ");
+//  display((**a).b_id_);
+//  if ((**a).b_id_ > 9) SGL_SPACE
+//  else DBL_SPACE
+//  display((**b).b_id_);
 	int n = grid_.distance(a, b);
 
 	vector<_Panel> panels(n);

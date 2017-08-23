@@ -17,19 +17,16 @@ using std::vector;
 
 class HashDot {
 public:
-    string get_line(int n) const;
-    int  height() const;
-    int  length() const;
-    void input_downtown_area();
-    void input_hash_dot();
-    void random(int n, int m, int d);
-
-    HashDot& operator=(const HashDot& hd);
+    std::string getLine(int n) const;
+    int         height()       const;
+    int         length()       const;
+    void        random(int n, int m, int d);
+    void        readFrom(std::string fileName);
 
 private:
     char random_hash_dot(int d) const;
 
-    vector<string> store_;
+    vector<string> lines_;
     int            height_;
     int            length_;
 };
