@@ -32,7 +32,7 @@ int main() try
         HashDot hashdot;
 
 //        hashdot.random(X, Y, 10);
-        hashdot.readFrom("My_City.txt");
+        hashdot.readFrom("town.txt");
 
         Town town(hashdot);
         town.HashDotView();

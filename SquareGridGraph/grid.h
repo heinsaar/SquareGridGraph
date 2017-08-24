@@ -13,42 +13,42 @@ using std::vector;
 extern int X;
 extern int Y;
 
-template<class _Ker>
+template<class Ker>
 class Grid {
 protected:
-    struct _Node;
+    struct Node;
 
-    using _Imp      = vector<_Node>;
-    using _Nodeiter = typename _Imp::iterator;
-    using _Location = pair<int,int>;
+    using Imp      = vector<Node>;
+    using Nodeiter = typename Imp::iterator;
+    using Location = pair<int, int>;
 
-    // STRUCT _Node
-    struct _Node {
-        _Node(const _Ker& k = _Ker()) : kernel(k)
-        { up = right = down = left = _Imp::iterator(); }
+    // STRUCT Node
+    struct Node {
+        Node(const Ker& k = Ker()) : kernel(k)
+        { up = right = down = left = Imp::iterator(); }
 
-        _Nodeiter up, right, down, left;
-        _Ker kernel;
+        Nodeiter up, right, down, left;
+        Ker kernel;
     };
 
-    friend struct _Acc;
+    friend struct Acc;
 
-    struct _Acc {
-        typedef _Nodeiter& _Nodeitref;
-        typedef    _Ker& _Kernelref;
-        static _Nodeitref left(  _Nodeiter p) { return ((_Nodeitref)p->left);   }
-        static _Nodeitref right( _Nodeiter p) { return ((_Nodeitref)p->right);  }
-        static _Nodeitref up(    _Nodeiter p) { return ((_Nodeitref)p->up);     }
-        static _Nodeitref down(  _Nodeiter p) { return ((_Nodeitref)p->down);   }
-        static _Kernelref kernel(_Nodeiter p) { return ((_Kernelref)p->kernel); }
+    struct Acc {
+        using Nodeitref = Nodeiter&;
+        using Kernelref = Ker&;
+        static Nodeitref left(  Nodeiter p) { return ((Nodeitref)p->left);   }
+        static Nodeitref right( Nodeiter p) { return ((Nodeitref)p->right);  }
+        static Nodeitref up(    Nodeiter p) { return ((Nodeitref)p->up);     }
+        static Nodeitref down(  Nodeiter p) { return ((Nodeitref)p->down);   }
+        static Kernelref kernel(Nodeiter p) { return ((Kernelref)p->kernel); }
     };
 
 public:
-    using _Kptr           =       _Ker*;
-    using _Ckptr          = const _Ker*;
-    using reference       =       _Ker&;
-    using const_reference = const _Ker&;
-    using _Coord          = int;
+    using Kptr            =       Ker*;
+    using Ckptr           = const Ker*;
+    using reference       =       Ker&;
+    using const_reference = const Ker&;
+    using Coord           = int;
 
     class walker;
     class const_walker;
@@ -57,17 +57,17 @@ public:
     class const_walker {
     public:
         const_walker() {}
-        const_walker(_Nodeiter p, _Coord x, _Coord y) { curr_ = p; x_ = x; y_ = y; }
+        const_walker(Nodeiter p, Coord x, Coord y) { curr_ = p; x_ = x; y_ = y; }
         const_walker(const walker& w) : curr_(w.curr_), x_(w.x_), y_(w.y_){}
-        const_reference operator*() const { return (_Acc::kernel(curr_)); }
-        _Ckptr operator->()         const { return (&**this); }
+        const_reference operator*() const { return (Acc::kernel(curr_)); }
+        Ckptr operator->()          const { return (&**this); }
 
     // HORIZONTAL / VERTICAL MOVE
         const_walker& move_left(int n = 1)
         {
             for (; 0 < n; --n)
             {
-                curr_ = _Acc::left(curr_);
+                curr_ = Acc::left(curr_);
                 --x_;
             }
             return *this;;
@@ -76,7 +76,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                curr_ = _Acc::right(curr_);
+                curr_ = Acc::right(curr_);
                 ++x_;
             }
             return *this;;
@@ -85,7 +85,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                curr_ = _Acc::up(curr_);
+                curr_ = Acc::up(curr_);
                 --y_;
             }
             return *this;;
@@ -94,7 +94,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                curr_ = _Acc::down(curr_);
+                curr_ = Acc::down(curr_);
                 ++y_;
             }
             return *this;;
@@ -111,18 +111,18 @@ public:
         bool is_rightmost()  const { return x_ == X; } // max_x(); } // Leo: generalize back to max_x()
         bool is_downmost()   const { return y_ == Y; } // max_y(); } // Leo: generalize back to max_y()
         bool is_leftmost()   const { return x_ == 0;  }
-        bool is_at_edge()    const { return    (is_upmost() || is_leftmost() || is_rightmost() || is_downmost()); }
-        _Location location() const { return { x_, y_ }; }
-        _Coord x()           const { return x_; }
-        _Coord y()           const { return y_; }
+        bool is_at_edge()    const { return (is_upmost() || is_leftmost() || is_rightmost() || is_downmost()); }
+        Location location()  const { return { x_, y_ }; }
+        Coord x()            const { return x_; }
+        Coord y()            const { return y_; }
         
     // OPERATORS
         bool operator==(const const_walker& w) const { return (curr_ == w.curr_); }
         bool operator!=(const const_walker& w) const { return (!(*this == w)); }
     protected:
-        _Nodeiter curr_;
-        _Coord       x_;
-        _Coord       y_;
+        Nodeiter curr_;
+        Coord       x_;
+        Coord       y_;
     };
 
         // CLASS walker
@@ -130,37 +130,37 @@ public:
     class walker : public const_walker {
     public:
         walker() {}
-        walker(_Nodeiter p, _Coord x, _Coord y) { curr_ = p; x_ = x; y_ = y; }
-        reference operator*() const              { return (_Acc::kernel(curr_)); }
-        _Kptr operator->()    const               { return (&**this); }
+        walker(Nodeiter p, Coord x, Coord y) { curr_ = p; x_ = x; y_ = y; }
+        reference operator*() const          { return (Acc::kernel(curr_)); }
+        Kptr operator->()     const          { return (&**this); }
 
     // HORIZONTAL / VERTICAL MOVE
         walker& move_left(int n = 1)
             {for (; 0 < n; --n)
-                {curr_ = _Acc::left(curr_);
+                {curr_ = Acc::left(curr_);
                     --x_; }                
             return *this;; }
         walker& move_right(int n = 1)
             {for (; 0 < n; --n)
-                {curr_ = _Acc::right(curr_);
+                {curr_ = Acc::right(curr_);
                     ++x_; }
             return *this;; }
         walker& move_up(int n = 1)
             {for (; 0 < n; --n)
-                {curr_ = _Acc::up(curr_);
+                {curr_ = Acc::up(curr_);
                     --y_; }
             return *this;; }
         walker& move_down(int n = 1)
             {for (; 0 < n; --n)
-                {curr_ = _Acc::down(curr_);
+                {curr_ = Acc::down(curr_);
                     ++y_; }
             return *this;; }
 
     // DIAGONAL MOVE
-        walker& move_upright(int n = 1)      { return this->move_up(n).move_right(n); }
+        walker& move_upright(int n = 1)   { return this->move_up(n).move_right(n); }
         walker& move_downright(int n = 1) { return this->move_down(n).move_right(n); }
         walker& move_downleft(int n = 1)  { return this->move_down(n).move_left(n); }
-        walker& move_upleft(int n = 1)      { return this->move_up(n).move_left(n); }
+        walker& move_upleft(int n = 1)    { return this->move_up(n).move_left(n); }
 
         bool operator==(const walker& w) const { return (curr_ == w.curr_); }
         bool operator!=(const walker& w) const { return (!(*this == w)); }
@@ -169,8 +169,8 @@ public:
     Grid() : grid_() {}
     Grid(int x, int y) : max_x_(x), max_y_(y), grid_(x * y)
     {
-        _Connect_horizontally();
-        _Connect_vertically();
+        connect_horizontally();
+        connect_vertically();
     }
 
 // ACCESSORS
@@ -195,14 +195,14 @@ public:
         return (dx != 0) ? abs(dx) : abs(dy);
     }
 
-    const_walker locate(const_walker& w, _Coord x, _Coord y)
+    const_walker locate(const_walker& w, Coord x, Coord y)
     {
         w = zero();
         w.move_right(x).move_down(y);
         return w;
     }
 
-    walker locate(walker& w, _Coord x, _Coord y)
+    walker locate(walker& w, Coord x, Coord y)
     {
         w = zero();
         w.move_right(x).move_down(y);
@@ -212,38 +212,38 @@ public:
 protected:
 
 // CONNECTING THE NODES
-    void _Connect_right(_Nodeiter curr)
+    void connect_right(Nodeiter curr)
     {
-        _Nodeiter right = curr + 1;
+        Nodeiter right = curr + 1;
         curr->right = right;
         right->left = curr;
     }
 
-    void _Connect_down(_Nodeiter curr)
+    void connect_down(Nodeiter curr)
     {
-        _Nodeiter down = curr + max_x_;
+        Nodeiter down = curr + max_x_;
         curr->down = down;
         down->up = curr;
     }
 
-    void _Connect_horizontally()
+    void connect_horizontally()
     {
-        for (_Nodeiter y = grid_.begin(); y < grid_.end(); y += max_x_)
-            for (_Nodeiter x = y; x < y + max_x_ - 1; ++x)
-                _Connect_right(x);
+        for (Nodeiter y = grid_.begin(); y < grid_.end(); y += max_x_)
+            for (Nodeiter x = y; x < y + max_x_ - 1; ++x)
+                connect_right(x);
     }
 
-    void _Connect_vertically()
+    void connect_vertically()
     {
-        for (_Nodeiter y = grid_.begin(); y < grid_.end() - max_x_; y += max_x_)
-            for (_Nodeiter x = y; x < y + max_x_; ++x)
-                _Connect_down(x);
+        for (Nodeiter y = grid_.begin(); y < grid_.end() - max_x_; y += max_x_)
+            for (Nodeiter x = y; x < y + max_x_; ++x)
+                connect_down(x);
     }
 
 private:
-    _Coord max_x_;
-    _Coord max_y_;
-    _Imp   grid_;
+    Coord max_x_;
+    Coord max_y_;
+    Imp   grid_;
 };
 
 #endif // _CARTESIAN_LATTICE_

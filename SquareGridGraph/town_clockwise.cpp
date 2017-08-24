@@ -3,39 +3,39 @@
 #include "Town.h"
 
 // MOVING CLOCKWISE
-Town::_Direction Town::_First_move_direction(const _Block& b)
+Town::Direction Town::first_move_direction(const Block& b)
 {
-    return _First_from_external_corner(b);
+    return first_from_external_corner(b);
 }
 
-Town::_Direction Town::_First_from_external_corner(const _Block& b)
+Town::Direction Town::first_from_external_corner(const Block& b)
 {
     // always one type of EXTERNAL_CORNER
     // (for the main algorithm using the
-    // current _Get_building_location method)
+    // current get_building_location method)
 
-        if (_Is_free(b.left) &&
-            _Is_free(b.up) &&
-            !_Is_free(b.right))
+        if (is_free(b.left) &&
+            is_free(b.up) &&
+            !is_free(b.right))
             return RIGHT;
 
     // other types of EXTERNAL_CORNER
     // (present here for extensibility)
-/*        if (_Is_free(b.up) &&
-            _Is_free(b.right) &&
-            !_Is_free(b.down))
+/*        if (is_free(b.up) &&
+            is_free(b.right) &&
+            !is_free(b.down))
             return DOWN;
-        if (_Is_free(b.right) &&
-            _Is_free(b.down) &&
-            !_Is_free(b.left))
+        if (is_free(b.right) &&
+            is_free(b.down) &&
+            !is_free(b.left))
             return LEFT;
-        if (_Is_free(b.down) &&
-            _Is_free(b.left) &&
-            !_Is_free(b.up))
+        if (is_free(b.down) &&
+            is_free(b.left) &&
+            !is_free(b.up))
             return UP;            */
 }
 
-Town::_Direction Town::_External_corner_direction(const _Direction& from)
+Town::Direction Town::external_corner_direction(const Direction& from)
 {
     switch (from) {                
         case UP:    return LEFT;
@@ -45,7 +45,7 @@ Town::_Direction Town::_External_corner_direction(const _Direction& from)
     }
 }
 
-Town::_Direction Town::_Internal_corner_direction(const _Direction& from)
+Town::Direction Town::internal_corner_direction(const Direction& from)
 {
     switch (from) {                
         case UP:    return RIGHT;
@@ -55,7 +55,7 @@ Town::_Direction Town::_Internal_corner_direction(const _Direction& from)
     }
 }
 
-Town::_Direction Town::_Flat_wall_direction(const _Direction& from)
+Town::Direction Town::flat_wall_direction(const Direction& from)
 {
     switch (from) {
         case UP:    return DOWN;
@@ -65,21 +65,21 @@ Town::_Direction Town::_Flat_wall_direction(const _Direction& from)
     }
 }
 
-Town::_Direction Town::_Orient(const _Block& b, _Direction& from)
+Town::Direction Town::orient(const Block& b, Direction& from)
 {
     if (from == NONE)
-        return _First_move_direction(b);
+        return first_move_direction(b);
 
-    switch (_Scanner_view(b, from)) {
-        case EXTERNAL_CORNER: return _External_corner_direction(from);
-        case INTERNAL_CORNER: return _Internal_corner_direction(from);
-        case FLAT_WALL:       return _Flat_wall_direction(from);
+    switch (scanner_view(b, from)) {
+        case EXTERNAL_CORNER: return external_corner_direction(from);
+        case INTERNAL_CORNER: return internal_corner_direction(from);
+        case FLAT_WALL:       return flat_wall_direction(from);
     }
 }
 
-void Town::_Move(_Scanner& s, _Direction& to)
+void Town::move(Scanner& s, Direction& to)
 {
-    _Direction& from = to;
+    Direction& from = to;
     switch (to) {
         case UP:    { s.move_up();      from = DOWN;  } break;
         case RIGHT: { s.move_right(); from = LEFT;  } break;
@@ -88,9 +88,9 @@ void Town::_Move(_Scanner& s, _Direction& to)
     }
 }
 
-void Town::_Move_clockwise(_Scanner& s, _Direction& from)
+void Town::move_clockwise(Scanner& s, Direction& from)
 {
-    _Direction& to = from;
-                to = _Orient(**s, from);
-     _Move(s,   to);
+    Direction& to = from;
+                to = orient(**s, from);
+     move(s,   to);
 }

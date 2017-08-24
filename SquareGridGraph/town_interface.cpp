@@ -4,8 +4,8 @@
 
 Town::Town(HashDot buildings) : grid_(buildings.length() + 1, buildings.height() + 1)
 {
-    _Process_hash_dot(buildings);
-    _Enumerate_buildings();
+    process_hash_dot(buildings);
+    enumerate_buildings();
 
     h_d_ = buildings;
 
@@ -16,7 +16,7 @@ Town::Town(HashDot buildings) : grid_(buildings.length() + 1, buildings.height()
 void Town::BuildBridges()
 {
     display(" Building bridges...");
-    _Build_bridges();
+    build_bridges();
 }
 
 // INTERFACE
@@ -24,15 +24,15 @@ void Town::ModelView()
 {
     ISOLATE;
 
-    _Scanner s;
+    Scanner s;
 
     NEW_LINE;
     for (int y = 0; y < grid_.max_y(); ++y) {
         grid_.locate(s, 0, y); SGL_SPACE;
         for (int x = 0; x < grid_.max_x(); ++x) {
-            if (_Is_free(*s))
+            if (is_free(*s))
                 display(" ");
-            else if (_Is_on_building(s))
+            else if (is_on_building(s))
                 //    display((**s).b_id_);
                 display("o");
             else // is on a bridge
