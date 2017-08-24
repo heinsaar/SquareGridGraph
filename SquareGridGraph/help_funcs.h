@@ -3,11 +3,11 @@
 #ifndef _HELP_FUNCTIONS_
 #define _HELP_FUNCTIONS_
 
-	// INCLUDE
+    // INCLUDE
 #include <iostream>
 #include <ctime>
 
-	// DECLARATIONS
+    // DECLARATIONS
 #define ISOLATE   (cout << endl << endl)
 #define NEW_LINE  (cout << endl)
 #define SGL_SPACE (cout << " ")
@@ -21,8 +21,12 @@ using std::endl;
 
 namespace {
 
-	template<class Info>
-	inline void display(const Info info) { cout << info; }
+    template<class Info>
+    inline void display(const Info info)
+    {
+        cout << info;
+    }
+
     inline int difference(clock_t t1, clock_t t2) { return (int)(t2 - t1); }
     
     inline void border(const int& size)
@@ -31,7 +35,7 @@ namespace {
             display("-");
     }
 
-	inline void show_duration(clock_t t1, clock_t t2)
+    inline void show_duration(clock_t t1, clock_t t2)
     {
         ISOLATE;
         display("Execution time: ");
@@ -40,4 +44,4 @@ namespace {
     }
 } // NAMESPACE
 
-#endif /* _HELP_FUNCTIONS_ */
+#endif // _HELP_FUNCTIONS_

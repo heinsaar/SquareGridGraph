@@ -10,9 +10,9 @@ void Town::_Connect_group(_Scanner s)
     int dist = 1; // seek depth
     int max_depth = std::max(grid_.max_x(), grid_.max_y());
 
-    _Direction from = NONE;	  // first move always from
+    _Direction from = NONE;      // first move always from
     _Move_clockwise(s, from); // an EXTERNAL_CORNER
-    _Scanner start = s;		  // from LEFT to RIGHT
+    _Scanner start = s;          // from LEFT to RIGHT
 
     while (dist != max_depth) {
         do {

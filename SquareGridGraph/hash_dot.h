@@ -32,4 +32,4 @@ private:
 };
 
 
-#endif /* _HASH_DOT_ */
+#endif // _HASH_DOT_

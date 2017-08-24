@@ -33,7 +33,7 @@ void Town::ModelView()
             if (_Is_free(*s))
                 display(" ");
             else if (_Is_on_building(s))
-                //	display((**s).b_id_);
+                //    display((**s).b_id_);
                 display("o");
             else // is on a bridge
                 display(".");

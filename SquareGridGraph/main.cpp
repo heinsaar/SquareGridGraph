@@ -31,7 +31,7 @@ int main() try
     {
         HashDot hashdot;
 
-//		hashdot.random(X, Y, 10);
+//        hashdot.random(X, Y, 10);
         hashdot.readFrom("My_City.txt");
 
         Town town(hashdot);

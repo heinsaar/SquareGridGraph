@@ -35,7 +35,7 @@ void HashDot::readFrom(std::string fileName)
         throw std::exception("Error: Final lines of hashdot file have different size.\n");
 }
 
-string HashDot::getLine(int n)        const { return lines_[n]; }
+string HashDot::getLine(int n)         const { return lines_[n]; }
 int    HashDot::height()               const { return height_; }
 int    HashDot::length()               const { return length_; }
 char   HashDot::random_hash_dot(int d) const { return (rand() % 200 < d) ? '#' : '.'; }
