@@ -160,7 +160,7 @@ bool Town::is_bridge_start(const Block& b, Direction from)
 
 Town::BlockShape Town::block_shape(const Block& b)
 {
-    switch(count_free_directions(b)) {
+    switch (count_free_directions(b)) {
         case 2:
             if (is_line_segment(b))
                 return LINE_SEGMENT;
@@ -177,7 +177,7 @@ Town::WallShape Town::scanner_view(const Block& b, Direction from)
 // What is the block for a builder moving clockwise?
     WallShape at;
             
-    switch(block_shape(b)) {
+    switch (block_shape(b)) {
 
         case LINE_SEGMENT: case T_SHAPE: {
             at = FLAT_WALL;

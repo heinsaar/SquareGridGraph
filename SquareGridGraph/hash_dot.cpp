@@ -19,7 +19,7 @@ void HashDot::random(int n, int m, int d)
     height_ = m;
 }
 
-void HashDot::readFrom(std::string fileName)
+void HashDot::read_from(std::string fileName)
 {
     std::ifstream hashdotFile(fileName);
 

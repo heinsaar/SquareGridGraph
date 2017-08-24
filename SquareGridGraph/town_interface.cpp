@@ -13,14 +13,14 @@ Town::Town(HashDot buildings) : grid_(buildings.length() + 1, buildings.height()
     disconnected_groups_ = 0;
     bridges_ = 0;
 }
-void Town::BuildBridges()
+void Town::connect_all()
 {
     display(" Building bridges...");
     build_bridges();
 }
 
 // INTERFACE
-void Town::ModelView()
+void Town::model_view()
 {
     ISOLATE;
 
@@ -43,7 +43,7 @@ void Town::ModelView()
     }
 }
 
-void Town::ViewStatistics()
+void Town::view_statistics()
 {
     ISOLATE;
     SGL_SPACE; border(23);
@@ -67,7 +67,7 @@ void Town::ViewStatistics()
     NEW_LINE;
 }
 
-void Town::HashDotView()
+void Town::hash_dot_view()
 {
     ISOLATE;
     for (int n = 0; n < h_d_.height(); ++n) {

@@ -21,7 +21,7 @@ public:
     int         height()       const;
     int         length()       const;
     void        random(int n, int m, int d);
-    void        readFrom(std::string fileName);
+    void        read_from(std::string fileName);
 
 private:
     char random_hash_dot(int d) const;

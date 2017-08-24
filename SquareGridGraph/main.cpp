@@ -9,7 +9,7 @@
 int X = 70;
 int Y = 30;
 
-bool filesIdentical(std::string fileNameA, std::string fileNameB)
+bool files_identical(std::string fileNameA, std::string fileNameB)
 {
     std::ifstream A(fileNameA);
     std::ifstream B(fileNameB);
@@ -31,14 +31,14 @@ int main() try
     {
         HashDot hashdot;
 
-//        hashdot.random(X, Y, 10);
-        hashdot.readFrom("town.txt");
+//      hashdot.random(X, Y, 10);
+        hashdot.read_from("town.txt");
 
         Town town(hashdot);
-        town.HashDotView();
-        town.BuildBridges();
-        town.ModelView();
-        town.ViewStatistics();
+        town.hash_dot_view();
+        town.connect_all();
+        town.model_view();
+        town.view_statistics();
         display("\n Next downtown... \n\n");
     }
 //    CONTINUE_UPON_REQUEST;

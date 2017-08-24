@@ -19,10 +19,10 @@ public:
     Town(HashDot);
 
 // INTERFACE
-    void BuildBridges();
-    void ModelView();
-    void ViewStatistics();
-    void HashDotView();
+    void connect_all();
+    void model_view();
+    void view_statistics();
+    void hash_dot_view();
 
 private:
     struct Panel;
