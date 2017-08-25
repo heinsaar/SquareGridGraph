@@ -36,7 +36,7 @@ void Town::connect_group(Scanner s)
 void Town::build_bridges()
 {
     while (!unvisited_.empty()) {
-        Buildingptr b = get_building_location(unvisited_.front());
+        Buildingpos b = get_building_location(unvisited_.front());
         connect_group(b);
         ++disconnected_groups_;
     }

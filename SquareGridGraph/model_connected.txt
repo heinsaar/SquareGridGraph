@@ -1,0 +1,31 @@
+  oo                                 oooo        oo      oo..ooo        
+  oo                                 oooo        oo......oo  ooo        
+   .                                    .         .      oo    oo       
+   .     oo                oo           .         .     ooo    oo    oo 
+   .     oo                oo......oo   .         .     oo      oo   oo 
+   .  ooo..oooo..oo........oo      oo...oooo      .  oo         oooo..oo
+  oo..ooo. oooo  oo....oo        oo   oooooo      .  oo           oo  oo
+  oo    oo       .     oo        oo...oooo .      .   .            .    
+  .oo   oo      oo                    oo   .      oo  .            .    
+  .oo    .      oo             oo      .   oo.....oo  .            .    
+  .ooo   .                   oooo      .   oo         .            .    
+  . oo   .                   oo        .   .          .            .    
+  . .    .                    .        .   .          .            .    
+  . . oo.oo       oo    ooo   .        oo  .          . oo         .    
+  . . oo oo..oo   oo    ooo   .        oo  .          . oo         .    
+  . .    oo  oo.oo...oo...oo  .            .          ooo         oo    
+  . .  oooo     oo.  oo . oo..oo          oo          oooo     oo.oo    
+  . .  oo .      .oo . oo  .  oo          oo          oooo.....oo  .    
+  .oo     .      .oo . oo  .  oo          oooo        oo           .    
+  .oo     .     oo.  .    oo   .          oooo              oo     .  oo
+  .      oo     ooo  .    oo  oo oo             oo          oo....oo  oo
+  .      oo      oo  .        ooooo            ooo          .     oo  . 
+  .       .         oo        .ooo             oo         oo.      . oo 
+ oo       .         oo        .oo              .    oo....oo.      oooo 
+ oo       .         .         .                .    oo     ..      oo.  
+          .        oo         .        oo      .           oo        .  
+          .        oo        oo........oo      .           oo        oo 
+      oo  .                  oo......oo       oo                     oo 
+      oo..oo                 oo      oo...oo  oo.oo                  oo 
+      oo  oo                 oo           oo.oo  oo                     
+      oo                                     oo                         

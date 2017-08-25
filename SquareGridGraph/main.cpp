@@ -9,20 +9,6 @@
 int X = 70;
 int Y = 30;
 
-bool files_identical(std::string fileNameA, std::string fileNameB)
-{
-    std::ifstream A(fileNameA);
-    std::ifstream B(fileNameB);
-
-    std::stringstream a;
-    std::stringstream b;
-
-    a << A.rdbuf();
-    b << B.rdbuf();
-
-    return a.str() == b.str();
-}
-
 int main() try
 {
     srand(time(0));
@@ -36,11 +22,13 @@ int main() try
         hashdot.read_from("town.txt");
 
         Town town(hashdot);
-        town.hash_dot_view();
+        town.view_hash_dot();
         town.connect_all();
-        town.model_view();
+        town.write_to("model_connected.txt");
+        town.view_model();
         town.view_statistics();
-        display("\n Next downtown... \n\n");
+
+//      display("\n Next downtown... \n\n");
     }
 //    CONTINUE_UPON_REQUEST;
 }

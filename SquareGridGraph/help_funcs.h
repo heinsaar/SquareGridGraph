@@ -5,13 +5,16 @@
 
     // INCLUDE
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
 #include <ctime>
 
     // DECLARATIONS
-#define ISOLATE   (cout << endl << endl)
-#define NEW_LINE  (cout << endl)
-#define SGL_SPACE (cout << " ")
-#define DBL_SPACE (cout << "  ")
+#define ISOLATE   (std::cout << endl << endl)
+#define NEW_LINE  (std::cout << endl)
+#define SGL_SPACE (std::cout << " ")
+#define DBL_SPACE (std::cout << "  ")
 #define FOREVER while (true)
 #define DO do
 #define CONTINUE_UPON_REQUEST while (cin.get() != '0')
@@ -26,7 +29,7 @@ namespace {
     {
         cout << info;
     }
-
+    
     inline int difference(clock_t t1, clock_t t2) { return (int)(t2 - t1); }
     
     inline void border(const int& size)
@@ -41,6 +44,20 @@ namespace {
         display("Execution time: ");
         display(difference(t1, t2));
         ISOLATE;
+    }
+
+    inline bool files_identical(std::string fileNameA, std::string fileNameB)
+    {
+        std::ifstream A(fileNameA);
+        std::ifstream B(fileNameB);
+
+        std::stringstream a;
+        std::stringstream b;
+
+        a << A.rdbuf();
+        b << B.rdbuf();
+
+        return a.str() == b.str();
     }
 } // NAMESPACE
 

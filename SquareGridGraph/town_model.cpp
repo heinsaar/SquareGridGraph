@@ -20,7 +20,7 @@ void Town::set_building_id(Block& b, ID id)
 
 void Town::put_block(BlockSite& s)
 {
-    s = new Block();
+    s = new Block(); // TODO: Remove this heap allocation.
 }
 
 void Town::put_panel(PanelSite& s, Panel& pan)
@@ -76,16 +76,18 @@ void Town::create_downtown_model(const HashDot& buildings)
     BlockPlacer  b_p;
     PanelPlacer& p_p = b_p;
 
-    for (int h = 0; h < buildings.height(); ++h) {
-        grid_.locate(b_p, 0, h);
-        string hd_str = buildings.get_line(h);
-        for (Symbolptr s_p = hd_str.begin();
-                        s_p < hd_str.end();
-                      ++s_p , b_p.move_right()) {
-            if (is_hash(*s_p)) {
+    for (int n = 0; n < buildings.height(); ++n)
+    {
+        grid_.locate(b_p, 0, n);
+        string hdline = buildings.get_line(n);
+
+        for (const auto& c : hdline)
+        {
+            if (is_hash(c)) {
                 place_blocks_clockwise(b_p);
                 place_panels_clockwise(p_p);
             }
+            b_p.move_right();
         }
     }
 }

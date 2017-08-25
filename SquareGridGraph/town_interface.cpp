@@ -20,7 +20,7 @@ void Town::connect_all()
 }
 
 // INTERFACE
-void Town::model_view()
+void Town::view_model()
 {
     ISOLATE;
 
@@ -28,18 +28,40 @@ void Town::model_view()
 
     NEW_LINE;
     for (int y = 0; y < grid_.max_y(); ++y) {
-        grid_.locate(s, 0, y); SGL_SPACE;
+        grid_.locate(s, 0, y);
+        SGL_SPACE;
         for (int x = 0; x < grid_.max_x(); ++x) {
             if (is_free(*s))
                 display(" ");
             else if (is_on_building(s))
-                //    display((**s).b_id_);
                 display("o");
             else // is on a bridge
                 display(".");
             s.move_right();
         }
         NEW_LINE;
+    }
+}
+
+void Town::write_to(std::string fileName)
+{
+    std::ofstream file(fileName);
+
+    Scanner s;
+
+    for (int y = 0; y < grid_.max_y(); ++y) {
+        grid_.locate(s, 0, y);
+        file << " ";
+        for (int x = 0; x < grid_.max_x(); ++x) {
+            if (is_free(*s))
+                file << " ";
+            else if (is_on_building(s))
+                file << "o";
+            else // is on a bridge
+                file << ".";
+            s.move_right();
+        }
+        file << std::endl;
     }
 }
 
@@ -67,7 +89,7 @@ void Town::view_statistics()
     NEW_LINE;
 }
 
-void Town::hash_dot_view()
+void Town::view_hash_dot()
 {
     ISOLATE;
     for (int n = 0; n < h_d_.height(); ++n) {

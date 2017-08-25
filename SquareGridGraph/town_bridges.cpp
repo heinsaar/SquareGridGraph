@@ -34,7 +34,7 @@ void Town::set_seek_directions(Directions& dirs, const Block& b)
     if (is_free(b.left))  dirs.push(LEFT);
 }
 
-void Town::connect_buildings(Buildingptr a, Buildingptr b, const Direction& ab)
+void Town::connect_buildings(Buildingpos a, Buildingpos b, const Direction& ab)
 {
 //  display("\n Connecting buildings... ");
 //  display((**a).b_id_);
@@ -52,7 +52,7 @@ void Town::connect_buildings(Buildingptr a, Buildingptr b, const Direction& ab)
     total_bridges_length_ += n; ++bridges_;
 }
 
-void Town::place_blocks_between(Buildingptr a, Buildingptr b, const Direction& ab)
+void Town::place_blocks_between(Buildingpos a, Buildingpos b, const Direction& ab)
 {
     switch (ab) {
         case UP: {
@@ -140,7 +140,7 @@ bool Town::connect_isolated(Scanner s, int d)
 
     while (!dirs.empty()) {
 
-        Buildingptr c; // closest at d distance
+        Buildingpos c; // closest at d distance
 
         switch (dirs.front()) {
             case UP: {

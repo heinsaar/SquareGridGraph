@@ -13,16 +13,16 @@
 #include <list>
 #include <queue>
 
-    // CLASS Town
     class Town {
 public:
     Town(HashDot);
 
 // INTERFACE
     void connect_all();
-    void model_view();
+    void view_model();
     void view_statistics();
-    void hash_dot_view();
+    void view_hash_dot();
+    void write_to(std::string fileName);
 
 private:
     struct Panel;
@@ -34,10 +34,9 @@ private:
 
     using BlockPlacer = Grid<Block*>::walker;
     using PanelPlacer = Grid<Block*>::walker;
-    using Buildingptr = Grid<Block*>::walker;
+    using Buildingpos = Grid<Block*>::walker;
     using Scanner     = Grid<Block*>::walker;    
     using Directions  = std::queue<Direction>;
-    using Symbolptr   = string::iterator;    
     using BlockSite   = Block*;
     using PanelSite   = Panel*;
     using ID          = int;
@@ -60,8 +59,8 @@ private:
          bool is_connected(ID);
          void record_connection(const ID&);
          void set_seek_directions(Directions&, const Block&);
-         void connect_buildings(   Buildingptr, Buildingptr, const Direction&);
-         void place_blocks_between(Buildingptr, Buildingptr, const Direction&);
+         void connect_buildings(   Buildingpos, Buildingpos, const Direction&);
+         void place_blocks_between(Buildingpos, Buildingpos, const Direction&);
          void build_bridge(PanelPlacer, vector<Panel>&,      const Direction&);
          bool connect_isolated(Scanner, int);    
          void connect_group(Scanner); // the connecting algorithm
@@ -90,11 +89,11 @@ private:
          bool on_different_buildings(const Scanner&, const Scanner&);
          void set_contour_id(        const Scanner&, const ID&);
           int count_free_directions(const Block&);
-  Buildingptr get_building_location(const ID&);
-  Buildingptr seek_up(   const Scanner&, int);
-  Buildingptr seek_right(const Scanner&, int);
-  Buildingptr seek_down( const Scanner&, int);
-  Buildingptr seek_left( const Scanner&, int);
+  Buildingpos get_building_location(const ID&);
+  Buildingpos seek_up(   const Scanner&, int);
+  Buildingpos seek_right(const Scanner&, int);
+  Buildingpos seek_down( const Scanner&, int);
+  Buildingpos seek_left( const Scanner&, int);
    BlockShape block_shape( const Block&);
     WallShape scanner_view(const Block&, Direction);    
 

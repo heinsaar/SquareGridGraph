@@ -68,7 +68,7 @@ void Town::enumerate_buildings()
     }
 }
 
-Town::Buildingptr Town::get_building_location(const ID& n)
+Town::Buildingpos Town::get_building_location(const ID& n)
 {
     Scanner s;
             
@@ -83,7 +83,7 @@ Town::Buildingptr Town::get_building_location(const ID& n)
     }
 }
 
-Town::Buildingptr Town::seek_up(const Scanner& s, int n)
+Town::Buildingpos Town::seek_up(const Scanner& s, int n)
 {
     Scanner sk = s;
 
@@ -96,7 +96,7 @@ Town::Buildingptr Town::seek_up(const Scanner& s, int n)
     return s; // did not find
 }
 
-Town::Buildingptr Town::seek_right(const Scanner& s, int n)
+Town::Buildingpos Town::seek_right(const Scanner& s, int n)
 {
     Scanner sk = s;
 
@@ -109,7 +109,7 @@ Town::Buildingptr Town::seek_right(const Scanner& s, int n)
     return s; // did not find
 }
 
-Town::Buildingptr Town::seek_down(const Scanner& s, int n)
+Town::Buildingpos Town::seek_down(const Scanner& s, int n)
 {
     Scanner sk = s;
 
@@ -122,7 +122,7 @@ Town::Buildingptr Town::seek_down(const Scanner& s, int n)
     return s;    // did not find
 }
 
-Town::Buildingptr Town::seek_left(const Scanner& s, int n)
+Town::Buildingpos Town::seek_left(const Scanner& s, int n)
 {
     Scanner sk = s;
 

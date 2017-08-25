@@ -179,7 +179,7 @@ public:
 
 // LOCATION RELATED
     const_walker zero() const { return const_walker(grid_.begin(), 0, 0); }
-          walker zero()          { return       walker(grid_.begin(), 0, 0); }
+          walker zero()       { return       walker(grid_.begin(), 0, 0); }
 
     int distance(const_walker& a, const_walker& b)
     {
@@ -195,18 +195,16 @@ public:
         return (dx != 0) ? abs(dx) : abs(dy);
     }
 
-    const_walker locate(const_walker& w, Coord x, Coord y)
+    void locate(const_walker& w, Coord x, Coord y)
     {
         w = zero();
         w.move_right(x).move_down(y);
-        return w;
     }
 
-    walker locate(walker& w, Coord x, Coord y)
+    void locate(walker& w, Coord x, Coord y)
     {
         w = zero();
         w.move_right(x).move_down(y);
-        return w;
     }
 
 protected:
