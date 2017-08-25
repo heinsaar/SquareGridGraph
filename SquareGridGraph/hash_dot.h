@@ -17,6 +17,7 @@ using std::vector;
 
 class HashDot {
 public:
+    HashDot(std::string fileName = "");
     std::string get_line(int n) const;
     int         height()        const;
     int         length()        const;

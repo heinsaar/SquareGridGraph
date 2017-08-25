@@ -7,6 +7,12 @@
 extern int X;
 extern int Y;
 
+HashDot::HashDot(std::string fileName)
+{
+    if (!fileName.empty())
+        read_from(fileName);
+}
+
 void HashDot::write_to(std::string name)
 {
     std::ofstream file(name);
@@ -34,6 +40,7 @@ void HashDot::random(int n, int m, int d)
 void HashDot::read_from(std::string fileName)
 {
     lines_.clear();
+
     std::ifstream hashdotFile(fileName);
 
     std::string line;
