@@ -31,7 +31,8 @@ int main() try
     {
         HashDot hashdot;
 
-//      hashdot.random(X, Y, 10);
+        hashdot.random(X, Y, 10);
+        hashdot.write_to("town.txt");
         hashdot.read_from("town.txt");
 
         Town town(hashdot);
