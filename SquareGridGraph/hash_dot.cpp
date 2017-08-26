@@ -50,9 +50,6 @@ void HashDot::read_from(std::string fileName)
     X = length_ = line.length();
     Y = height_ = lines_.size();
 
-    auto x = (lines_.end() - 1)->length();
-    auto y = (lines_.end() - 2)->length();
-
     if ((lines_.end() - 1)->length() !=
         (lines_.end() - 2)->length())
         throw std::exception("Error: Final lines of hashdot file have different size.\n");

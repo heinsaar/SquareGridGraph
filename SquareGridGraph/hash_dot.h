@@ -5,7 +5,7 @@
 
 #pragma warning (disable : 4786)
 
-#include "help_funcs.h"
+#include "utilities.h"
 
 #include <iostream>
 #include <string>

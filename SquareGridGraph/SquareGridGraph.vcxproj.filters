@@ -47,10 +47,10 @@
     <ClInclude Include="hash_dot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="help_funcs.h">
+    <ClInclude Include="grid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="grid.h">
+    <ClInclude Include="utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
