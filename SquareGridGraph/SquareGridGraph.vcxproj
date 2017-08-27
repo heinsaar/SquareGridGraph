@@ -95,6 +95,11 @@
       <SubSystem>Console</SubSystem>
       <Profile>true</Profile>
     </Link>
+    <PreLinkEvent>
+      <Command>@ECHO ON
+@ECHO "$(VC_ExecutablePath_x86)\lib.exe" /out:"$(OutDir)$(ProjectName).lib" "$(IntermediateOutputPath)*.obj"
+"$(VC_ExecutablePath_x86)\lib.exe" /out:"$(OutDir)$(ProjectName).lib" "$(IntermediateOutputPath)*.obj"</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -123,6 +128,11 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PreLinkEvent>
+      <Command>@ECHO ON
+@ECHO "$(VC_ExecutablePath_x86)\lib.exe" /out:"$(OutDir)$(ProjectName).lib" "$(IntermediateOutputPath)*.obj"
+"$(VC_ExecutablePath_x86)\lib.exe" /out:"$(OutDir)$(ProjectName).lib" "$(IntermediateOutputPath)*.obj"</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

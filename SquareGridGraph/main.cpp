@@ -13,24 +13,22 @@ int main() try
 {
     srand(time(0));
 
-//  DO
+    DO
     {
         HashDot hashdot;
 
-        hashdot.random(X, Y, 10);
-        hashdot.write_to( "town.txt");
-        hashdot.read_from("town.txt");
+        hashdot.random(X, Y, 100);
+//      hashdot.read_from("town.txt");
 
         Town town(hashdot);
         town.view_hash_dot();
         town.connect_all();
         town.view_model();
         town.view_statistics();
-        town.write_to("model_connected.txt");
         
-//      display("\n Next downtown... \n\n");
+        display("\n Next downtown... \n\n");
     }
-//    CONTINUE_UPON_REQUEST;
+    CONTINUE_UPON_REQUEST;
 }
 catch (const std::exception& e)
 {

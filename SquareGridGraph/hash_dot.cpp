@@ -58,4 +58,4 @@ void HashDot::read_from(std::string fileName)
 string HashDot::get_line(int n)        const { return lines_[n]; }
 int    HashDot::height()               const { return height_; }
 int    HashDot::length()               const { return length_; }
-char   HashDot::random_hash_dot(int d) const { return (rand() % 200 < d) ? '#' : '.'; }
+char   HashDot::random_hash_dot(int d) const { return (rand(0, 1000) < d) ? '#' : '.'; }

@@ -7,32 +7,41 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <random>
 #include <string>
 #include <ctime>
 
     // DECLARATIONS
-#define ISOLATE   (std::cout << endl << endl)
-#define NEW_LINE  (std::cout << endl)
+#define ISOLATE   (std::cout << std::endl << std::endl)
+#define NEW_LINE  (std::cout << std::endl)
 #define SGL_SPACE (std::cout << " ")
 #define DBL_SPACE (std::cout << "  ")
 #define FOREVER while (true)
 #define DO do
-#define CONTINUE_UPON_REQUEST while (cin.get() != '0')
+#define CONTINUE_UPON_REQUEST while (std::cin.get() != '0')
+#define TIMES(N) for (int i=0; i<(N); i++)
 
 using std::cout;
 using std::endl;
 
 namespace {
 
+    int rand(int min, int max)
+    {
+        static thread_local std::mt19937 generator;
+        std::uniform_int_distribution<int> distribution(min, max);
+        return distribution(generator);
+    }
+
     template<class Info>
     inline void display(const Info info)
     {
-        cout << info;
+        std::cout << info;
     }
     
     inline int difference(clock_t t1, clock_t t2) { return (int)(t2 - t1); }
     
-    inline void border(const int& size)
+    inline void border(int size = 23)
     {
         for (int j = 0; j < size; ++j)
             display("-");

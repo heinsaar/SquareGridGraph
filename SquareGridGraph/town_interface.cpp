@@ -43,7 +43,7 @@ void Town::view_model()
     }
 }
 
-void Town::write_to(std::string fileName)
+void Town::write_to(std::string fileName, bool withStats)
 {
     std::ofstream file(fileName);
 
@@ -63,12 +63,39 @@ void Town::write_to(std::string fileName)
         }
         file << std::endl;
     }
+
+    if (withStats)
+    {
+        file << "\n\n";
+        file << " ";
+        for (int j = 0; j < 23; ++j)
+            file << "-";
+
+        file << "\n Number of bridges....";
+        file << bridges_;
+        file << "\n Total length.........";
+        file << total_bridges_length_;
+        file << "\n Disconnected groups..";
+        file << disconnected_groups_;
+
+        if (bridges_ == 0) {
+            file << "\n\n";
+            if (disconnected_groups_ > 1)
+                display(" No bridges are possible.");
+            else
+                display(" No bridges are needed.");
+        }
+        file << "\n";
+        file << " ";
+        for (int j = 0; j < 23; ++j)
+            file << "-";
+    }
 }
 
 void Town::view_statistics()
 {
     ISOLATE;
-    SGL_SPACE; border(23);
+    SGL_SPACE; border();
 
     display("\n Number of bridges....");
     display(bridges_);
@@ -85,7 +112,7 @@ void Town::view_statistics()
             display(" No bridges are needed.");
     }
     NEW_LINE;
-    SGL_SPACE; border(23);
+    SGL_SPACE; border();
     NEW_LINE;
 }
 

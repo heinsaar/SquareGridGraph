@@ -22,7 +22,7 @@ public:
     void view_model();
     void view_statistics();
     void view_hash_dot();
-    void write_to(std::string fileName);
+    void write_to(std::string fileName, bool withStats = true);
 
 private:
     struct Panel;
