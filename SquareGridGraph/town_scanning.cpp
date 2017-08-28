@@ -101,8 +101,8 @@ Town::Buildingpos Town::seek_right(const Scanner& s, int n)
     Scanner sk = s;
 
     while (!sk.is_rightmost() && n > 0) {
-        sk.move_right(); --n;
-        if (!is_free(*sk))
+        sk.move_right(); --n;                // TODO: Try to optimize with move_right(n)
+        if (!is_free(*sk))                            
             if (found_building(sk, s))
                 return sk;
     }

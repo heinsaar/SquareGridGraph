@@ -132,7 +132,7 @@ void Town::build_bridge(PanelPlacer a, vector<Panel>& pan, const Direction& from
 
 bool Town::connect_isolated(Scanner s, int d)
 {
-    int& depth = d; // seek depth
+    int& depth = d; // seek depth // TODO: Can probably be a member or something to avoid passing around.
     Directions dirs;
     set_seek_directions(dirs, **s);
 

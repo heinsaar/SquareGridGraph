@@ -35,6 +35,7 @@ protected:
     struct Acc {
         using Nodeitref = Nodeiter&;
         using Kernelref = Ker&;
+
         static Nodeitref left(  Nodeiter p) { return ((Nodeitref)p->left);   }
         static Nodeitref right( Nodeiter p) { return ((Nodeitref)p->right);  }
         static Nodeitref up(    Nodeiter p) { return ((Nodeitref)p->up);     }
@@ -100,10 +101,10 @@ public:
         }
 
     // LOCATION
-        bool is_upmost()     const { return y_ == 0;  }
-        bool is_rightmost()  const { return x_ == X; } // max_x(); } // Leo: generalize back to max_x()
-        bool is_downmost()   const { return y_ == Y; } // max_y(); } // Leo: generalize back to max_y()
-        bool is_leftmost()   const { return x_ == 0;  }
+        bool is_upmost()     const { return y_ == 0; }
+        bool is_rightmost()  const { return x_ == X; } // max_x(); } // TODO: make work with max_x() (remove global X and Y)
+        bool is_downmost()   const { return y_ == Y; } // max_y(); } // TODO: make work with max_y() (remove global X and Y)
+        bool is_leftmost()   const { return x_ == 0; }
         bool is_at_edge()    const { return (is_upmost() || is_leftmost() || is_rightmost() || is_downmost()); }
         Location location()  const { return { x_, y_ }; }
         Coord x()            const { return x_; }
@@ -153,7 +154,6 @@ public:
         bool operator!=(const walker& w) const { return (!(*this == w)); }
     };
 
-    Grid() : grid_() {}
     Grid(int x, int y) : max_x_(x), max_y_(y), grid_(x * y)
     {
         connect_horizontally();

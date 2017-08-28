@@ -18,7 +18,6 @@ int main() try
 
         Town town(hashdot);
         town.display_hash_dot();
-        town.display_model();
         town.connect_all();
         town.display_model();
         town.display_statistics();
