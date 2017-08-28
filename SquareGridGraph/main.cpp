@@ -21,10 +21,10 @@ int main() try
 //      hashdot.read_from("town.txt");
 
         Town town(hashdot);
-        town.view_hash_dot();
+        town.display_hash_dot();
         town.connect_all();
-        town.view_model();
-        town.view_statistics();
+        town.display_model();
+        town.display_statistics();
         
         display("\n Next downtown... \n\n");
     }

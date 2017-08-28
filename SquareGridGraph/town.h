@@ -19,9 +19,9 @@ public:
 
 // INTERFACE
     void connect_all();
-    void view_model();
-    void view_statistics();
-    void view_hash_dot();
+    void display_model();
+    void display_statistics();
+    void display_hash_dot();
     void write_to(std::string fileName, bool withStats = true);
 
 private:

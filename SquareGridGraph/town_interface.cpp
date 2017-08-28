@@ -20,7 +20,7 @@ void Town::connect_all()
 }
 
 // INTERFACE
-void Town::view_model()
+void Town::display_model()
 {
     ISOLATE;
 
@@ -92,7 +92,7 @@ void Town::write_to(std::string fileName, bool withStats)
     }
 }
 
-void Town::view_statistics()
+void Town::display_statistics()
 {
     ISOLATE;
     SGL_SPACE; border();
@@ -116,7 +116,7 @@ void Town::view_statistics()
     NEW_LINE;
 }
 
-void Town::view_hash_dot()
+void Town::display_hash_dot()
 {
     ISOLATE;
     for (int n = 0; n < h_d_.height(); ++n) {
