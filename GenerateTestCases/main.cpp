@@ -15,9 +15,9 @@ int Y = 30;
 std::atomic<int> n;
 std::mutex m;
 
-void create_examples()
+void create_examples(int n)
 {
-    TIMES(200)
+    TIMES(n)
     {
         m.lock();
 
@@ -48,10 +48,10 @@ int main() try
 {
     srand(time(0));
 
-    std::thread t1(create_examples);
-    std::thread t2(create_examples);
-    std::thread t3(create_examples);
-    std::thread t4(create_examples);
+    std::thread t1(create_examples, 200);
+    std::thread t2(create_examples, 200);
+    std::thread t3(create_examples, 200);
+    std::thread t4(create_examples, 200);
     
     t1.join();
     t2.join();
