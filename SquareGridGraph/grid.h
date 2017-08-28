@@ -149,12 +149,6 @@ public:
                     ++y_; }
             return *this;; }
 
-    // DIAGONAL MOVE
-        walker& move_upright(int n = 1)   { return this->move_up(n).move_right(n); }
-        walker& move_downright(int n = 1) { return this->move_down(n).move_right(n); }
-        walker& move_downleft(int n = 1)  { return this->move_down(n).move_left(n); }
-        walker& move_upleft(int n = 1)    { return this->move_up(n).move_left(n); }
-
         bool operator==(const walker& w) const { return (curr_ == w.curr_); }
         bool operator!=(const walker& w) const { return (!(*this == w)); }
     };
