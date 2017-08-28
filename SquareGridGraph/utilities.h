@@ -40,6 +40,12 @@ namespace {
     {
         std::cout << info;
     }
+
+    template<class Info>
+    inline void display_line(const Info info)
+    {
+        std::cout << std::endl << info;
+    }
     
     inline int difference(clock_t t1, clock_t t2) { return (int)(t2 - t1); }
     

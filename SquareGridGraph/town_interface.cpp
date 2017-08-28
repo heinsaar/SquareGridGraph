@@ -15,7 +15,7 @@ Town::Town(HashDot buildings) : grid_(buildings.length() + 1, buildings.height()
 }
 void Town::connect_all()
 {
-    display(" Building bridges...\n");
+    display(" Building bridges...");
     build_bridges();
 }
 
