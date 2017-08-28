@@ -1,6 +1,5 @@
 // Main.cpp
 
-// INCLUDE
 #include "Town.h"
 
 #include <fstream>

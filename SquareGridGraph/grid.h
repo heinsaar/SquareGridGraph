@@ -3,7 +3,7 @@
 #ifndef _CARTESIAN_LATTICE_
 #define _CARTESIAN_LATTICE_
 
-#include <cmath> // fabs()
+#include <cmath> // abs()
 #include <vector>
 #include <utility>
 
@@ -22,7 +22,6 @@ protected:
     using Nodeiter = typename Imp::iterator;
     using Location = pair<int, int>;
 
-    // STRUCT Node
     struct Node {
         Node(const Ker& k = Ker()) : kernel(k)
         { up = right = down = left = Imp::iterator(); }
