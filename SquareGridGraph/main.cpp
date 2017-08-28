@@ -2,9 +2,6 @@
 
 #include "Town.h"
 
-#include <fstream>
-#include <sstream>
-
 int X = 70;
 int Y = 30;
 
@@ -21,11 +18,12 @@ int main() try
 
         Town town(hashdot);
         town.display_hash_dot();
+        town.display_model();
         town.connect_all();
         town.display_model();
         town.display_statistics();
         
-        display("\n Next downtown... \n\n");
+        display("\n Next town... \n\n");
     }
     CONTINUE_UPON_REQUEST;
 }
@@ -33,4 +31,3 @@ catch (const std::exception& e)
 {
     display(e.what());
 }
-

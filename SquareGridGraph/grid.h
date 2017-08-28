@@ -49,8 +49,8 @@ public:
     using const_reference = const Ker&;
     using Coord           = int;
 
-    class walker;
-    class const_walker;
+           class       walker;
+           class const_walker;
     friend class const_walker;
 
     class const_walker {
@@ -98,12 +98,6 @@ public:
             }
             return *this;;
         }
-
-    // DIAGONAL MOVE
-        const_walker& move_upright(int n = 1)   { return *this;.move_up(n).move_right(n);   }
-        const_walker& move_downright(int n = 1) { return *this;.move_down(n).move_right(n); }
-        const_walker& move_downleft(int n = 1)  { return *this;.move_down(n).move_left(n);  }
-        const_walker& move_upleft(int n = 1)    { return *this;.move_up(n).move_left(n);    }
 
     // LOCATION
         bool is_upmost()     const { return y_ == 0;  }
