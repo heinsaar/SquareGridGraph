@@ -26,6 +26,8 @@ using std::endl;
 
 namespace {
 
+    std::string quote(std::string s) { return "\"" + s + "\""; }
+
     int rand(int min, int max)
     {
         static thread_local std::mt19937 generator;

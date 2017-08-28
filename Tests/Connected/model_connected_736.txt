@@ -1,38 +1,38 @@
-    oo.oo                           oo    oo          oo         oo     
-    oo oo                          ooo    oo   oo     oo.oo      oo     
-      oo             oo   oo       ooooo  .    oo     oo oo.oo   .      
-     ooo   oo  oooo..oo   oo..oooo.ooooo  .  oooo...oooo .  oo  oo      
-     oo  oooo  oooo   oo      oooo ooo   oo..oooo   oo  oo   .  oooo  oo
-      oo.oo .  .      oo       .         oo   oo   oo   oo  oo.oo ooo.oo
- oo...oo    oooo      oo       oo      oooo        oo       oo oo  oo   
- oo   .     oooo.oo   oo       ooo    ooooooo                  oo  .    
-     oo          oo  oo.     ooooo    oo . oo oo               oo oo    
-    ooo              oo.     ooooooo     oo   oo        oo        ooooo 
-    oo    oo           oo.ooo.ooo oo     oo   oo        oo          ooo 
-    .   oooo           oo ooo oooo      oo    ooooo      oo oo          
-    .   oo oooo  oo     .       oo      oo      ooo      oo.ooo         
-   oo      oooo  oooooooo      oo oo    oooo    oo         oooo         
-   oo         oo oooooooo      ooooo     ooo   ooooo       oo . oo      
-   ooo       ooo.ooo  oo oo     ooooo    .     ooooo.ooo      oooo      
-   ooo.oo    oo   oo  oooooo     oooo    oooo  oo oo ooooo    ooo oo    
-       oo    oo        oo oo      oo     oooo oooooo  oooo     ooooo    
-  ooooooo   ooo        oo  oo     oo       oo.ooooooo oooo     oooooo   
-  ooooooo   oo         oo  oo     .           .    oo       oo   oooo   
-    oo  .oo                oo    oo     oo   oo             oo   oo.    
-    oo oooo                 . oo.oo     oo   oo             .      oooo 
- oo    oo .              oo . oo . oo  oo    . oo    oo     .      oooo 
- oo oooo  . oo           oooo   oo.oo.oooooooo.oo    oo     .    oo  oo 
- oo.oooo  oooo             oo   oo .  oo ooooo        oo  oooo   ooooo  
-     .    oo....oo                oo    ooo           oo  oooo..oooooo  
-    oo          ooo               oo    ooo oo        oo  oo    ooo oooo
-    oooooo       oo              oo       oooooooo    oo   .     oo   oo
-      oooo....oo         ooo     oo       oo ooooo.oo . oo.ooooo        
-        oo    oo      oooooo...oo.oo          oooo oooo.oo ooooo        
-                      oooo     oo oo          oooo oooo      oo         
+        oo   ooo      oo...oo..oo                oo       oo            
+       ooo   ooooooo..oo   oo  oo      oo     oo.oo       oo  oo    oooo
+   oo..ooo   .  oooo      oo  oooo    ooo     oo    oo    ooo.oo   ooooo
+ oooo   oo  oooo   oo     oo  oooo.oo.oooo     .    oooo  ooo .    oo.  
+ ooo    ooo.oooo   oooo            oo   oo     oo   oooooo.   ooo    oo 
+   .    ooo ooooo    oo                 .     oooo..oo  ooo   ooo    oo 
+  oo    oooo   oo oo  .               ooo...oooooo   oo  oo   .  ooooo  
+  oo      oo      oo.oo.ooo         ooooo   ooo      oo  oo   .  oooooo 
+        oo .       . oo ooo       oooo      ooo          oo  oo  oo ooo 
+        oo.oo     ooo   oo   oo   ooooo       .   oo         oo  .  oo. 
+         . oo   ooooo        oo      oooo     oooooo         oo ooo  .. 
+         .   oo oo  . oo     .         oo     oooooo        oooooooo .oo
+      oooo   ooooo ooooo   oooo       oo          oo        oooo  oo .oo
+      oooo   oooo  ooo     oooooo     oo           oooo       oooo   .  
+ oooo  ooo   oo              oooo                 ooooo       oooo   .  
+ oooooo oo                  ooooo          oo     oo           .    oo  
+  ooooo.oo                oooooooo         oo.oo               .    oo  
+    .   oooo         oo...oo  oooooo..oo      oo      oo      oo      oo
+   oo   ooooo        oo        ooooo  oo     ooooo   ooo   oo oo..oo..oo
+   oo  ooo ooo                 oooo         ooo oo   oooo..oooo   oo  oo
+   .  ooo.  oooo oo    oo      .          ooooo        oo   ooooo  .  oo
+   .  oo .    ooooo    oo     oo          oo oooo           oo oo  .    
+  oo     .     oo     oo      oo.oo            oooo         .  oo  oo   
+  oo     oo     .  oo oo         oo     oo       ooo        .  oo  oo   
+  oo     oo     oo.oooo          oo   oooooo oo..ooo        .    oooo   
+  oo   oo .     oo  oooo        oo oo.ooo oo.oo    .     oooo    oooo   
+       oo . ooo  .    oo     oo.oo.ooo             oo    oooo       .   
+       .  ooooo  . oooo      ooo  oooo             oo       .       .   
+      oo  oo     . oooo      ooo  oooooo         oooooooo...ooo     .   
+      oo..oo     oo     oo...oooo   ooooo        oooooooo   ooo    oo   
+          oo     oo     oo     oo   oo oo                          oo   
 
 
  -----------------------
- Number of bridges....149
- Total length.........233
+ Number of bridges....138
+ Total length.........240
  Disconnected groups..1
  -----------------------

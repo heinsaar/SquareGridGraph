@@ -17,10 +17,10 @@ void HashDot::write_to(std::string name)
 {
     std::ofstream file(name);
 
-    for (const auto& line : lines_)
+    for (int i = 0; i < lines_.size(); i++)
     {
-        file << line;
-        if (line != lines_.back())
+        file << lines_[i];
+        if (i != lines_.size() - 1)
             file << std::endl;
     }
 }
@@ -42,6 +42,8 @@ void HashDot::read_from(std::string fileName)
     lines_.clear();
 
     std::ifstream hashdotFile(fileName);
+    if (!hashdotFile)
+        throw std::exception(("Error: No hashdot file " + quote(fileName) + " found.\n").c_str());
 
     std::string line;
     while (std::getline(hashdotFile, line))
@@ -50,9 +52,10 @@ void HashDot::read_from(std::string fileName)
     X = length_ = line.length();
     Y = height_ = lines_.size();
 
+    // TODO: Do a more rigorous file integrity check. Checking just final two lines is not enough.
     if ((lines_.end() - 1)->length() !=
         (lines_.end() - 2)->length())
-        throw std::exception("Error: Final lines of hashdot file have different size.\n");
+        throw std::exception(("Error: Final lines of hashdot file " + quote(fileName) + " have different size.\n").c_str());
 }
 
 string HashDot::get_line(int n)        const { return lines_[n]; }
