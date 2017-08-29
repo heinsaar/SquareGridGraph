@@ -13,10 +13,20 @@ Town::Town(HashDot buildings) : grid_(buildings.length() + 1, buildings.height()
     disconnected_groups_ = 0;
     bridges_ = 0;
 }
-void Town::connect_all()
+void Town::connect_all(bool say, bool viz)
 {
-    display(" Building bridges...");
+    if (viz) display_hash_dot();
+    if (say) display(" Connecting...");
+
     build_bridges();
+
+    if (say) display(" OK");
+
+    if (viz)
+    {
+        display_model();
+        display_statistics();
+    }
 }
 
 // INTERFACE

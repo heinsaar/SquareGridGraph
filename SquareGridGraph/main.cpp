@@ -13,8 +13,10 @@ int main() try
 {
     srand(time(0));
 
+    int failedTests = 0;
+
     // TODO: Parallelize tests.
-    TIMES(100) // TODO: Unhardcode the number of tests.
+    for (int i = 0; i < 100; i++) // TODO: Unhardcode the number of tests.
     {
         HashDot hashdot;
 
@@ -22,11 +24,9 @@ int main() try
         hashdot.read_from(dirHashdotGold + fileModelHashdot);
 
         Town town(hashdot);
-//      town.display_hash_dot();
+
         display_line(i);
         town.connect_all();
-//      town.display_model();
-//      town.display_statistics();
 
         const std::string fileModelConnected     = "model_connected_" + std::to_string(i) + ".txt";
         const std::string fileConnectedPath      = dirModelConnected     + fileModelConnected;
@@ -35,9 +35,12 @@ int main() try
         town.write_to(fileConnectedPath);
 
         if (!files_identical(fileConnectedPath, fileModelConnectedGold))
+        {
             display_line("FAIL: Files " + quote(fileConnectedPath) + " and " + quote(fileModelConnectedGold) + " differ.");
+            failedTests++;
+        }
     }
-    display_line("Finished tests.");
+    display_line(failedTests ? "FAIL: " + std::to_string(failedTests) + " tests.\n" : "PASS: All tests.\n");
 }
 catch (const std::exception& e)
 {

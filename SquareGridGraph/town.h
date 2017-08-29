@@ -18,7 +18,7 @@ public:
     Town(HashDot);
 
 // INTERFACE
-    void connect_all();
+    void connect_all(bool say = true, bool viz = false);
     void display_model();
     void display_statistics();
     void display_hash_dot();
