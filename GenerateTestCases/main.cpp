@@ -7,12 +7,11 @@
 #include <sstream>
 #include <thread>
 #include <mutex>
-#include <atomic>
 
 int X = 70;
 int Y = 30;
 
-std::atomic<int> n;
+int n = 0;
 std::mutex m;
 
 void create_examples(int N)
