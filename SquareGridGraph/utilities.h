@@ -66,7 +66,12 @@ namespace {
     inline bool files_identical(std::string fileNameA, std::string fileNameB)
     {
         std::ifstream A(fileNameA);
+        if (!A)
+            display_line("Error: Expected file " + quote(fileNameA) + " does not exist.");
+
         std::ifstream B(fileNameB);
+        if (!B)
+            display_line("Error: Expected file " + quote(fileNameB) + " does not exist.");
 
         std::stringstream a;
         std::stringstream b;
@@ -74,7 +79,7 @@ namespace {
         a << A.rdbuf();
         b << B.rdbuf();
 
-        return a.str() == b.str();
+        return A && B && (a.str() == b.str());
     }
 } // NAMESPACE
 

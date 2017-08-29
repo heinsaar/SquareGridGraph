@@ -16,7 +16,7 @@ int main() try
     int failedTests = 0;
 
     // TODO: Parallelize tests.
-    for (int i = 0; i < 100; i++) // TODO: Unhardcode the number of tests.
+    for (int i = 0; i < 50; i++) // TODO: Unhardcode the number of tests.
     {
         HashDot hashdot;
 
@@ -40,7 +40,9 @@ int main() try
             failedTests++;
         }
     }
-    display_line(failedTests ? "FAIL: " + std::to_string(failedTests) + " tests.\n" : "PASS: All tests.\n");
+    display_line("-------------------");
+    display_line(failedTests ? "FAIL: " + std::to_string(failedTests) + " tests." : "PASS: All tests.");
+    display_line("-------------------\n");
 }
 catch (const std::exception& e)
 {

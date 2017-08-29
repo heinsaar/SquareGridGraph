@@ -56,6 +56,8 @@ void Town::display_model()
 void Town::write_to(std::string fileName, bool withStats)
 {
     std::ofstream file(fileName);
+    if (!file)
+        throw std::exception(("Error: Unable to open file " + quote(fileName) + ".").c_str());
 
     Scanner s;
 

@@ -16,6 +16,8 @@ HashDot::HashDot(std::string fileName)
 void HashDot::write_to(std::string name)
 {
     std::ofstream file(name);
+    if (!file)
+        throw std::exception(("Error: Unable to open file " + quote(name) + ".").c_str());
 
     for (int i = 0; i < lines_.size(); i++)
     {
@@ -43,7 +45,7 @@ void HashDot::read_from(std::string fileName)
 
     std::ifstream hashdotFile(fileName);
     if (!hashdotFile)
-        throw std::exception(("Error: No hashdot file " + quote(fileName) + " found.\n").c_str());
+        throw std::exception(("Error: Expected hashdot file " + quote(fileName) + " does not exist.\n").c_str());
 
     std::string line;
     while (std::getline(hashdotFile, line))
