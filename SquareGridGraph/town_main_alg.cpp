@@ -7,27 +7,27 @@ void Town::connect_group(Scanner s)
 {
     record_connection((**s).b_id_);
 
-    int dist = 1; // seek depth
+    int depth = 1; // seek depth
     int max_depth = std::max(grid_.max_x(), grid_.max_y());
 
-    Direction from = NONE;      // first move always from
+    Direction from = NONE;   // first move always from
     move_clockwise(s, from); // an EXTERNAL_CORNER
-    Scanner start = s;          // from LEFT to RIGHT
+    Scanner start = s;       // from LEFT to RIGHT
 
-    while (dist != max_depth) {
+    while (depth != max_depth) {
         do {
             if (is_on_building(s)) { // may be on a bridge!
-                bool found = connect_isolated(s, dist);
+                bool found = connect_isolated(s, depth);
                 if (unvisited_.empty())
                     return;
                 if (found)
-                    reset(dist); // reset seek depth
+                    reset(depth); // reset seek depth
             }
             move_clockwise(s, from);
         } while (s != start);
 
         if (from == LEFT) // done full cycle
-            ++dist;
+            ++depth;
     }
     connected_.clear();
 }

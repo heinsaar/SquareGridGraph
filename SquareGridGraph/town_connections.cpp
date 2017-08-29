@@ -133,16 +133,16 @@ void Town::build_bridge(PanelPlacer a, vector<Panel>& pan, const Direction& from
 bool Town::connect_isolated(Scanner s, int d)
 {
     int& depth = d; // seek depth // TODO: Can probably be a member or something to avoid passing around.
-    Directions dirs;
-    set_seek_directions(dirs, **s);
+    Directions directions;
+    set_seek_directions(directions, **s);
 
     bool found = false;
 
-    while (!dirs.empty()) {
+    while (!directions.empty()) {
 
         Buildingpos c; // closest at d distance
 
-        switch (dirs.front()) {
+        switch (directions.front()) {
             case UP: {
                 c = seek_up(s, depth);
                 if (c != s) // found?
@@ -178,7 +178,7 @@ bool Town::connect_isolated(Scanner s, int d)
         }
         if (found)
             return true; // found!
-        dirs.pop(); // seek next...
+        directions.pop(); // seek next...
     }
     return false; // did not find
 }

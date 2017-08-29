@@ -33,10 +33,10 @@
     <ClCompile Include="hash_dot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="town_bridges.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="town_connections.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

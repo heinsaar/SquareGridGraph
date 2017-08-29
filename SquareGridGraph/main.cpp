@@ -20,11 +20,11 @@ int main() try
     {
         HashDot hashdot;
 
-        const std::string fileModelHashdot = "model_hashdot_" + std::to_string(i) + ".txt";
-        hashdot.read_from(dirHashdotGold + fileModelHashdot);
+        const std::string fileModelHashdot     = "model_hashdot_" + std::to_string(i) + ".txt";
+        const std::string fileModelHashdotPath = dirHashdotGold + fileModelHashdot;
+        hashdot.read_from(fileModelHashdotPath);
 
         Town town(hashdot);
-
         display_line(i);
         town.connect_all();
 

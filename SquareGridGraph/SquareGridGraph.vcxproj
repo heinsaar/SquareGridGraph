@@ -164,7 +164,7 @@
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="town_bridges.cpp" />
+    <ClCompile Include="town_connections.cpp" />
     <ClCompile Include="town_clockwise.cpp" />
     <ClCompile Include="town_interface.cpp" />
     <ClCompile Include="town_main_alg.cpp" />
