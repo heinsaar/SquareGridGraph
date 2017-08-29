@@ -14,7 +14,7 @@ int main() try
     srand(time(0));
 
     // TODO: Parallelize tests.
-    TIMES(20) // TODO: Unhardcode the number of tests.
+    TIMES(100) // TODO: Unhardcode the number of tests.
     {
         HashDot hashdot;
 
@@ -28,15 +28,14 @@ int main() try
 //      town.display_model();
 //      town.display_statistics();
 
-        const std::string fileModelConnected = "model_connected_" + std::to_string(i) + ".txt";
-        const std::string fileConnectedPath  = dirModelConnected + fileModelConnected;
-        
-        town.write_to(fileConnectedPath);
-        
-        const std::string file_model_connected_gold = dirModelConnectedGold + fileModelConnected;
+        const std::string fileModelConnected     = "model_connected_" + std::to_string(i) + ".txt";
+        const std::string fileConnectedPath      = dirModelConnected     + fileModelConnected;
+        const std::string fileModelConnectedGold = dirModelConnectedGold + fileModelConnected;
 
-        if (!files_identical(fileConnectedPath, file_model_connected_gold))
-            display_line("FAIL: Files " + quote(fileConnectedPath) + " and " + quote(file_model_connected_gold) + " differ.");
+        town.write_to(fileConnectedPath);
+
+        if (!files_identical(fileConnectedPath, fileModelConnectedGold))
+            display_line("FAIL: Files " + quote(fileConnectedPath) + " and " + quote(fileModelConnectedGold) + " differ.");
     }
     display_line("Finished tests.");
 }
