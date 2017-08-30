@@ -111,7 +111,7 @@ private:
 
 // OUTPUT INFO
     int     bridges_;
-    int     total_bridges_length_;
+    int     bridges_total_length_;
     int     disconnected_groups_;
     HashDot h_d_;
 

@@ -49,7 +49,7 @@ void Town::connect_buildings(Buildingpos a, Buildingpos b, const Direction& ab)
     place_blocks_between(a, b, ab);
     build_bridge(a, panels, ab);
 
-    total_bridges_length_ += n; ++bridges_;
+    bridges_total_length_ += n; ++bridges_;
 }
 
 void Town::place_blocks_between(Buildingpos a, Buildingpos b, const Direction& ab)

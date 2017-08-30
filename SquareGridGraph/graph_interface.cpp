@@ -11,7 +11,7 @@ Town::Town(HashDot buildings) : grid_(buildings.length() + 1, buildings.height()
 
     h_d_ = buildings;
 
-    total_bridges_length_ = 0;
+    bridges_total_length_ = 0;
     disconnected_groups_ = 0;
     bridges_ = 0;
 }
@@ -88,7 +88,7 @@ void Town::write_to(std::string fileName, bool withStats)
         file << "\n Number of bridges....";
         file << bridges_;
         file << "\n Total length.........";
-        file << total_bridges_length_;
+        file << bridges_total_length_;
         file << "\n Disconnected groups..";
         file << disconnected_groups_;
 
@@ -114,7 +114,7 @@ void Town::display_statistics()
     display("\n Number of bridges....");
     display(bridges_);
     display("\n Total length.........");
-    display(total_bridges_length_);
+    display(bridges_total_length_);
     display("\n Disconnected groups..");
     display(disconnected_groups_);
 
