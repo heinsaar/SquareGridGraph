@@ -1,7 +1,7 @@
 // Main.cpp
 
 // INCLUDE
-#include "../SquareGridGraph/town.h"
+#include "../SquareGridGraph/graph.h"
 
 #include <fstream>
 #include <sstream>

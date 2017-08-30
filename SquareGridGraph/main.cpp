@@ -1,6 +1,6 @@
 // Main.cpp
 
-#include "Town.h"
+#include "graph.h"
 
 int X = 70;
 int Y = 30;

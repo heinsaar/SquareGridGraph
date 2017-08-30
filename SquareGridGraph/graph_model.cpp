@@ -1,6 +1,6 @@
 // Dtown_Model.cpp
 
-#include "Town.h"
+#include "graph.h"
 
 // CREATING THE DOWNTOWN MODEL
 void Town::process_hash_dot(const HashDot& buildings)

@@ -164,17 +164,17 @@
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="town_connections.cpp" />
-    <ClCompile Include="town_clockwise.cpp" />
-    <ClCompile Include="town_interface.cpp" />
-    <ClCompile Include="town_main_alg.cpp" />
-    <ClCompile Include="town_model.cpp" />
-    <ClCompile Include="town_scanning.cpp" />
+    <ClCompile Include="graph_connections.cpp" />
+    <ClCompile Include="graph_clockwise.cpp" />
+    <ClCompile Include="graph_interface.cpp" />
+    <ClCompile Include="graph_main_alg.cpp" />
+    <ClCompile Include="graph_model.cpp" />
+    <ClCompile Include="graph_scanning.cpp" />
     <ClCompile Include="hash_dot.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="town.h" />
+    <ClInclude Include="graph.h" />
     <ClInclude Include="hash_dot.h" />
     <ClInclude Include="utilities.h" />
     <ClInclude Include="grid.h" />

@@ -1,6 +1,6 @@
 // Dtown_Main_Alg.cpp
 
-#include "Town.h"
+#include "graph.h"
 
 // THE CONNECTING ALGORITHM
 void Town::connect_group(Scanner s)
