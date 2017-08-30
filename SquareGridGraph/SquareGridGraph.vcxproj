@@ -172,6 +172,7 @@
     <ClCompile Include="graph_scanning.cpp" />
     <ClCompile Include="hash_dot.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graph.h" />

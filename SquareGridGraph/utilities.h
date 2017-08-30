@@ -21,30 +21,20 @@
 #define CONTINUE_UPON_REQUEST while (std::cin.get() != '0')
 #define TIMES(N) for (int i=0; i<(N); i++)
 
-using std::cout;
-using std::endl;
+namespace sgg {
 
-namespace {
+    inline std::string quote(std::string s) { return "\"" + s + "\""; }
 
-    std::string quote(std::string s) { return "\"" + s + "\""; }
+    int rand(int min, int max, bool seed = true);
 
-    int rand(int min, int max, bool seed = true)
-    {
-        std::random_device device; // to seed
-        static thread_local std::mt19937 gensame;
-        static thread_local std::mt19937 genrand(device());
-        std::uniform_int_distribution<int> distribution(min, max);
-        return seed ? distribution(genrand) : distribution(gensame);
-    }
-
-    template<class Info>
-    inline void display(const Info info)
+    template<class Displayable>
+    inline void display(const Displayable info)
     {
         std::cout << info;
     }
 
-    template<class Info>
-    inline void display_line(const Info info)
+    template<class Displayable>
+    inline void display_line(const Displayable info)
     {
         std::cout << std::endl << info;
     }
@@ -65,24 +55,8 @@ namespace {
         ISOLATE;
     }
 
-    inline bool files_identical(std::string fileNameA, std::string fileNameB)
-    {
-        std::ifstream A(fileNameA);
-        if (!A)
-            display_line("Error: Expected file " + quote(fileNameA) + " does not exist.");
+    bool files_identical(std::string fileNameA, std::string fileNameB);
 
-        std::ifstream B(fileNameB);
-        if (!B)
-            display_line("Error: Expected file " + quote(fileNameB) + " does not exist.");
-
-        std::stringstream a;
-        std::stringstream b;
-
-        a << A.rdbuf();
-        b << B.rdbuf();
-
-        return A && B && (a.str() == b.str());
-    }
 } // NAMESPACE
 
 #endif // _HELP_FUNCTIONS_

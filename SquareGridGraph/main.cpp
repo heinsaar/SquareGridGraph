@@ -2,6 +2,8 @@
 
 #include "graph.h"
 
+using namespace sgg;
+
 int X = 70;
 int Y = 30;
 

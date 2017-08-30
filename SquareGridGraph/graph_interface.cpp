@@ -2,6 +2,8 @@
 
 #include "graph.h"
 
+using namespace sgg;
+
 Town::Town(HashDot buildings) : grid_(buildings.length() + 1, buildings.height() + 1)
 {
     process_hash_dot(buildings);

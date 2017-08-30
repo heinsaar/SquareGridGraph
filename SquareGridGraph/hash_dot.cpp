@@ -4,6 +4,8 @@
 #include <fstream>
 #include <sstream>
 
+using namespace sgg;
+
 extern int X;
 extern int Y;
 

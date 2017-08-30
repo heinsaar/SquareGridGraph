@@ -8,6 +8,8 @@
 #include <thread>
 #include <mutex>
 
+using namespace sgg;
+
 int X = 70;
 int Y = 30;
 
