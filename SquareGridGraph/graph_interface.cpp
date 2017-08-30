@@ -18,7 +18,7 @@ void Town::connect_all(bool say, bool viz)
     if (viz) display_hash_dot();
     if (say) display(" Connecting...");
 
-    build_bridges();
+    connect();
 
     if (say) display(" OK");
 

@@ -57,20 +57,20 @@ private:
          void reset(int&);
          bool is_connected(ID);
          void record_connection(const ID&);
-         void set_seek_directions(Directions&, const Block&);
-         void connect_buildings(   Buildingpos, Buildingpos, const Direction&);
-         void place_blocks_between(Buildingpos, Buildingpos, const Direction&);
-         void build_bridge(PanelPlacer, vector<Panel>&,      const Direction&);
+   Directions get_seek_directions(const Block&);
+         void connect_buildings(   Buildingpos, Buildingpos,  const Direction);
+         void place_blocks_between(Buildingpos, Buildingpos,  const Direction);
+         void build_bridge(PanelPlacer, vector<Panel>&,       const Direction); // TODO: vector by ref is most likely unnecessary, eliminate.
          bool connect_isolated(Scanner, int);    
          void connect_group(Scanner); // the connecting algorithm
-         void build_bridges();        // the main algorithm
+         void connect();              // the main algorithm
 
 // MOVING CLOCKWISE
     Direction first_move_direction(      const Block&);
     Direction first_from_external_corner(const Block&);
-    Direction external_corner_direction(const Direction&);
-    Direction internal_corner_direction(const Direction&);
-    Direction flat_wall_direction(      const Direction&);
+    Direction external_corner_direction(const Direction);
+    Direction internal_corner_direction(const Direction);
+    Direction flat_wall_direction(      const Direction);
     Direction orient(    const Block&, Direction&);
          void move(          Scanner&, Direction&);
          void move_clockwise(Scanner&, Direction&);

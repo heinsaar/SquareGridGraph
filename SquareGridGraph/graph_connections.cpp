@@ -16,15 +16,19 @@ void Town::record_connection(const ID& b_id)
     unvisited_.remove(b_id);
 }
 
-void Town::set_seek_directions(Directions& dirs, const Block& b)
+Town::Directions Town::get_seek_directions(const Block& b)
 {
-    if (is_free(b.up))    dirs.push(UP);
-    if (is_free(b.right)) dirs.push(RIGHT);
-    if (is_free(b.down))  dirs.push(DOWN);
-    if (is_free(b.left))  dirs.push(LEFT);
+    Directions directions;
+
+    if (is_free(b.up))    directions.push(UP);
+    if (is_free(b.right)) directions.push(RIGHT);
+    if (is_free(b.down))  directions.push(DOWN);
+    if (is_free(b.left))  directions.push(LEFT);
+
+    return directions;
 }
 
-void Town::connect_buildings(Buildingpos a, Buildingpos b, const Direction& ab)
+void Town::connect_buildings(Buildingpos a, Buildingpos b, const Direction ab)
 {
 //  display("\n Connecting buildings... ");
 //  display((**a).b_id_);
@@ -42,7 +46,7 @@ void Town::connect_buildings(Buildingpos a, Buildingpos b, const Direction& ab)
     bridges_total_length_ += n; ++bridges_;
 }
 
-void Town::place_blocks_between(Buildingpos a, Buildingpos b, const Direction& ab)
+void Town::place_blocks_between(Buildingpos a, Buildingpos b, const Direction ab)
 {
     switch (ab) {
         case UP: {
@@ -80,7 +84,7 @@ void Town::place_blocks_between(Buildingpos a, Buildingpos b, const Direction& a
     }
 }
 
-void Town::build_bridge(PanelPlacer a, vector<Panel>& pan, const Direction& from_a)
+void Town::build_bridge(PanelPlacer a, vector<Panel>& pan, const Direction from_a)
 {
     PanelPlacer b = a;
 
@@ -88,7 +92,7 @@ void Town::build_bridge(PanelPlacer a, vector<Panel>& pan, const Direction& from
     case UP: {
             b.move_up();
             for (int i = 0; i < pan.size(); ++i) {
-                put_panel((**a).up, pan[i]);
+                put_panel((**a).up,   pan[i]);
                 put_panel((**b).down, pan[i]);
                 a.move_up(); b.move_up();
             }
@@ -97,7 +101,7 @@ void Town::build_bridge(PanelPlacer a, vector<Panel>& pan, const Direction& from
             b.move_right();
             for (int i = 0; i < pan.size(); ++i) {
                 put_panel((**a).right, pan[i]);
-                put_panel((**b).left, pan[i]);
+                put_panel((**b).left,  pan[i]);
                 a.move_right(); b.move_right();
             }
         } break;
@@ -105,14 +109,14 @@ void Town::build_bridge(PanelPlacer a, vector<Panel>& pan, const Direction& from
             b.move_down();
             for (int i = 0; i < pan.size(); ++i) {
                 put_panel((**a).down, pan[i]);
-                put_panel((**b).up, pan[i]);
+                put_panel((**b).up,   pan[i]);
                 a.move_down(); b.move_down();
             }
         } break;
         case LEFT: {
             b.move_left();
             for (int i = 0; i < pan.size(); ++i) {
-                put_panel((**a).left, pan[i]);
+                put_panel((**a).left,  pan[i]);
                 put_panel((**b).right, pan[i]);
                 a.move_left(); b.move_left();
             }
@@ -123,8 +127,7 @@ void Town::build_bridge(PanelPlacer a, vector<Panel>& pan, const Direction& from
 bool Town::connect_isolated(Scanner s, int d)
 {
     int& depth = d; // seek depth // TODO: Can probably be a member or something to avoid passing around.
-    Directions directions;
-    set_seek_directions(directions, **s);
+    Directions directions = get_seek_directions(**s);
 
     bool found = false;
 

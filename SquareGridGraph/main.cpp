@@ -7,14 +7,14 @@ int Y = 20;
 
 int main() try
 {
-    DO
+//    DO
     {
         HashDot hashdot;
         hashdot.random(X, Y, 40);
         Town town(hashdot);
         town.connect_all(true, true);
     }
-    CONTINUE_UPON_REQUEST
+//    CONTINUE_UPON_REQUEST
 }
 catch (const std::exception& e)
 {

@@ -33,7 +33,7 @@ Town::Direction Town::first_from_external_corner(const Block& b)
             return UP;            */
 }
 
-Town::Direction Town::external_corner_direction(const Direction& from)
+Town::Direction Town::external_corner_direction(const Direction from)
 {
     switch (from) {                
         case UP:    return LEFT;
@@ -43,7 +43,7 @@ Town::Direction Town::external_corner_direction(const Direction& from)
     }
 }
 
-Town::Direction Town::internal_corner_direction(const Direction& from)
+Town::Direction Town::internal_corner_direction(const Direction from)
 {
     switch (from) {                
         case UP:    return RIGHT;
@@ -53,7 +53,7 @@ Town::Direction Town::internal_corner_direction(const Direction& from)
     }
 }
 
-Town::Direction Town::flat_wall_direction(const Direction& from)
+Town::Direction Town::flat_wall_direction(const Direction from)
 {
     switch (from) {
         case UP:    return DOWN;

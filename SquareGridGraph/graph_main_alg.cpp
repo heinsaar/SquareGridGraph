@@ -31,7 +31,7 @@ void Town::connect_group(Scanner s)
 }
 
 // THE MAIN ALGORITHM
-void Town::build_bridges()
+void Town::connect()
 {
     while (!unvisited_.empty()) {
         Buildingpos b = get_building_location(unvisited_.front());
