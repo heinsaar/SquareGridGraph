@@ -101,14 +101,14 @@ public:
         }
 
     // LOCATION
-        bool is_upmost()     const { return y_ == 0; }
-        bool is_rightmost()  const { return x_ == X; } // max_x(); } // TODO: make work with max_x() (remove global X and Y)
-        bool is_downmost()   const { return y_ == Y; } // max_y(); } // TODO: make work with max_y() (remove global X and Y)
-        bool is_leftmost()   const { return x_ == 0; }
-        bool is_at_edge()    const { return (is_upmost() || is_leftmost() || is_rightmost() || is_downmost()); }
-        Location location()  const { return { x_, y_ }; }
-        Coord x()            const { return x_; }
-        Coord y()            const { return y_; }
+        bool is_upmost()    const { return y_ == 0; }
+        bool is_rightmost() const { return x_ == X; } // max_x(); } // TODO: make work with max_x() (remove global X and Y)
+        bool is_downmost()  const { return y_ == Y; } // max_y(); } // TODO: make work with max_y() (remove global X and Y)
+        bool is_leftmost()  const { return x_ == 0; }
+        bool is_at_edge()   const { return (is_upmost() || is_leftmost() || is_rightmost() || is_downmost()); }
+        Location location() const { return { x_, y_ }; }
+        Coord x()           const { return x_; }
+        Coord y()           const { return y_; }
         
     // OPERATORS
         bool operator==(const const_walker& w) const { return (curr_ == w.curr_); }
