@@ -98,7 +98,7 @@ private:
     WallShape scanner_view(const Block&, Direction);    
 
 // CREATING THE DOWNTOWN MODEL
-         bool is_hash(const char&);
+         bool is_hash(const char);
          void put_panel(   PanelSite&, Panel&);
          void put_panel_at(PanelSite&, Panel&);
          void put_block(   BlockSite&);

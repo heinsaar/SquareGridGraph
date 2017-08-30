@@ -8,9 +8,9 @@ void Town::process_hash_dot(const HashDot& buildings)
     create_downtown_model(buildings);
 }
 
-bool Town::is_hash(const char& symbol)
+bool Town::is_hash(const char c)
 {
-    return symbol == '#';
+    return c == '#';
 }
 
 void Town::set_building_id(Block& b, ID id)
@@ -52,23 +52,23 @@ void Town::place_panels_clockwise(PanelPlacer p_p)
 {
     Panel pan_1, pan_2, pan_3, pan_4;
 
-    put_panel_at((*p_p)->down, pan_4);
+    put_panel_at((*p_p)->down,  pan_4);
     put_panel_at((*p_p)->right, pan_1);
 
     p_p.move_right();
 
-    put_panel_at((*p_p)->left, pan_1);
-    put_panel_at((*p_p)->down, pan_2);
+    put_panel_at((*p_p)->left,  pan_1);
+    put_panel_at((*p_p)->down,  pan_2);
 
     p_p.move_down();
 
-    put_panel_at((*p_p)->up, pan_2);
-    put_panel_at((*p_p)->left, pan_3);
+    put_panel_at((*p_p)->up,    pan_2);
+    put_panel_at((*p_p)->left,  pan_3);
 
     p_p.move_left();
 
     put_panel_at((*p_p)->right, pan_3);
-    put_panel_at((*p_p)->up, pan_4);
+    put_panel_at((*p_p)->up,    pan_4);
 }
 
 void Town::create_downtown_model(const HashDot& buildings)
