@@ -1,6 +1,5 @@
 // Main.cpp
 
-// INCLUDE
 #include "../SquareGridGraph/graph.h"
 
 #include <fstream>
