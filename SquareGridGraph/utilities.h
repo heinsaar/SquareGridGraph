@@ -18,7 +18,7 @@
 #define DBL_SPACE (std::cout << "  ")
 #define FOREVER while (true)
 #define DO do
-#define CONTINUE_UPON_REQUEST while (std::cin.get() != '0')
+#define CONTINUE_UPON_REQUEST while (std::cin.get() != '0');
 #define TIMES(N) for (int i=0; i<(N); i++)
 
 namespace sgg {
