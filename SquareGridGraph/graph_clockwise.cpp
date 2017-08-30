@@ -1,5 +1,3 @@
-// Dtown_Clockwise.cpp
-
 #include "graph.h"
 
 // MOVING CLOCKWISE
@@ -15,18 +13,18 @@ Town::Direction Town::first_from_external_corner(const Block& b)
     // current get_building_location method)
 
         if (is_free(b.left) &&
-            is_free(b.up) &&
+            is_free(b.up)   &&
             !is_free(b.right))
             return RIGHT;
 
     // other types of EXTERNAL_CORNER
     // (present here for extensibility)
-/*        if (is_free(b.up) &&
+/*        if (is_free(b.up)  &&
             is_free(b.right) &&
             !is_free(b.down))
             return DOWN;
         if (is_free(b.right) &&
-            is_free(b.down) &&
+            is_free(b.down)  &&
             !is_free(b.left))
             return LEFT;
         if (is_free(b.down) &&
@@ -39,8 +37,8 @@ Town::Direction Town::external_corner_direction(const Direction& from)
 {
     switch (from) {                
         case UP:    return LEFT;
-        case RIGHT:    return UP;
-        case DOWN:    return RIGHT;
+        case RIGHT: return UP;
+        case DOWN:  return RIGHT;
         case LEFT:  return DOWN;
     }
 }
@@ -49,8 +47,8 @@ Town::Direction Town::internal_corner_direction(const Direction& from)
 {
     switch (from) {                
         case UP:    return RIGHT;
-        case RIGHT:    return DOWN;
-        case DOWN:    return LEFT;
+        case RIGHT: return DOWN;
+        case DOWN:  return LEFT;
         case LEFT:  return UP;
     }
 }
@@ -81,7 +79,7 @@ void Town::move(Scanner& s, Direction& to)
 {
     Direction& from = to;
     switch (to) {
-        case UP:    { s.move_up();      from = DOWN;  } break;
+        case UP:    { s.move_up();    from = DOWN;  } break;
         case RIGHT: { s.move_right(); from = LEFT;  } break;
         case DOWN:  { s.move_down();  from = UP;    } break;
         case LEFT:  { s.move_left();  from = RIGHT; } break;

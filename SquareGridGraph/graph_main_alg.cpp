@@ -1,5 +1,3 @@
-// Dtown_Main_Alg.cpp
-
 #include "graph.h"
 
 // THE CONNECTING ALGORITHM

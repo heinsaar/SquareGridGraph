@@ -1,5 +1,3 @@
-// Dtown_Interface.cpp
-
 #include "graph.h"
 
 using namespace sgg;
@@ -12,8 +10,8 @@ Town::Town(HashDot buildings) : grid_(buildings.length() + 1, buildings.height()
     h_d_ = buildings;
 
     bridges_total_length_ = 0;
-    disconnected_groups_ = 0;
-    bridges_ = 0;
+    disconnected_groups_  = 0;
+    bridges_              = 0;
 }
 void Town::connect_all(bool say, bool viz)
 {

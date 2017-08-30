@@ -1,5 +1,3 @@
-// HashDot.cpp
-
 #include "hash_dot.h"
 #include <fstream>
 #include <sstream>

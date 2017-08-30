@@ -1,5 +1,3 @@
-// Main.cpp
-
 #include "graph.h"
 
 using namespace sgg;

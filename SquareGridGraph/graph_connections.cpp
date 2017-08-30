@@ -1,5 +1,3 @@
-// Dtown_Bridges.cpp
-
 #include "graph.h"
 
 #include <algorithm> // find()
@@ -177,7 +175,7 @@ bool Town::connect_isolated(Scanner s, int d)
             } break;
         }
         if (found)
-            return true; // found!
+            return true;  // found
         directions.pop(); // seek next...
     }
     return false; // did not find

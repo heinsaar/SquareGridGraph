@@ -1,5 +1,3 @@
-// Dtown_Model.cpp
-
 #include "graph.h"
 
 // CREATING THE DOWNTOWN MODEL

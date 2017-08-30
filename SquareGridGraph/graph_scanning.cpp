@@ -1,5 +1,3 @@
-// Dtown_Scanning.cpp
-
 #include "graph.h"
 
 // SCANNING THE DOWNTOWN
