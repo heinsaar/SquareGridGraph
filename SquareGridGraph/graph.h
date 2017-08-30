@@ -6,11 +6,11 @@
 #pragma warning (disable : 4786) // Characters truncated
 #pragma warning (disable : 4715) // Not all control paths return a value
 
-#include "grid.h"
+#include "rich_containers.h"
 #include "hash_dot.h"
+#include "grid.h"
 
 #include <algorithm>
-#include <list>
 #include <queue>
 
     class Town {
@@ -55,7 +55,6 @@ private:
 
 // BUILDING BRIDGES
          void reset(int&);
-         bool is_among(const std::list<ID>&, ID);
          bool is_connected(ID);
          void record_connection(const ID&);
          void set_seek_directions(Directions&, const Block&);
@@ -116,8 +115,8 @@ private:
     HashDot h_d_;
 
 // DYNAMIC STATISTICS FOR THE MAIN ALGORITHM
-    std::list<ID> connected_;
-    std::list<ID> unvisited_;
+    List<ID> connected_;
+    List<ID> unvisited_;
 
 // IMPLEMENTATION
     Grid<Block*> grid_;

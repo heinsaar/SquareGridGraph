@@ -1,21 +1,13 @@
 #include "graph.h"
 
-#include <algorithm> // find()
-
-// BUILDING BRIDGES
 void Town::reset(int& depth)
 {
     depth = 1;
 }
 
-bool Town::is_among(const std::list<ID>& c, ID id)
-{
-    return (std::find(c.begin(), c.end(), id) != c.end());
-}
-
 bool Town::is_connected(ID id)
 {
-    return is_among(connected_, id);
+    return connected_.contains(id);
 }
 
 void Town::record_connection(const ID& b_id)

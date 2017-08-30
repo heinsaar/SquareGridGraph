@@ -177,6 +177,7 @@
   <ItemGroup>
     <ClInclude Include="graph.h" />
     <ClInclude Include="hash_dot.h" />
+    <ClInclude Include="rich_containers.h" />
     <ClInclude Include="utilities.h" />
     <ClInclude Include="grid.h" />
   </ItemGroup>

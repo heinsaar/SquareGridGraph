@@ -20,6 +20,7 @@ int main() try
     // TODO: Parallelize tests.
     int from = rand(0, 1950);
     for (int i = from; i < from + 50; i++) // TODO: Unhardcode the number of tests.
+//    TIMES(2000)
     {
         HashDot hashdot;
 
