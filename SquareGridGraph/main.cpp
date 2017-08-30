@@ -16,7 +16,8 @@ int main() try
     int failedTests = 0;
 
     // TODO: Parallelize tests.
-    for (int i = 0; i < 50; i++) // TODO: Unhardcode the number of tests.
+    int from = rand(0, 1950);
+    for (int i = from; i < from + 50; i++) // TODO: Unhardcode the number of tests.
     {
         HashDot hashdot;
 

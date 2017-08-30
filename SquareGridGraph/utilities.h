@@ -28,11 +28,13 @@ namespace {
 
     std::string quote(std::string s) { return "\"" + s + "\""; }
 
-    int rand(int min, int max)
+    int rand(int min, int max, bool seed = true)
     {
-        static thread_local std::mt19937 generator;
+        std::random_device device; // to seed
+        static thread_local std::mt19937 gensame;
+        static thread_local std::mt19937 genrand(device());
         std::uniform_int_distribution<int> distribution(min, max);
-        return distribution(generator);
+        return seed ? distribution(genrand) : distribution(gensame);
     }
 
     template<class Info>
