@@ -45,8 +45,6 @@ void create_examples(int N)
 
 int main() try
 {
-    srand(time(0));
-
     std::thread t1(create_examples, 500);
     std::thread t2(create_examples, 500);
     std::thread t3(create_examples, 500);

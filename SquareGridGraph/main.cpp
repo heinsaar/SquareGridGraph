@@ -2,19 +2,26 @@
 
 using namespace sgg;
 
-int X = 150;
-int Y = 20;
+struct Random { int X, Y, D; };
+
+Random sec_5_d  = { 150, 20, 40 }; // about 5  seconds in debug mode
+Random sec_12_d = { 150, 40, 40 }; // about 12 seconds in debug mode
+
+auto package = sec_12_d;
+
+int X = package.X;
+int Y = package.Y;
 
 int main() try
 {
-//    DO
+    DO
     {
         HashDot hashdot;
-        hashdot.random(X, Y, 40);
+        hashdot.random(package.X, package.Y, package.D);
         Town town(hashdot);
         town.connect_all(true, true);
     }
-//    CONTINUE_UPON_REQUEST
+    CONTINUE_UPON_REQUEST
 }
 catch (const std::exception& e)
 {
