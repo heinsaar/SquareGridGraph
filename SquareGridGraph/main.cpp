@@ -7,7 +7,7 @@ struct Random { int X, Y, D; };
 Random sec_5_d  = { 150, 20, 40 }; // about 5  seconds in debug mode
 Random sec_12_d = { 150, 40, 40 }; // about 12 seconds in debug mode
 
-auto package = sec_12_d;
+auto package = sec_5_d;
 
 int X = package.X;
 int Y = package.Y;

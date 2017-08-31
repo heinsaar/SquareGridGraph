@@ -36,12 +36,13 @@ void Town::connect_buildings(Buildingpos a, Buildingpos b, const Direction ab)
 //  else DBL_SPACE;
 //  display((**b).b_id_);
 
-    int n = grid_.distance(a, b);
+    const int length = grid_.distance(a, b);
 
     place_blocks_between(a, b, ab);
-    build_bridge(a, std::vector<Panel>(n), ab);
+    build_bridge(a, length, ab);
 
-    bridges_total_length_ += n; ++bridges_;
+    bridges_total_length_ += length;
+    bridges_++;
 }
 
 void Town::place_blocks_between(Buildingpos a, Buildingpos b, const Direction ab)
@@ -82,40 +83,40 @@ void Town::place_blocks_between(Buildingpos a, Buildingpos b, const Direction ab
     }
 }
 
-void Town::build_bridge(PanelPlacer a, std::vector<Panel>&& pan, const Direction from_a)
+void Town::build_bridge(PanelPlacer a, const int length, const Direction from_a)
 {
     PanelPlacer b = a;
 
     switch(from_a) {
     case UP: {
             b.move_up();
-            for (int i = 0; i < pan.size(); ++i) {
-                put_panel((**a).up,   pan[i]);
-                put_panel((**b).down, pan[i]);
+            for (int i = 0; i < length; ++i) {
+                put_panel_at((**a).up);
+                put_panel_at((**b).down);
                 a.move_up(); b.move_up();
             }
         } break;
         case RIGHT: {
             b.move_right();
-            for (int i = 0; i < pan.size(); ++i) {
-                put_panel((**a).right, pan[i]);
-                put_panel((**b).left,  pan[i]);
+            for (int i = 0; i < length; ++i) {
+                put_panel_at((**a).right);
+                put_panel_at((**b).left);
                 a.move_right(); b.move_right();
             }
         } break;
         case DOWN: {
             b.move_down();
-            for (int i = 0; i < pan.size(); ++i) {
-                put_panel((**a).down, pan[i]);
-                put_panel((**b).up,   pan[i]);
+            for (int i = 0; i < length; ++i) {
+                put_panel_at((**a).down);
+                put_panel_at((**b).up);
                 a.move_down(); b.move_down();
             }
         } break;
         case LEFT: {
             b.move_left();
-            for (int i = 0; i < pan.size(); ++i) {
-                put_panel((**a).left,  pan[i]);
-                put_panel((**b).right, pan[i]);
+            for (int i = 0; i < length; ++i) {
+                put_panel_at((**a).left);
+                put_panel_at((**b).right);
                 a.move_left(); b.move_left();
             }
         } break;

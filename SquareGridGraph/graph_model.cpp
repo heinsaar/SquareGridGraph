@@ -1,10 +1,6 @@
 #include "graph.h"
 
-// CREATING THE DOWNTOWN MODEL
-void Town::process_hash_dot(const HashDot& buildings)
-{
-    create_downtown_model(buildings);
-}
+// CREATING THE MODEL
 
 bool Town::is_hash(const char c)
 {
@@ -21,15 +17,10 @@ void Town::put_block(BlockSite& s)
     s = new Block(); // TODO: Remove this heap allocation.
 }
 
-void Town::put_panel(PanelSite& s, Panel& pan)
+void Town::put_panel_at(PanelSite& s)
 {
-    s = &pan;
-}
-
-void Town::put_panel_at(PanelSite& s, Panel& pan)
-{
-    if (is_free(s))
-        put_panel(s, pan);
+    // TODO: Doesn't need to be a pointer and occupy 8 bytes. A bool will do (or even a bit?)
+    s = reinterpret_cast<PanelSite>(0x0CC000ED); // 0x0CCUPIED
 }
 
 void Town::put_block_at(BlockSite& s)
@@ -38,54 +29,51 @@ void Town::put_block_at(BlockSite& s)
         put_block(s);
 }
 
-void Town::place_blocks_clockwise(BlockPlacer b_p)
+void Town::place_blocks_clockwise(Walker w)
 {
-    put_block_at(*b_p); b_p.move_right();
-    put_block_at(*b_p); b_p.move_down();
-    put_block_at(*b_p); b_p.move_left();
-    put_block_at(*b_p);
+    put_block_at(*w); w.move_right();
+    put_block_at(*w); w.move_down();
+    put_block_at(*w); w.move_left();
+    put_block_at(*w);
 }
 
-void Town::place_panels_clockwise(PanelPlacer p_p)
+void Town::place_panels_clockwise(Walker w)
 {
-    Panel pan_1, pan_2, pan_3, pan_4;
+    put_panel_at((*w)->down);
+    put_panel_at((*w)->right);
 
-    put_panel_at((*p_p)->down,  pan_4);
-    put_panel_at((*p_p)->right, pan_1);
+    w.move_right();
 
-    p_p.move_right();
+    put_panel_at((*w)->left);
+    put_panel_at((*w)->down);
 
-    put_panel_at((*p_p)->left,  pan_1);
-    put_panel_at((*p_p)->down,  pan_2);
+    w.move_down();
 
-    p_p.move_down();
+    put_panel_at((*w)->up);
+    put_panel_at((*w)->left);
 
-    put_panel_at((*p_p)->up,    pan_2);
-    put_panel_at((*p_p)->left,  pan_3);
+    w.move_left();
 
-    p_p.move_left();
-
-    put_panel_at((*p_p)->right, pan_3);
-    put_panel_at((*p_p)->up,    pan_4);
+    put_panel_at((*w)->right);
+    put_panel_at((*w)->up);
 }
 
-void Town::create_downtown_model(const HashDot& buildings)
+void Town::create_model(const HashDot& buildings)
 {
-    BlockPlacer  b_p;
-    PanelPlacer& p_p = b_p;
+    Walker w;
 
     for (int n = 0; n < buildings.height(); ++n)
     {
-        grid_.locate(b_p, 0, n);
-        std::string hdline = buildings.get_line(n);
+        grid_.locate(w, 0, n);
+        const std::string line = buildings.get_line(n);
 
-        for (const auto& c : hdline)
+        for (const auto& c : line)
         {
             if (is_hash(c)) {
-                place_blocks_clockwise(b_p);
-                place_panels_clockwise(p_p);
+                place_blocks_clockwise(w);
+                place_panels_clockwise(w);
             }
-            b_p.move_right();
+            w.move_right();
         }
     }
 }

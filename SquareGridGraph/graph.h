@@ -15,7 +15,7 @@
 
     class Town {
 public:
-    Town(HashDot);
+    Town(const HashDot&);
 
 // INTERFACE
     void connect_all(bool say = true, bool viz = false);
@@ -32,6 +32,7 @@ private:
     enum BlockShape { LINE_SEGMENT, CORNER, T_SHAPE, CROSS };
     enum WallShape  { FLAT_WALL, EXTERNAL_CORNER, INTERNAL_CORNER };
 
+    using Walker      = Grid<Block*>::walker;
     using BlockPlacer = Grid<Block*>::walker;
     using PanelPlacer = Grid<Block*>::walker;
     using Buildingpos = Grid<Block*>::walker;
@@ -42,7 +43,7 @@ private:
     using ID          = int;
 
     struct Block {
-        Block(ID bld_id = 0) { b_id_ = bld_id; }
+        Block(ID id = 0) { b_id_ = id; }
 
         ID b_id_;
         PanelSite up    = 0;
@@ -51,16 +52,14 @@ private:
         PanelSite left  = 0;
     };
 
-    struct Panel {};
-
 // BUILDING BRIDGES
          void reset(int&);
          bool is_connected(ID);
          void record_connection(const ID&);
    Directions get_seek_directions(const Block&);
-         void connect_buildings(   Buildingpos, Buildingpos,  const Direction);
-         void place_blocks_between(Buildingpos, Buildingpos,  const Direction);
-         void build_bridge(PanelPlacer, std::vector<Panel>&&, const Direction); // TODO: vector by ref is most likely unnecessary, eliminate.
+         void connect_buildings(   Buildingpos, Buildingpos, const Direction);
+         void place_blocks_between(Buildingpos, Buildingpos, const Direction);
+         void build_bridge(PanelPlacer, const int length,    const Direction);
          bool connect_isolated(Scanner, int);    
          void connect_group(Scanner); // the connecting algorithm
          void connect();              // the main algorithm
@@ -98,21 +97,19 @@ private:
 
 // CREATING THE DOWNTOWN MODEL
          bool is_hash(const char);
-         void put_panel(   PanelSite&, Panel&);
-         void put_panel_at(PanelSite&, Panel&);
+         void put_panel_at(PanelSite&);
          void put_block(   BlockSite&);
          void put_block_at(BlockSite&);
-         void process_hash_dot(const HashDot&);    
          void set_building_id(Block&, ID);    
-         void place_blocks_clockwise(BlockPlacer);
-         void place_panels_clockwise(PanelPlacer);
-         void create_downtown_model(const HashDot&);    
+         void place_blocks_clockwise(Walker);
+         void place_panels_clockwise(Walker);
+         void create_model(const HashDot&);    
 
 // OUTPUT INFO
-    int     bridges_;
-    int     bridges_total_length_;
-    int     disconnected_groups_;
-    HashDot h_d_;
+    int bridges_              = 0;
+    int bridges_total_length_ = 0;
+    int disconnected_groups_  = 0;
+    const HashDot& h_d_;
 
 // DYNAMIC STATISTICS FOR THE MAIN ALGORITHM
     List<ID> connected_;

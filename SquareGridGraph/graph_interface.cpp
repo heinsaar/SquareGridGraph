@@ -2,17 +2,13 @@
 
 using namespace sgg;
 
-Town::Town(HashDot buildings) : grid_(buildings.length() + 1, buildings.height() + 1)
+Town::Town(const HashDot& buildings)
+    : h_d_(buildings), grid_(buildings.length() + 1, buildings.height() + 1)
 {
-    process_hash_dot(buildings);
+    create_model(buildings);
     enumerate_buildings();
-
-    h_d_ = buildings;
-
-    bridges_total_length_ = 0;
-    disconnected_groups_  = 0;
-    bridges_              = 0;
 }
+
 void Town::connect_all(bool say, bool viz)
 {
     if (viz) display_hash_dot();
