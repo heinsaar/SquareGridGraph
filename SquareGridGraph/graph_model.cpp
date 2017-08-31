@@ -77,7 +77,7 @@ void Town::create_downtown_model(const HashDot& buildings)
     for (int n = 0; n < buildings.height(); ++n)
     {
         grid_.locate(b_p, 0, n);
-        string hdline = buildings.get_line(n);
+        std::string hdline = buildings.get_line(n);
 
         for (const auto& c : hdline)
         {

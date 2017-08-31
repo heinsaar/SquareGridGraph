@@ -5,15 +5,12 @@
 
 #pragma warning (disable : 4786)
 
+#include "rich_containers.h"
 #include "utilities.h"
 
 #include <iostream>
 #include <string>
 #include <vector>
-
-using std::cin;
-using std::string;
-using std::vector;
 
 class HashDot {
 public:
@@ -28,9 +25,9 @@ public:
 private:
     char random_hash_dot(int d) const;
 
-    vector<string> lines_;
-    int            height_ = 0;
-    int            length_ = 0;
+    Vector<std::string> lines_;
+    int                 height_ = 0;
+    int                 length_ = 0;
 };
 
 

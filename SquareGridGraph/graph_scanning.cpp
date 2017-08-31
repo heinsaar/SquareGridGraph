@@ -170,26 +170,27 @@ Town::BlockShape Town::block_shape(const Block& b)
     }
 }
 
+// Determines the block type for a builder moving clockwise
 Town::WallShape Town::scanner_view(const Block& b, Direction from)
 {
-// What is the block for a builder moving clockwise?
-    WallShape at;
+    WallShape shape;
             
     switch (block_shape(b)) {
 
-        case LINE_SEGMENT: case T_SHAPE: {
-            at = FLAT_WALL;
+        case LINE_SEGMENT: [[fallthrough]]
+        case T_SHAPE: {
+            shape = FLAT_WALL;
             if (is_bridge_start(b, from))
-                at = INTERNAL_CORNER;                    
+                shape = INTERNAL_CORNER;                    
             } break;
         case CROSS: {
-            at = INTERNAL_CORNER;
+            shape = INTERNAL_CORNER;
             if (is_cross_point(b))
-                at = FLAT_WALL;                    
+                shape = FLAT_WALL;                    
             } break;
         case CORNER: {
-            at = EXTERNAL_CORNER;
+            shape = EXTERNAL_CORNER;
             } break;
     }
-    return at;
+    return shape;
 }

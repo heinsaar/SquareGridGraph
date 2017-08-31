@@ -7,9 +7,6 @@
 #include <vector>
 #include <utility>
 
-using std::pair;
-using std::vector;
-
 extern int X;
 extern int Y;
 
@@ -18,9 +15,9 @@ class Grid {
 protected:
     struct Node;
 
-    using Imp      = vector<Node>;
+    using Imp      = std::vector<Node>;
     using Nodeiter = typename Imp::iterator;
-    using Location = pair<int, int>;
+    using Location = std::pair<int, int>;
 
     struct Node {
         Node(const Ker& k = Ker()) : kernel(k)
