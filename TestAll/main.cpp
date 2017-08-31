@@ -13,8 +13,6 @@ const std::string dirModelConnectedGold = "../Tests/Connected_gold/";
 
 int main() try
 {
-    srand(time(nullptr));
-
     int failedTests = 0;
 
     // TODO: Parallelize tests.

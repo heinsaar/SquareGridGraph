@@ -58,9 +58,9 @@ private:
          bool is_connected(ID);
          void record_connection(const ID&);
    Directions get_seek_directions(const Block&);
-         void connect_buildings(   Buildingpos, Buildingpos, const Direction);
-         void place_blocks_between(Buildingpos, Buildingpos, const Direction);
-         void build_bridge(PanelPlacer, std::vector<Panel>&, const Direction); // TODO: vector by ref is most likely unnecessary, eliminate.
+         void connect_buildings(   Buildingpos, Buildingpos,  const Direction);
+         void place_blocks_between(Buildingpos, Buildingpos,  const Direction);
+         void build_bridge(PanelPlacer, std::vector<Panel>&&, const Direction); // TODO: vector by ref is most likely unnecessary, eliminate.
          bool connect_isolated(Scanner, int);    
          void connect_group(Scanner); // the connecting algorithm
          void connect();              // the main algorithm

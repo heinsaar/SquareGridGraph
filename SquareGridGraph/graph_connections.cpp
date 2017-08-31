@@ -38,10 +38,8 @@ void Town::connect_buildings(Buildingpos a, Buildingpos b, const Direction ab)
 
     int n = grid_.distance(a, b);
 
-    std::vector<Panel> panels(n); // TODO: Pass as an rvalue below?
-
     place_blocks_between(a, b, ab);
-    build_bridge(a, panels, ab);
+    build_bridge(a, std::vector<Panel>(n), ab);
 
     bridges_total_length_ += n; ++bridges_;
 }
@@ -84,7 +82,7 @@ void Town::place_blocks_between(Buildingpos a, Buildingpos b, const Direction ab
     }
 }
 
-void Town::build_bridge(PanelPlacer a, std::vector<Panel>& pan, const Direction from_a)
+void Town::build_bridge(PanelPlacer a, std::vector<Panel>&& pan, const Direction from_a)
 {
     PanelPlacer b = a;
 
