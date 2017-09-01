@@ -34,7 +34,7 @@ void Town::connect_group(Walker s)
 void Town::connect()
 {
     while (!unvisited_.empty()) {
-        Buildingpos b = get_building_location(unvisited_.front());
+        BuildingPos b = get_building_location(unvisited_.front());
         connect_group(b);
         ++disconnected_groups_;
     }

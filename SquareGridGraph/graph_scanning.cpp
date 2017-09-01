@@ -61,7 +61,7 @@ void Town::enumerate_buildings()
     }
 }
 
-Town::Buildingpos Town::get_building_location(const ID& n)
+Town::BuildingPos Town::get_building_location(const ID& n)
 {
     Walker s;
             
@@ -76,7 +76,7 @@ Town::Buildingpos Town::get_building_location(const ID& n)
     }
 }
 
-Town::Buildingpos Town::seek_up(const Walker& s, int n)
+Town::BuildingPos Town::seek_up(const Walker& s, int n)
 {
     Walker sk = s;
 
@@ -89,7 +89,7 @@ Town::Buildingpos Town::seek_up(const Walker& s, int n)
     return s; // did not find
 }
 
-Town::Buildingpos Town::seek_right(const Walker& s, int n)
+Town::BuildingPos Town::seek_right(const Walker& s, int n)
 {
     Walker sk = s;
 
@@ -102,7 +102,7 @@ Town::Buildingpos Town::seek_right(const Walker& s, int n)
     return s; // did not find
 }
 
-Town::Buildingpos Town::seek_down(const Walker& s, int n)
+Town::BuildingPos Town::seek_down(const Walker& s, int n)
 {
     Walker sk = s;
 
@@ -115,7 +115,7 @@ Town::Buildingpos Town::seek_down(const Walker& s, int n)
     return s;    // did not find
 }
 
-Town::Buildingpos Town::seek_left(const Walker& s, int n)
+Town::BuildingPos Town::seek_left(const Walker& s, int n)
 {
     Walker sk = s;
 

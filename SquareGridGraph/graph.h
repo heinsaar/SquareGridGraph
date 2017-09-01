@@ -35,7 +35,7 @@ private:
     using Walker      = Grid<Block*>::walker;
     using BlockPlacer = Grid<Block*>::walker;
     using PanelPlacer = Grid<Block*>::walker;
-    using Buildingpos = Grid<Block*>::walker;
+    using BuildingPos = Grid<Block*>::walker;
     using Directions  = std::queue<Direction>;
     using BlockSite   = Block*;
     using PanelSite   = bool;
@@ -56,12 +56,12 @@ private:
          bool is_connected(ID);
          void record_connection(const ID);
    Directions get_seek_directions(const Block&);
-         void connect_buildings(   Buildingpos, Buildingpos, const Direction);
-         void place_blocks_between(Buildingpos, Buildingpos, const Direction);
+         void connect_buildings(   BuildingPos, BuildingPos, const Direction);
+         void place_blocks_between(BuildingPos, BuildingPos, const Direction);
          void build_bridge(PanelPlacer, const int length,    const Direction);
          bool connect_isolated(Walker, int);    
          void connect_group(Walker); // the connecting algorithm
-         void connect();              // the main algorithm
+         void connect();             // the main algorithm
 
 // MOVING CLOCKWISE
     Direction first_move_direction(      const Block&);
@@ -69,7 +69,7 @@ private:
     Direction external_corner_direction(const Direction);
     Direction internal_corner_direction(const Direction);
     Direction flat_wall_direction(      const Direction);
-    Direction orient(    const Block&, Direction&);
+    Direction orient(   const Block&, Direction&);
          void move(          Walker&, Direction&);
          void move_clockwise(Walker&, Direction&);
 
@@ -85,11 +85,11 @@ private:
          bool on_different_buildings(const Walker&, const Walker&);
          void set_contour_id(        const Walker&, const ID&);
           int count_free_directions(const Block&);
-  Buildingpos get_building_location(const ID&);
-  Buildingpos seek_up(   const Walker&, int);
-  Buildingpos seek_right(const Walker&, int);
-  Buildingpos seek_down( const Walker&, int);
-  Buildingpos seek_left( const Walker&, int);
+  BuildingPos get_building_location(const ID&);
+  BuildingPos seek_up(   const Walker&, int);
+  BuildingPos seek_right(const Walker&, int);
+  BuildingPos seek_down( const Walker&, int);
+  BuildingPos seek_left( const Walker&, int);
    BlockShape block_shape( const Block&);
     WallShape scanner_view(const Block&, Direction);    
 
