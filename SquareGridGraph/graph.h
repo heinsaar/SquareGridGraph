@@ -11,6 +11,7 @@
 #include "grid.h"
 
 #include <algorithm>
+#include <memory>
 #include <queue>
 
     class Town {
@@ -32,12 +33,12 @@ private:
     enum BlockShape { LINE_SEGMENT, CORNER, T_SHAPE, CROSS };
     enum WallShape  { FLAT_WALL, EXTERNAL_CORNER, INTERNAL_CORNER };
 
-    using Walker      = Grid<Block*>::walker;
-    using BlockPlacer = Grid<Block*>::walker;
-    using PanelPlacer = Grid<Block*>::walker;
-    using BuildingPos = Grid<Block*>::walker;
+    using Walker      = Grid<std::unique_ptr<Block>>::walker;
+    using BlockPlacer = Grid<std::unique_ptr<Block>>::walker;
+    using PanelPlacer = Grid<std::unique_ptr<Block>>::walker;
+    using BuildingPos = Grid<std::unique_ptr<Block>>::walker;
     using Directions  = std::vector<Direction>;
-    using BlockSite   = Block*;
+    using BlockSite   = std::unique_ptr<Block>;
     using PanelSite   = bool;
     using ID          = int;
 
@@ -114,7 +115,7 @@ private:
     List<ID> unvisited_;
 
 // IMPLEMENTATION
-    Grid<Block*> grid_;
+    Grid<std::unique_ptr<Block>> grid_;
 };
 
 #endif // _DOWNTOWN_MODEL_

@@ -20,7 +20,8 @@ protected:
     using Location = std::pair<int, int>;
 
     struct Node {
-        Node(const Ker& k = Ker()) : kernel(k)
+        Node() = default;
+        Node(const Ker& k) : kernel(k)
         { up = right = down = left = Imp::iterator(); }
 
         Nodeiter up, right, down, left;

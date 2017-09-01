@@ -14,7 +14,7 @@ void Town::set_building_id(Block& b, ID id)
 
 void Town::put_block(BlockSite& s)
 {
-    s = new Block(); // TODO: Remove this heap allocation.
+    s = std::make_unique<Block>();
 }
 
 void Town::put_panel_at(PanelSite& s)
