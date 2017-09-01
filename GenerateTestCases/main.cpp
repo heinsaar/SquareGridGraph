@@ -4,7 +4,7 @@
 
 #include <fstream>
 #include <sstream>
-#include <thread>
+#include <future>
 #include <mutex>
 
 using namespace sgg;
@@ -45,15 +45,10 @@ void create_examples(int N)
 
 int main() try
 {
-    std::thread t1(create_examples, 500);
-    std::thread t2(create_examples, 500);
-    std::thread t3(create_examples, 500);
-    std::thread t4(create_examples, 500);
-    
-    t1.join();
-    t2.join();
-    t3.join();
-    t4.join();
+    std::async(std::launch::async, create_examples, 500);
+    std::async(std::launch::async, create_examples, 500);
+    std::async(std::launch::async, create_examples, 500);
+    std::async(std::launch::async, create_examples, 500);
 }
 catch (const std::exception& e) // TODO: Catch exceptions from threads also.
 {
