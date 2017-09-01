@@ -259,3 +259,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/Tests/Connected
+/Tests/Connected
+/Tests/Hashdots
+/Tests/Hashdots

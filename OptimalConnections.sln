@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SquareGridGraph", "SquareGridGraph\SquareGridGraph.vcxproj", "{F93531DD-EDE4-41D1-9587-E54EE50FF415}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{84B3E8B6-9BAE-4BB4-9FC2-36889F355C23}"
+	ProjectSection(SolutionItems) = preProject
+		TODO.txt = TODO.txt
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GenerateTestCases", "GenerateTestCases\GenerateTestCases.vcxproj", "{E74FE6BE-58AF-4C28-9AD5-8E7FD98E4F9A}"
 	ProjectSection(ProjectDependencies) = postProject
