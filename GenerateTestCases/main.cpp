@@ -55,7 +55,7 @@ int main() try
     t3.join();
     t4.join();
 }
-catch (const std::exception& e)
+catch (const std::exception& e) // TODO: Catch exceptions from threads also.
 {
     display(e.what());
 }
