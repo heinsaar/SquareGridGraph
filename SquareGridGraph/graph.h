@@ -39,17 +39,17 @@ private:
     using Scanner     = Grid<Block*>::walker;    
     using Directions  = std::queue<Direction>;
     using BlockSite   = Block*;
-    using PanelSite   = Panel*;
+    using PanelSite   = bool;
     using ID          = int;
 
     struct Block {
         Block(ID id = 0) { b_id_ = id; }
 
         ID b_id_;
-        PanelSite up    = 0;
-        PanelSite right = 0;
-        PanelSite down  = 0;
-        PanelSite left  = 0;
+        bool up    = false;
+        bool right = false;
+        bool down  = false;
+        bool left  = false;
     };
 
 // BUILDING BRIDGES
@@ -77,7 +77,6 @@ private:
 // SCANNING THE DOWNTOWN
          void enumerate_buildings();
          bool is_free(const BlockSite&);
-         bool is_free(const PanelSite&);
          bool is_on_building( const Scanner&);
          bool is_on_contour(  const Scanner&);
          bool is_cross_point( const Block&);

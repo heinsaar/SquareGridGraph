@@ -19,8 +19,7 @@ void Town::put_block(BlockSite& s)
 
 void Town::put_panel_at(PanelSite& s)
 {
-    // TODO: Doesn't need to be a pointer and occupy 8 bytes. A bool will do (or even a bit?)
-    s = reinterpret_cast<PanelSite>(0x0CC000ED); // 0x0CCUPIED
+    s = true;
 }
 
 void Town::put_block_at(BlockSite& s)

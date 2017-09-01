@@ -20,10 +20,10 @@ Town::Directions Town::get_seek_directions(const Block& b)
 {
     Directions directions;
 
-    if (is_free(b.up))    directions.push(UP);
-    if (is_free(b.right)) directions.push(RIGHT);
-    if (is_free(b.down))  directions.push(DOWN);
-    if (is_free(b.left))  directions.push(LEFT);
+    if (!b.up)    directions.push(UP);
+    if (!b.right) directions.push(RIGHT);
+    if (!b.down)  directions.push(DOWN);
+    if (!b.left)  directions.push(LEFT);
 
     return directions;
 }

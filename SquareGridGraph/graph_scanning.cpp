@@ -6,11 +6,6 @@ bool Town::is_free(const BlockSite& b_s)
     return b_s == nullptr;
 }
 
-bool Town::is_free(const PanelSite& p_s)
-{
-    return p_s == nullptr;
-}
-
 bool Town::is_cross_point(const Block& b)
 {
     return b.b_id_ == 0;
@@ -28,8 +23,8 @@ bool Town::on_different_buildings(const Scanner& a, const Scanner& b)
 
 bool Town::is_line_segment(const Block& b)
 {
-    return (is_free(b.up)   && is_free(b.down))
-        || (is_free(b.left) && is_free(b.right));
+    return (!b.up   && !b.down)
+        || (!b.left && !b.right);
 }
 bool Town::found_building(const Scanner& sk, const Scanner& s)
 {
@@ -137,10 +132,10 @@ int Town::count_free_directions(const Block& b)
 {
     short n = 0;
 
-    if (is_free(b.up))    ++n;
-    if (is_free(b.right)) ++n;
-    if (is_free(b.down))  ++n;
-    if (is_free(b.left))  ++n;
+    if (!b.up)    ++n;
+    if (!b.right) ++n;
+    if (!b.down)  ++n;
+    if (!b.left)  ++n;
 
     return n;
 }
@@ -149,10 +144,10 @@ bool Town::is_bridge_start(const Block& b, Direction from)
 {
 // Is one of the panels actually a start of a bridge?
     switch (from) {
-        case UP:    return !is_free(b.right); // bridge on right?
-        case RIGHT:    return !is_free(b.down);  // bridge on down?
-        case DOWN:    return !is_free(b.left);  // bridge on left?
-        case LEFT:    return !is_free(b.up);    // bridge on up?
+        case UP:    return b.right; // bridge on right?
+        case RIGHT: return b.down;  // bridge on down?
+        case DOWN:  return b.left;  // bridge on left?
+        case LEFT:  return b.up;    // bridge on up?
     }
 }
 
