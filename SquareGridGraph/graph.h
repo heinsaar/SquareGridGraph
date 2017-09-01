@@ -36,7 +36,7 @@ private:
     using BlockPlacer = Grid<Block*>::walker;
     using PanelPlacer = Grid<Block*>::walker;
     using BuildingPos = Grid<Block*>::walker;
-    using Directions  = std::queue<Direction>;
+    using Directions  = std::vector<Direction>;
     using BlockSite   = Block*;
     using PanelSite   = bool;
     using ID          = int;
@@ -55,7 +55,7 @@ private:
          void reset(int&);
          bool is_connected(ID);
          void record_connection(const ID);
-   Directions get_seek_directions(const Block&);
+   Directions seek_directions(const Block&);
          void connect_buildings(   BuildingPos, BuildingPos, const Direction);
          void place_blocks_between(BuildingPos, BuildingPos, const Direction);
          void build_bridge(PanelPlacer, const int length,    const Direction);

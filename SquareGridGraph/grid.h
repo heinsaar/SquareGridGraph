@@ -11,7 +11,7 @@ extern int X;
 extern int Y;
 
 template<class Ker>
-class Grid {
+    class Grid {
 protected:
     struct Node;
 
@@ -116,7 +116,6 @@ public:
         Coord       y_;
     };
 
-        // CLASS walker
     friend class walker;
     class walker : public const_walker {
     public:

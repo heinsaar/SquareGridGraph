@@ -16,14 +16,14 @@ void Town::record_connection(const ID b_id)
     unvisited_.remove(b_id);
 }
 
-Town::Directions Town::get_seek_directions(const Block& b)
+Town::Directions Town::seek_directions(const Block& b)
 {
     Directions directions;
 
-    if (!b.up)    directions.push(UP);
-    if (!b.right) directions.push(RIGHT);
-    if (!b.down)  directions.push(DOWN);
-    if (!b.left)  directions.push(LEFT);
+    if (!b.up)    directions.push_back(UP);
+    if (!b.right) directions.push_back(RIGHT);
+    if (!b.down)  directions.push_back(DOWN);
+    if (!b.left)  directions.push_back(LEFT);
 
     return directions;
 }
@@ -125,15 +125,13 @@ void Town::build_bridge(PanelPlacer a, const int length, const Direction from_a)
 
 bool Town::connect_isolated(const Walker& w, int depth)
 {
-    Directions directions = get_seek_directions(**w);
-
     bool found = false;
 
-    while (!directions.empty()) {
-
+    for (const auto& d : seek_directions(**w))
+    {
         BuildingPos c; // closest at depth distance
 
-        switch (directions.front()) {
+        switch (d) {
             case UP: {
                 c = seek_up(w, depth);
                 if (c != w) // found?
@@ -168,8 +166,7 @@ bool Town::connect_isolated(const Walker& w, int depth)
             } break;
         }
         if (found)
-            return true;  // found
-        directions.pop(); // seek next...
+            return true;
     }
     return false; // did not find
 }
