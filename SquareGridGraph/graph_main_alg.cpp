@@ -1,7 +1,7 @@
 #include "graph.h"
 
 // THE CONNECTING ALGORITHM
-void Town::connect_group(Scanner s)
+void Town::connect_group(Walker s)
 {
     record_connection((**s).b_id_);
 
@@ -10,7 +10,7 @@ void Town::connect_group(Scanner s)
 
     Direction from = NONE;   // first move always from
     move_clockwise(s, from); // an EXTERNAL_CORNER
-    Scanner start = s;       // from LEFT to RIGHT
+    Walker start = s;       // from LEFT to RIGHT
 
     while (depth != max_depth) {
         do {

@@ -25,12 +25,11 @@ void Town::connect_all(bool say, bool viz)
     }
 }
 
-// INTERFACE
 void Town::display_model()
 {
     ISOLATE;
 
-    Scanner s;
+    Walker s;
 
     NEW_LINE;
     for (int y = 0; y < grid_.max_y(); ++y) {
@@ -55,7 +54,7 @@ void Town::write_to(std::string fileName, bool withStats)
     if (!file)
         throw std::exception(("Error: Unable to open file " + quote(fileName) + ".").c_str());
 
-    Scanner s;
+    Walker s;
 
     for (int y = 0; y < grid_.max_y(); ++y) {
         grid_.locate(s, 0, y);

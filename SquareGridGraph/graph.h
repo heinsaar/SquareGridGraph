@@ -15,7 +15,7 @@
 
     class Town {
 public:
-    Town(const HashDot&);
+     Town(const HashDot&);
 
 // INTERFACE
     void connect_all(bool say = true, bool viz = false);
@@ -36,7 +36,6 @@ private:
     using BlockPlacer = Grid<Block*>::walker;
     using PanelPlacer = Grid<Block*>::walker;
     using Buildingpos = Grid<Block*>::walker;
-    using Scanner     = Grid<Block*>::walker;    
     using Directions  = std::queue<Direction>;
     using BlockSite   = Block*;
     using PanelSite   = bool;
@@ -55,13 +54,13 @@ private:
 // BUILDING BRIDGES
          void reset(int&);
          bool is_connected(ID);
-         void record_connection(const ID&);
+         void record_connection(const ID);
    Directions get_seek_directions(const Block&);
          void connect_buildings(   Buildingpos, Buildingpos, const Direction);
          void place_blocks_between(Buildingpos, Buildingpos, const Direction);
          void build_bridge(PanelPlacer, const int length,    const Direction);
-         bool connect_isolated(Scanner, int);    
-         void connect_group(Scanner); // the connecting algorithm
+         bool connect_isolated(Walker, int);    
+         void connect_group(Walker); // the connecting algorithm
          void connect();              // the main algorithm
 
 // MOVING CLOCKWISE
@@ -71,26 +70,26 @@ private:
     Direction internal_corner_direction(const Direction);
     Direction flat_wall_direction(      const Direction);
     Direction orient(    const Block&, Direction&);
-         void move(          Scanner&, Direction&);
-         void move_clockwise(Scanner&, Direction&);
+         void move(          Walker&, Direction&);
+         void move_clockwise(Walker&, Direction&);
 
 // SCANNING THE DOWNTOWN
          void enumerate_buildings();
          bool is_free(const BlockSite&);
-         bool is_on_building( const Scanner&);
-         bool is_on_contour(  const Scanner&);
+         bool is_on_building( const Walker&);
+         bool is_on_contour(  const Walker&);
          bool is_cross_point( const Block&);
          bool is_line_segment(const Block&);
          bool is_bridge_start(const Block&, Direction);
-         bool found_building(        const Scanner&, const Scanner&);
-         bool on_different_buildings(const Scanner&, const Scanner&);
-         void set_contour_id(        const Scanner&, const ID&);
+         bool found_building(        const Walker&, const Walker&);
+         bool on_different_buildings(const Walker&, const Walker&);
+         void set_contour_id(        const Walker&, const ID&);
           int count_free_directions(const Block&);
   Buildingpos get_building_location(const ID&);
-  Buildingpos seek_up(   const Scanner&, int);
-  Buildingpos seek_right(const Scanner&, int);
-  Buildingpos seek_down( const Scanner&, int);
-  Buildingpos seek_left( const Scanner&, int);
+  Buildingpos seek_up(   const Walker&, int);
+  Buildingpos seek_right(const Walker&, int);
+  Buildingpos seek_down( const Walker&, int);
+  Buildingpos seek_left( const Walker&, int);
    BlockShape block_shape( const Block&);
     WallShape scanner_view(const Block&, Direction);    
 

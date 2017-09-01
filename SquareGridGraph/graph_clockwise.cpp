@@ -73,7 +73,7 @@ Town::Direction Town::orient(const Block& b, Direction& from)
     }
 }
 
-void Town::move(Scanner& s, Direction& to)
+void Town::move(Walker& s, Direction& to)
 {
     Direction& from = to;
     switch (to) {
@@ -84,7 +84,7 @@ void Town::move(Scanner& s, Direction& to)
     }
 }
 
-void Town::move_clockwise(Scanner& s, Direction& from)
+void Town::move_clockwise(Walker& s, Direction& from)
 {
     Direction& to = from;
                to = orient(**s, from);

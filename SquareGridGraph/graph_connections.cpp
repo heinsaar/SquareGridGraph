@@ -10,7 +10,7 @@ bool Town::is_connected(ID id)
     return connected_.contains(id);
 }
 
-void Town::record_connection(const ID& b_id)
+void Town::record_connection(const ID b_id)
 {
     connected_.push_back(b_id);
     unvisited_.remove(b_id);
@@ -123,7 +123,7 @@ void Town::build_bridge(PanelPlacer a, const int length, const Direction from_a)
     }
 }
 
-bool Town::connect_isolated(Scanner s, int d)
+bool Town::connect_isolated(Walker s, int d)
 {
     int& depth = d; // seek depth // TODO: Can probably be a member or something to avoid passing around.
     Directions directions = get_seek_directions(**s);

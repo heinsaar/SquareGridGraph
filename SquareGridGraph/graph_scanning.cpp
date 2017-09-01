@@ -11,12 +11,12 @@ bool Town::is_cross_point(const Block& b)
     return b.b_id_ == 0;
 }
 
-bool Town::is_on_building(const Scanner& s)
+bool Town::is_on_building(const Walker& s)
 {
     return (**s).b_id_ != 0;
 }
 
-bool Town::on_different_buildings(const Scanner& a, const Scanner& b)
+bool Town::on_different_buildings(const Walker& a, const Walker& b)
 {
     return (**a).b_id_ != (**b).b_id_;
 }
@@ -26,18 +26,18 @@ bool Town::is_line_segment(const Block& b)
     return (!b.up   && !b.down)
         || (!b.left && !b.right);
 }
-bool Town::found_building(const Scanner& sk, const Scanner& s)
+bool Town::found_building(const Walker& sk, const Walker& s)
 {
     return is_on_building(sk) && on_different_buildings(sk, s);
 }
-bool Town::is_on_contour(const Scanner& s)
+bool Town::is_on_contour(const Walker& s)
 {
     return !is_free(*s) && (**s).b_id_ == 0 && count_free_directions(**s) > 0;
 }
 
-void Town::set_contour_id(const Scanner& s, const ID& id)
+void Town::set_contour_id(const Walker& s, const ID& id)
 {
-    Scanner e = s;
+    Walker e = s;
     Direction from = NONE;
     do {
         set_building_id(**e, id);
@@ -47,7 +47,7 @@ void Town::set_contour_id(const Scanner& s, const ID& id)
 
 void Town::enumerate_buildings()
 {
-    Scanner s;
+    Walker s;
     ID id = 1;
     for (int y = 0; y < grid_.max_y(); ++y) {
         grid_.locate(s, 0, y);
@@ -63,7 +63,7 @@ void Town::enumerate_buildings()
 
 Town::Buildingpos Town::get_building_location(const ID& n)
 {
-    Scanner s;
+    Walker s;
             
     for (int y = 0; y < grid_.max_y(); ++y) {
         grid_.locate(s, 0, y);
@@ -76,9 +76,9 @@ Town::Buildingpos Town::get_building_location(const ID& n)
     }
 }
 
-Town::Buildingpos Town::seek_up(const Scanner& s, int n)
+Town::Buildingpos Town::seek_up(const Walker& s, int n)
 {
-    Scanner sk = s;
+    Walker sk = s;
 
     while (!sk.is_upmost() && n > 0) {
         sk.move_up(); --n;
@@ -89,9 +89,9 @@ Town::Buildingpos Town::seek_up(const Scanner& s, int n)
     return s; // did not find
 }
 
-Town::Buildingpos Town::seek_right(const Scanner& s, int n)
+Town::Buildingpos Town::seek_right(const Walker& s, int n)
 {
-    Scanner sk = s;
+    Walker sk = s;
 
     while (!sk.is_rightmost() && n > 0) {
         sk.move_right(); --n;                // TODO: Try to optimize with move_right(n)
@@ -102,9 +102,9 @@ Town::Buildingpos Town::seek_right(const Scanner& s, int n)
     return s; // did not find
 }
 
-Town::Buildingpos Town::seek_down(const Scanner& s, int n)
+Town::Buildingpos Town::seek_down(const Walker& s, int n)
 {
-    Scanner sk = s;
+    Walker sk = s;
 
     while (!sk.is_downmost() && n > 0) {
         sk.move_down(); --n;
@@ -115,9 +115,9 @@ Town::Buildingpos Town::seek_down(const Scanner& s, int n)
     return s;    // did not find
 }
 
-Town::Buildingpos Town::seek_left(const Scanner& s, int n)
+Town::Buildingpos Town::seek_left(const Walker& s, int n)
 {
-    Scanner sk = s;
+    Walker sk = s;
 
     while (!sk.is_leftmost() && n > 0) {
         sk.move_left(); --n;
