@@ -23,6 +23,8 @@
 
 namespace sgg {
 
+    // TODO: Create a thread-safe display class or function.
+
     inline std::string quote(std::string s) { return "\"" + s + "\""; }
 
     int rand(int min, int max, bool seed = true);

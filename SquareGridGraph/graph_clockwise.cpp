@@ -12,9 +12,7 @@ Town::Direction Town::first_from_external_corner(const Block& b)
     // (for the main algorithm using the
     // current get_building_location method)
 
-        if (!b.left &&
-            !b.up   &&
-             b.right)
+        if (!b.left && !b.up && b.right)
             return RIGHT;
 
     // other types of EXTERNAL_CORNER
