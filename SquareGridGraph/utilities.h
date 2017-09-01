@@ -61,14 +61,6 @@ namespace sgg {
             display("-");
     }
 
-    inline void show_duration(clock_t t1, clock_t t2)
-    {
-        ISOLATE;
-        display("Execution time: ");
-        display(difference(t1, t2));
-        ISOLATE;
-    }
-
     bool files_identical(std::string fileNameA, std::string fileNameB);
 
 } // NAMESPACE
