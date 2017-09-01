@@ -54,9 +54,9 @@ public:
     class const_walker {
     public:
         const_walker() {}
-        const_walker(Nodeiter p, Coord x, Coord y) { curr_ = p; x_ = x; y_ = y; }
-        const_walker(const walker& w) : curr_(w.curr_), x_(w.x_), y_(w.y_){}
-        const_reference operator*() const { return (Acc::kernel(curr_)); }
+        const_walker(Nodeiter p, Coord x, Coord y) { node_ = p; x_ = x; y_ = y; }
+        const_walker(const walker& w) : node_(w.node_), x_(w.x_), y_(w.y_){}
+        const_reference operator*() const { return (Acc::kernel(node_)); }
         Ckptr operator->()          const { return (&**this); }
 
     // HORIZONTAL / VERTICAL MOVE
@@ -64,7 +64,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                curr_ = Acc::left(curr_);
+                node_ = Acc::left(node_);
                 --x_;
             }
             return *this;;
@@ -73,7 +73,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                curr_ = Acc::right(curr_);
+                node_ = Acc::right(node_);
                 ++x_;
             }
             return *this;;
@@ -82,7 +82,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                curr_ = Acc::up(curr_);
+                node_ = Acc::up(node_);
                 --y_;
             }
             return *this;;
@@ -91,7 +91,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                curr_ = Acc::down(curr_);
+                node_ = Acc::down(node_);
                 ++y_;
             }
             return *this;;
@@ -108,10 +108,10 @@ public:
         Coord y()           const { return y_; }
         
     // OPERATORS
-        bool operator==(const const_walker& w) const { return (curr_ == w.curr_); }
+        bool operator==(const const_walker& w) const { return (node_ == w.node_); }
         bool operator!=(const const_walker& w) const { return (!(*this == w)); }
     protected:
-        Nodeiter curr_;
+        Nodeiter node_;
         Coord       x_;
         Coord       y_;
     };
@@ -121,33 +121,49 @@ public:
     class walker : public const_walker {
     public:
         walker() {}
-        walker(Nodeiter p, Coord x, Coord y) { curr_ = p; x_ = x; y_ = y; }
-        reference operator*() const          { return (Acc::kernel(curr_)); }
+        walker(Nodeiter p, Coord x, Coord y) { node_ = p; x_ = x; y_ = y; }
+        reference operator*() const          { return (Acc::kernel(node_)); }
         Kptr operator->()     const          { return (&**this); }
 
     // HORIZONTAL / VERTICAL MOVE
         walker& move_left(int n = 1)
-            {for (; 0 < n; --n)
-                {curr_ = Acc::left(curr_);
-                    --x_; }                
-            return *this;; }
+        {
+            for (; 0 < n; --n)
+            {
+                node_ = Acc::left(node_);
+                --x_;
+            }
+            return *this;;
+        }
         walker& move_right(int n = 1)
-            {for (; 0 < n; --n)
-                {curr_ = Acc::right(curr_);
-                    ++x_; }
-            return *this;; }
+        {
+            for (; 0 < n; --n)
+            {
+                node_ = Acc::right(node_);
+                ++x_;
+            }
+            return *this;;
+        }
         walker& move_up(int n = 1)
-            {for (; 0 < n; --n)
-                {curr_ = Acc::up(curr_);
-                    --y_; }
-            return *this;; }
+        {
+            for (; 0 < n; --n)
+            {
+                node_ = Acc::up(node_);
+                --y_;
+            }
+            return *this;;
+        }
         walker& move_down(int n = 1)
-            {for (; 0 < n; --n)
-                {curr_ = Acc::down(curr_);
-                    ++y_; }
-            return *this;; }
+        {
+            for (; 0 < n; --n)
+            {
+                node_ = Acc::down(node_);
+                ++y_;
+            }
+            return *this;;
+        }
 
-        bool operator==(const walker& w) const { return (curr_ == w.curr_); }
+        bool operator==(const walker& w) const { return (node_ == w.node_); }
         bool operator!=(const walker& w) const { return (!(*this == w)); }
     };
 

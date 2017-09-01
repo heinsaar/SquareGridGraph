@@ -123,47 +123,46 @@ void Town::build_bridge(PanelPlacer a, const int length, const Direction from_a)
     }
 }
 
-bool Town::connect_isolated(Walker s, int d)
+bool Town::connect_isolated(const Walker& w, int depth)
 {
-    int& depth = d; // seek depth // TODO: Can probably be a member or something to avoid passing around.
-    Directions directions = get_seek_directions(**s);
+    Directions directions = get_seek_directions(**w);
 
     bool found = false;
 
     while (!directions.empty()) {
 
-        BuildingPos c; // closest at d distance
+        BuildingPos c; // closest at depth distance
 
         switch (directions.front()) {
             case UP: {
-                c = seek_up(s, depth);
-                if (c != s) // found?
+                c = seek_up(w, depth);
+                if (c != w) // found?
                     if (found = !is_connected((**c).b_id_)) {
-                        connect_buildings(s, c, UP);
+                        connect_buildings(w, c, UP);
                         record_connection((**c).b_id_);
                     }                        
             } break;
             case RIGHT: {
-                c = seek_right(s, depth);
-                if (c != s) // found?
+                c = seek_right(w, depth);
+                if (c != w) // found?
                     if (found = !is_connected((**c).b_id_)) {
-                        connect_buildings(s, c, RIGHT);
+                        connect_buildings(w, c, RIGHT);
                         record_connection((**c).b_id_);
                     }
             } break;
             case DOWN: {
-                c = seek_down(s, depth);
-                if (c != s) // found?
+                c = seek_down(w, depth);
+                if (c != w) // found?
                     if (found = !is_connected((**c).b_id_)) {
-                        connect_buildings(s, c, DOWN);
+                        connect_buildings(w, c, DOWN);
                         record_connection((**c).b_id_);
                     }                        
             } break;
             case LEFT: {
-                c = seek_left(s, depth);
-                if (c != s) // found?
+                c = seek_left(w, depth);
+                if (c != w) // found?
                     if (found = !is_connected((**c).b_id_)) {
-                        connect_buildings(s, c, LEFT);
+                        connect_buildings(w, c, LEFT);
                         record_connection((**c).b_id_);
                     }
             } break;

@@ -59,7 +59,7 @@ private:
          void connect_buildings(   BuildingPos, BuildingPos, const Direction);
          void place_blocks_between(BuildingPos, BuildingPos, const Direction);
          void build_bridge(PanelPlacer, const int length,    const Direction);
-         bool connect_isolated(Walker, int);    
+         bool connect_isolated(const Walker&, int);    
          void connect_group(Walker); // the connecting algorithm
          void connect();             // the main algorithm
 
