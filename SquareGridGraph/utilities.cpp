@@ -27,3 +27,5 @@ bool sgg::files_identical(std::string fileNameA, std::string fileNameB)
 
     return A && B && (a.str() == b.str());
 }
+
+std::mutex sgg::cout_synchronized::mutexPrint_ = {};

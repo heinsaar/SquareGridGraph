@@ -9,13 +9,12 @@
 #include <sstream>
 #include <random>
 #include <string>
-#include <ctime>
+#include <mutex>
 
-    // DECLARATIONS
-#define ISOLATE   (std::cout << std::endl << std::endl)
-#define NEW_LINE  (std::cout << std::endl)
-#define SGL_SPACE (std::cout << " ")
-#define DBL_SPACE (std::cout << "  ")
+#define ISOLATE   display("\n")
+#define NEW_LINE  display("\n")
+#define SGL_SPACE display(" ")
+#define DBL_SPACE display("  ")
 #define FOREVER while (true)
 #define DO do
 #define CONTINUE_UPON_REQUEST while (std::cin.get() != '0');
@@ -23,7 +22,20 @@
 
 namespace sgg {
 
-    // TODO: Create a thread-safe display class or function.
+    class cout_synchronized : public std::ostringstream
+    {
+    public:
+        cout_synchronized() = default;
+
+        ~cout_synchronized()
+        {
+            std::lock_guard<std::mutex> guard(mutexPrint_);
+            std::cout << this->str();
+        }
+
+    private:
+        static std::mutex mutexPrint_;
+    };
 
     inline std::string quote(std::string s) { return "\"" + s + "\""; }
 
@@ -32,13 +44,13 @@ namespace sgg {
     template<class Displayable>
     inline void display(const Displayable info)
     {
-        std::cout << info;
+        cout_synchronized() << info;
     }
 
     template<class Displayable>
     inline void display_line(const Displayable info)
     {
-        std::cout << std::endl << info;
+        cout_synchronized() << std::endl << info;
     }
     
     inline int difference(clock_t t1, clock_t t2) { return (int)(t2 - t1); }
