@@ -53,8 +53,6 @@ namespace sgg {
         cout_synchronized() << std::endl << info;
     }
     
-    inline int difference(clock_t t1, clock_t t2) { return (int)(t2 - t1); }
-    
     inline void border(int size = 23)
     {
         for (int j = 0; j < size; ++j)
