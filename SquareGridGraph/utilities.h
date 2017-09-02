@@ -17,16 +17,14 @@
 #define DBL_SPACE display("  ")
 #define FOREVER while (true)
 #define DO do
-#define CONTINUE_UPON_REQUEST while (std::cin.get() != '0');
+#define CONTINUE_ON_ENTER while (std::cin.get() != '0');
 #define TIMES(N) for (int i=0; i<(N); i++)
 
 namespace sgg {
 
-    class cout_synchronized : public std::ostringstream
+    struct cout_synchronized : std::ostringstream
     {
-    public:
-        cout_synchronized() = default;
-
+         cout_synchronized() = default;
         ~cout_synchronized()
         {
             std::lock_guard<std::mutex> guard(mutexPrint_);

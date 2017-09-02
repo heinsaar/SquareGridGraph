@@ -21,7 +21,7 @@ int main() try
         Town town(hashdot);
         town.connect_all(true, true);
     }
-    CONTINUE_UPON_REQUEST
+    CONTINUE_ON_ENTER
 }
 catch (const std::exception& e)
 {
