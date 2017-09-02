@@ -14,6 +14,8 @@ const std::string dirModelConnectedGold = "../Tests/Connected_gold/";
 
 int test_range(int a, int b)
 {
+     static std::mutex m; // 44 seconds (all tests)
+
     int failedTestsInRange = 0;
     for (int i = a; i < b; i++)
     {
@@ -23,9 +25,9 @@ int test_range(int a, int b)
         const std::string fileModelHashdotPath = dirHashdotGold + fileModelHashdot;
         hashdot.read_from(fileModelHashdotPath);
 
-        Town town(hashdot);
+        Town town(hashdot); m.lock();   // 44 seconds (all tests)
         display_line(i);
-        town.connect_all();
+        town.connect_all(); m.unlock(); // 44 seconds (all tests)
 
         const std::string fileModelConnected     = "model_connected_" + std::to_string(i) + ".txt";
         const std::string fileConnectedPath      = dirModelConnected     + fileModelConnected;

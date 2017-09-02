@@ -17,7 +17,6 @@ void Town::connect_all(bool say, bool viz)
     connect();
 
     if (say) display(" OK");
-
     if (viz)
     {
         display_model();
