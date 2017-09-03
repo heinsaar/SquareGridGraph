@@ -7,17 +7,17 @@ struct Random { int X, Y, D; };
 Random sec__5_d = { 150, 20, 40 }; // about 5  seconds in debug mode
 Random sec_15_d = { 150, 40, 40 }; // about 12 seconds in debug mode
 
-auto package = sec__5_d;
+auto timepack = sec__5_d;
 
-int X = package.X;
-int Y = package.Y;
+int X = timepack.X;
+int Y = timepack.Y;
 
 int main() try
 {
     DO
     {
         HashDot hashdot;
-        hashdot.random(package.X, package.Y, package.D);
+        hashdot.random(timepack.X, timepack.Y, timepack.D);
         Town town(hashdot);
         town.connect_all(true, true);
     }
