@@ -8,9 +8,9 @@ using namespace sgg;
 int X = 70;
 int Y = 30;
 
-const std::string dirHashdotGold        = "../Tests/Hashdots_gold/";
-const std::string dirModelConnected     = "../Tests/Connected/";
-const std::string dirModelConnectedGold = "../Tests/Connected_gold/";
+const std::string dirHashdotGold        = "../../Tests/Hashdots_gold/";
+const std::string dirModelConnected     = "../../Tests/Connected/";
+const std::string dirModelConnectedGold = "../../Tests/Connected_gold/";
 
 int test_range(int a, int b)
 {
