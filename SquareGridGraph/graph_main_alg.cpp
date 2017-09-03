@@ -8,7 +8,7 @@ void Town::connect_group(Walker w)
     int depth = 1; // seek depth
     int max_depth = std::max(grid_.max_x(), grid_.max_y());
 
-    Direction from = NONE;   // first move always from
+    Direction from = Direction::NONE;   // first move always from
     move_clockwise(w, from); // an EXTERNAL_CORNER
     Walker start = w;        // from LEFT to RIGHT
 
@@ -25,7 +25,7 @@ void Town::connect_group(Walker w)
             move_clockwise(w, from);
         } while (w != start);
 
-        if (from == LEFT) // done full cycle
+        if (from == Direction::LEFT) // done full cycle
             ++depth;
     }
     connected_.clear();

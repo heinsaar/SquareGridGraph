@@ -13,7 +13,7 @@ Town::Direction Town::first_from_external_corner(const Block& b)
     // current get_building_location method)
 
         if (!b.left && !b.up && b.right)
-            return RIGHT;
+            return Direction::RIGHT;
 
     // other types of EXTERNAL_CORNER
     // (present here for extensibility)
@@ -34,42 +34,42 @@ Town::Direction Town::first_from_external_corner(const Block& b)
 Town::Direction Town::external_corner_direction(const Direction from)
 {
     switch (from) {                
-        case UP:    return LEFT;
-        case RIGHT: return UP;
-        case DOWN:  return RIGHT;
-        case LEFT:  return DOWN;
+        case Direction::UP:    return Direction::LEFT;
+        case Direction::RIGHT: return Direction::UP;
+        case Direction::DOWN:  return Direction::RIGHT;
+        case Direction::LEFT:  return Direction::DOWN;
     }
 }
 
 Town::Direction Town::internal_corner_direction(const Direction from)
 {
     switch (from) {                
-        case UP:    return RIGHT;
-        case RIGHT: return DOWN;
-        case DOWN:  return LEFT;
-        case LEFT:  return UP;
+        case Direction::UP:    return Direction::RIGHT;
+        case Direction::RIGHT: return Direction::DOWN;
+        case Direction::DOWN:  return Direction::LEFT;
+        case Direction::LEFT:  return Direction::UP;
     }
 }
 
 Town::Direction Town::flat_wall_direction(const Direction from)
 {
     switch (from) {
-        case UP:    return DOWN;
-        case RIGHT: return LEFT;
-        case DOWN:  return UP;
-        case LEFT:  return RIGHT;
+        case Direction::UP:    return Direction::DOWN;
+        case Direction::RIGHT: return Direction::LEFT;
+        case Direction::DOWN:  return Direction::UP;
+        case Direction::LEFT:  return Direction::RIGHT;
     }
 }
 
 Town::Direction Town::orient(const Block& b, Direction& from)
 {
-    if (from == NONE)
+    if (from == Direction::NONE)
         return first_move_direction(b);
 
     switch (scanner_view(b, from)) {
-        case EXTERNAL_CORNER: return external_corner_direction(from);
-        case INTERNAL_CORNER: return internal_corner_direction(from);
-        case FLAT_WALL:       return flat_wall_direction(from);
+        case WallShape::EXTERNAL_CORNER: return external_corner_direction(from);
+        case WallShape::INTERNAL_CORNER: return internal_corner_direction(from);
+        case WallShape::FLAT_WALL:       return flat_wall_direction(from);
     }
 }
 
@@ -77,10 +77,10 @@ void Town::move(Walker& s, Direction& to)
 {
     Direction& from = to;
     switch (to) {
-        case UP:    { s.move_up();    from = DOWN;  } break;
-        case RIGHT: { s.move_right(); from = LEFT;  } break;
-        case DOWN:  { s.move_down();  from = UP;    } break;
-        case LEFT:  { s.move_left();  from = RIGHT; } break;
+        case Direction::UP:    { s.move_up();    from = Direction::DOWN;  } break;
+        case Direction::RIGHT: { s.move_right(); from = Direction::LEFT;  } break;
+        case Direction::DOWN:  { s.move_down();  from = Direction::UP;    } break;
+        case Direction::LEFT:  { s.move_left();  from = Direction::RIGHT; } break;
     }
 }
 

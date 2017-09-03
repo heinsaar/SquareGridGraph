@@ -29,9 +29,9 @@ private:
     struct Panel;
     struct Block;
 
-    enum Direction  { NONE, UP, RIGHT, DOWN, LEFT };
-    enum BlockShape { LINE_SEGMENT, CORNER, T_SHAPE, CROSS };
-    enum WallShape  { FLAT_WALL, EXTERNAL_CORNER, INTERNAL_CORNER };
+    enum class Direction  { NONE, UP, RIGHT, DOWN, LEFT };
+    enum class BlockShape { NONE, LINE_SEGMENT, CORNER, T_SHAPE, CROSS };
+    enum class WallShape  { NONE, FLAT_WALL, EXTERNAL_CORNER, INTERNAL_CORNER };
 
     using Walker      = Grid<std::unique_ptr<Block>>::walker;
     using BlockPlacer = Grid<std::unique_ptr<Block>>::walker;

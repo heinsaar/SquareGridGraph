@@ -38,7 +38,7 @@ bool Town::is_on_contour(const Walker& s)
 void Town::set_contour_id(const Walker& s, const ID& id)
 {
     Walker e = s;
-    Direction from = NONE;
+    Direction from = Direction::NONE;
     do {
         set_building_id(**e, id);
         move_clockwise(e, from);
@@ -144,10 +144,10 @@ bool Town::is_bridge_start(const Block& b, Direction from)
 {
 // Is one of the panels actually a start of a bridge?
     switch (from) {
-        case UP:    return b.right; // bridge on right?
-        case RIGHT: return b.down;  // bridge on down?
-        case DOWN:  return b.left;  // bridge on left?
-        case LEFT:  return b.up;    // bridge on up?
+        case Direction::UP:    return b.right; // bridge on right?
+        case Direction::RIGHT: return b.down;  // bridge on down?
+        case Direction::DOWN:  return b.left;  // bridge on left?
+        case Direction::LEFT:  return b.up;    // bridge on up?
     }
 }
 
@@ -156,35 +156,35 @@ Town::BlockShape Town::block_shape(const Block& b)
     switch (count_free_directions(b)) {
         case 2:
             if (is_line_segment(b))
-                return LINE_SEGMENT;
-            return CORNER;
+                return BlockShape::LINE_SEGMENT;
+            return BlockShape::CORNER;
         case 1:
-            return T_SHAPE;
+            return BlockShape::T_SHAPE;
         case 0:
-            return CROSS;                
+            return BlockShape::CROSS;
     }
 }
 
 // Determines the block type for a builder moving clockwise
 Town::WallShape Town::scanner_view(const Block& b, Direction from)
 {
-    WallShape shape;
+    WallShape shape = WallShape::NONE;
             
     switch (block_shape(b)) {
 
-        case LINE_SEGMENT: // [[fallthrough]]
-        case T_SHAPE: {
-            shape = FLAT_WALL;
+        case BlockShape::LINE_SEGMENT: // [[fallthrough]]
+        case BlockShape::T_SHAPE: {
+            shape = WallShape::FLAT_WALL;
             if (is_bridge_start(b, from))
-                shape = INTERNAL_CORNER;                    
+                shape = WallShape::INTERNAL_CORNER;
             } break;
-        case CROSS: {
-            shape = INTERNAL_CORNER;
+        case BlockShape::CROSS: {
+            shape = WallShape::INTERNAL_CORNER;
             if (is_cross_point(b))
-                shape = FLAT_WALL;                    
+                shape = WallShape::FLAT_WALL;
             } break;
-        case CORNER: {
-            shape = EXTERNAL_CORNER;
+        case BlockShape::CORNER: {
+            shape = WallShape::EXTERNAL_CORNER;
             } break;
     }
     return shape;

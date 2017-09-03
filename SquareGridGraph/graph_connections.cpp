@@ -20,10 +20,10 @@ Town::Directions Town::seek_directions(const Block& b)
 {
     Directions directions;
 
-    if (!b.up)    directions.push_back(UP);
-    if (!b.right) directions.push_back(RIGHT);
-    if (!b.down)  directions.push_back(DOWN);
-    if (!b.left)  directions.push_back(LEFT);
+    if (!b.up)    directions.push_back(Direction::UP);
+    if (!b.right) directions.push_back(Direction::RIGHT);
+    if (!b.down)  directions.push_back(Direction::DOWN);
+    if (!b.left)  directions.push_back(Direction::LEFT);
 
     return directions;
 }
@@ -48,7 +48,7 @@ void Town::connect_buildings(BuildingPos a, BuildingPos b, const Direction ab)
 void Town::place_blocks_between(BuildingPos a, BuildingPos b, const Direction ab)
 {
     switch (ab) {
-        case UP: {
+        case Direction::UP: {
             a.move_up();
             while (a != b) {
                 if (is_free(*a))
@@ -56,7 +56,7 @@ void Town::place_blocks_between(BuildingPos a, BuildingPos b, const Direction ab
                 a.move_up();
             }
         } break;
-        case RIGHT: {
+        case Direction::RIGHT: {
             a.move_right();
             while (a != b) {
                 if (is_free(*a))
@@ -64,7 +64,7 @@ void Town::place_blocks_between(BuildingPos a, BuildingPos b, const Direction ab
                 a.move_right();
             }
         } break;
-        case DOWN: {
+        case Direction::DOWN: {
             a.move_down();
             while (a != b) {
                 if (is_free(*a))
@@ -72,7 +72,7 @@ void Town::place_blocks_between(BuildingPos a, BuildingPos b, const Direction ab
                 a.move_down();
             }
         } break;
-        case LEFT: {
+        case Direction::LEFT: {
             a.move_left();
             while (a != b) {
                 if (is_free(*a))
@@ -88,7 +88,7 @@ void Town::build_bridge(PanelPlacer a, const int length, const Direction from_a)
     PanelPlacer b = a;
 
     switch(from_a) {
-    case UP: {
+        case Direction::UP: {
             b.move_up();
             for (int i = 0; i < length; ++i) {
                 put_panel_at((**a).up);
@@ -96,7 +96,7 @@ void Town::build_bridge(PanelPlacer a, const int length, const Direction from_a)
                 a.move_up(); b.move_up();
             }
         } break;
-        case RIGHT: {
+        case Direction::RIGHT: {
             b.move_right();
             for (int i = 0; i < length; ++i) {
                 put_panel_at((**a).right);
@@ -104,7 +104,7 @@ void Town::build_bridge(PanelPlacer a, const int length, const Direction from_a)
                 a.move_right(); b.move_right();
             }
         } break;
-        case DOWN: {
+        case Direction::DOWN: {
             b.move_down();
             for (int i = 0; i < length; ++i) {
                 put_panel_at((**a).down);
@@ -112,7 +112,7 @@ void Town::build_bridge(PanelPlacer a, const int length, const Direction from_a)
                 a.move_down(); b.move_down();
             }
         } break;
-        case LEFT: {
+        case Direction::LEFT: {
             b.move_left();
             for (int i = 0; i < length; ++i) {
                 put_panel_at((**a).left);
@@ -132,35 +132,35 @@ bool Town::connect_isolated(const Walker& w, int depth)
         BuildingPos c; // closest at depth distance
 
         switch (d) {
-            case UP: {
+            case Direction::UP: {
                 c = seek_up(w, depth);
                 if (c != w) // found?
                     if (found = !is_connected((**c).b_id_)) {
-                        connect_buildings(w, c, UP);
+                        connect_buildings(w, c, Direction::UP);
                         record_connection((**c).b_id_);
                     }
             } break;
-            case RIGHT: {
+            case Direction::RIGHT: {
                 c = seek_right(w, depth);
                 if (c != w) // found?
                     if (found = !is_connected((**c).b_id_)) {
-                        connect_buildings(w, c, RIGHT);
+                        connect_buildings(w, c, Direction::RIGHT);
                         record_connection((**c).b_id_);
                     }
             } break;
-            case DOWN: {
+            case Direction::DOWN: {
                 c = seek_down(w, depth);
                 if (c != w) // found?
                     if (found = !is_connected((**c).b_id_)) {
-                        connect_buildings(w, c, DOWN);
+                        connect_buildings(w, c, Direction::DOWN);
                         record_connection((**c).b_id_);
                     }                        
             } break;
-            case LEFT: {
+            case Direction::LEFT: {
                 c = seek_left(w, depth);
                 if (c != w) // found?
                     if (found = !is_connected((**c).b_id_)) {
-                        connect_buildings(w, c, LEFT);
+                        connect_buildings(w, c, Direction::LEFT);
                         record_connection((**c).b_id_);
                     }
             } break;
