@@ -16,7 +16,7 @@ protected:
     struct Node;
 
     using Imp      = std::vector<Node>;
-    using Nodeiter = typename Imp::iterator;
+    using Impit    = typename Imp::iterator;
     using Location = std::pair<int, int>;
 
     struct Node {
@@ -24,21 +24,21 @@ protected:
         Node(const Ker& k) : kernel(k)
         { up = right = down = left = Imp::iterator(); }
 
-        Nodeiter up, right, down, left;
+        Impit up, right, down, left;
         Ker kernel;
     };
 
     friend struct Acc;
 
     struct Acc {
-        using Nodeitref = Nodeiter&;
+        using Impitref = Impit&;
         using Kernelref = Ker&;
 
-        static Nodeitref left(  Nodeiter p) { return ((Nodeitref)p->left);   }
-        static Nodeitref right( Nodeiter p) { return ((Nodeitref)p->right);  }
-        static Nodeitref up(    Nodeiter p) { return ((Nodeitref)p->up);     }
-        static Nodeitref down(  Nodeiter p) { return ((Nodeitref)p->down);   }
-        static Kernelref kernel(Nodeiter p) { return ((Kernelref)p->kernel); }
+        static Impitref left(   Impit p) { return ((Impitref) p->left);   }
+        static Impitref right(  Impit p) { return ((Impitref) p->right);  }
+        static Impitref up(     Impit p) { return ((Impitref) p->up);     }
+        static Impitref down(   Impit p) { return ((Impitref) p->down);   }
+        static Kernelref kernel(Impit p) { return ((Kernelref)p->kernel); }
     };
 
 public:
@@ -55,9 +55,9 @@ public:
     class const_walker {
     public:
         const_walker() {}
-        const_walker(Nodeiter p, Coord x, Coord y) { node_ = p; x_ = x; y_ = y; }
-        const_walker(const walker& w) : node_(w.node_), x_(w.x_), y_(w.y_){}
-        const_reference operator*() const { return (Acc::kernel(node_)); }
+        const_walker(Impit p, Coord x, Coord y) { nodeit_ = p; x_ = x; y_ = y; }
+        const_walker(const walker& w) : nodeit_(w.nodeit_), x_(w.x_), y_(w.y_){}
+        const_reference operator*() const { return (Acc::kernel(nodeit_)); }
         Ckptr operator->()          const { return (&**this); }
 
     // HORIZONTAL / VERTICAL MOVE
@@ -65,7 +65,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                node_ = Acc::left(node_);
+                nodeit_ = Acc::left(nodeit_);
                 --x_;
             }
             return *this;;
@@ -74,7 +74,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                node_ = Acc::right(node_);
+                nodeit_ = Acc::right(nodeit_);
                 ++x_;
             }
             return *this;;
@@ -83,7 +83,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                node_ = Acc::up(node_);
+                nodeit_ = Acc::up(nodeit_);
                 --y_;
             }
             return *this;;
@@ -92,7 +92,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                node_ = Acc::down(node_);
+                nodeit_ = Acc::down(nodeit_);
                 ++y_;
             }
             return *this;;
@@ -109,28 +109,28 @@ public:
         Coord y()           const { return y_; }
         
     // OPERATORS
-        bool operator==(const const_walker& w) const { return (node_ == w.node_); }
-        bool operator!=(const const_walker& w) const { return (!(*this == w)); }
+        bool operator==(const const_walker& w) const { return nodeit_ == w.nodeit_; }
+        bool operator!=(const const_walker& w) const { return !(*this == w); }
     protected:
-        Nodeiter node_;
-        Coord       x_;
-        Coord       y_;
+        Impit nodeit_;
+        Coord x_;
+        Coord y_;
     };
 
     friend class walker;
     class walker : public const_walker {
     public:
         walker() {}
-        walker(Nodeiter p, Coord x, Coord y) { node_ = p; x_ = x; y_ = y; }
-        reference operator*() const          { return (Acc::kernel(node_)); }
-        Kptr operator->()     const          { return (&**this); }
+        walker(Impit p, Coord x, Coord y) { nodeit_ = p; x_ = x; y_ = y; }
+        reference operator*() const       { return (Acc::kernel(nodeit_)); }
+        Kptr operator->()     const       { return (&**this); }
 
     // HORIZONTAL / VERTICAL MOVE
         walker& move_left(int n = 1)
         {
             for (; 0 < n; --n)
             {
-                node_ = Acc::left(node_);
+                nodeit_ = Acc::left(nodeit_);
                 --x_;
             }
             return *this;;
@@ -139,7 +139,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                node_ = Acc::right(node_);
+                nodeit_ = Acc::right(nodeit_);
                 ++x_;
             }
             return *this;;
@@ -148,7 +148,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                node_ = Acc::up(node_);
+                nodeit_ = Acc::up(nodeit_);
                 --y_;
             }
             return *this;;
@@ -157,13 +157,13 @@ public:
         {
             for (; 0 < n; --n)
             {
-                node_ = Acc::down(node_);
+                nodeit_ = Acc::down(nodeit_);
                 ++y_;
             }
             return *this;;
         }
 
-        bool operator==(const walker& w) const { return (node_ == w.node_); }
+        bool operator==(const walker& w) const { return (nodeit_ == w.nodeit_); }
         bool operator!=(const walker& w) const { return (!(*this == w)); }
     };
 
@@ -210,31 +210,31 @@ public:
 protected:
 
 // CONNECTING THE NODES
-    void connect_right(Nodeiter curr)
+    void connect_right(Impit curr)
     {
-        Nodeiter right = curr + 1;
+        Impit right = curr + 1;
         curr->right = right;
         right->left = curr;
     }
 
-    void connect_down(Nodeiter curr)
+    void connect_down(Impit curr)
     {
-        Nodeiter down = curr + max_x_;
+        Impit down = curr + max_x_;
         curr->down = down;
         down->up = curr;
     }
 
     void connect_horizontally()
     {
-        for (Nodeiter y = grid_.begin(); y < grid_.end(); y += max_x_)
-            for (Nodeiter x = y; x < y + max_x_ - 1; ++x)
+        for (Impit y = grid_.begin(); y < grid_.end(); y += max_x_)
+            for (Impit x = y; x < y + max_x_ - 1; ++x)
                 connect_right(x);
     }
 
     void connect_vertically()
     {
-        for (Nodeiter y = grid_.begin(); y < grid_.end() - max_x_; y += max_x_)
-            for (Nodeiter x = y; x < y + max_x_; ++x)
+        for (Impit y = grid_.begin(); y < grid_.end() - max_x_; y += max_x_)
+            for (Impit x = y; x < y + max_x_; ++x)
                 connect_down(x);
     }
 

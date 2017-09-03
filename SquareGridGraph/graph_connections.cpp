@@ -138,7 +138,7 @@ bool Town::connect_isolated(const Walker& w, int depth)
                     if (found = !is_connected((**c).b_id_)) {
                         connect_buildings(w, c, UP);
                         record_connection((**c).b_id_);
-                    }                        
+                    }
             } break;
             case RIGHT: {
                 c = seek_right(w, depth);
