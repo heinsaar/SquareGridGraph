@@ -46,15 +46,12 @@ int test_range(int a, int b)
 
 int main() try
 {
-    auto failedInRange1 = std::async(std::launch::async, test_range,    0,  500);
-    auto failedInRange2 = std::async(std::launch::async, test_range,  500, 1000);
-    auto failedInRange3 = std::async(std::launch::async, test_range, 1000, 1500);
-    auto failedInRange4 = std::async(std::launch::async, test_range, 1500, 2000);
+    auto f1 = std::async(std::launch::async, test_range,    0,  500);
+    auto f2 = std::async(std::launch::async, test_range,  500, 1000);
+    auto f3 = std::async(std::launch::async, test_range, 1000, 1500);
+    auto f4 = std::async(std::launch::async, test_range, 1500, 2000);
 
-    int failedTestsTotal = failedInRange1.get()
-                         + failedInRange2.get()
-                         + failedInRange3.get()
-                         + failedInRange4.get();
+    int failedTestsTotal = f1.get() + f2.get() + f3.get() + f4.get();
 
     display_line("-------------------");
     display_line(failedTestsTotal ? "FAIL: " + std::to_string(failedTestsTotal) + " tests." : "PASS: All tests.");
