@@ -46,6 +46,8 @@ int test_range(int a, int b)
 
 int main() try  // Tests duration improvement (seconds): 44 > 26
 {
+    // TODO: Create a Timer, initialize it here and log the measurement into a file in its destructor.
+
     auto f1 = std::async(std::launch::async, test_range,    0,  500);
     auto f2 = std::async(std::launch::async, test_range,  500, 1000);
     auto f3 = std::async(std::launch::async, test_range, 1000, 1500);
