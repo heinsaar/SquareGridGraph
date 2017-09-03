@@ -31,13 +31,13 @@ protected:
     friend struct Acc;
 
     struct Acc {
-        using Impitref = Impit&;
+        using Impitref  = Impit&;
         using Kernelref = Ker&;
 
-        static Impitref left(   Impit p) { return ((Impitref) p->left);   }
-        static Impitref right(  Impit p) { return ((Impitref) p->right);  }
-        static Impitref up(     Impit p) { return ((Impitref) p->up);     }
-        static Impitref down(   Impit p) { return ((Impitref) p->down);   }
+        static Impitref  left(  Impit p) { return ((Impitref) p->left);   }
+        static Impitref  right( Impit p) { return ((Impitref) p->right);  }
+        static Impitref  up(    Impit p) { return ((Impitref) p->up);     }
+        static Impitref  down(  Impit p) { return ((Impitref) p->down);   }
         static Kernelref kernel(Impit p) { return ((Kernelref)p->kernel); }
     };
 
