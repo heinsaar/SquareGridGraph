@@ -44,7 +44,7 @@ int test_range(int a, int b)
     return failedTestsInRange;
 }
 
-int main() try
+int main() try  // Tests duration improvement (seconds): 44 > 26
 {
     auto f1 = std::async(std::launch::async, test_range,    0,  500);
     auto f2 = std::async(std::launch::async, test_range,  500, 1000);
