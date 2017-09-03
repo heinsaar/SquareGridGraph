@@ -175,8 +175,8 @@ public:
     int max_y() const { return max_y_; }
 
 // LOCATION RELATED
-    const_walker zero() const { return const_walker(grid_.begin(), 0, 0); }
-          walker zero()       { return       walker(grid_.begin(), 0, 0); }
+    const_walker at(Coord x, Coord y) const { return const_walker(grid_.begin() + y + (max_x_-1) * y, x, y); }
+          walker at(Coord x, Coord y)       { return       walker(grid_.begin() + y + (max_x_-1) * y, x, y); }
 
     int distance(const_walker& a, const_walker& b)
     {
@@ -194,14 +194,12 @@ public:
 
     void locate(const_walker& w, Coord x, Coord y)
     {
-        w = zero();
-        w.move_right(x).move_down(y);
+        w = at(x, y);
     }
 
     void locate(walker& w, Coord x, Coord y)
     {
-        w = zero();
-        w.move_right(x).move_down(y);
+        w = at(x, y);
     }
 
 protected:
