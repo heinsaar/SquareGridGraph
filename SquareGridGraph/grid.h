@@ -180,27 +180,20 @@ public:
 
     int distance(const_walker& a, const_walker& b)
     {
-        int dx = a.x() - b.x();
-        int dy = a.y() - b.y();
+        const int dx = a.x() - b.x();
+        const int dy = a.y() - b.y();
         return (dx != 0) ? abs(dx) : abs(dy);
     }
 
     int distance(walker& a, walker& b)
     {
-        int dx = a.x() - b.x();
-        int dy = a.y() - b.y();
+        const int dx = a.x() - b.x();
+        const int dy = a.y() - b.y();
         return (dx != 0) ? abs(dx) : abs(dy);
     }
 
-    void locate(const_walker& w, Coord x, Coord y)
-    {
-        w = at(x, y);
-    }
-
-    void locate(walker& w, Coord x, Coord y)
-    {
-        w = at(x, y);
-    }
+    void locate(const_walker& w, Coord x, Coord y) { w = at(x, y); }
+    void locate(      walker& w, Coord x, Coord y) { w = at(x, y); }
 
 protected:
 
