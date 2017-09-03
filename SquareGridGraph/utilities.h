@@ -1,7 +1,5 @@
-// HelpFuncs.h
-
-#ifndef _HELP_FUNCTIONS_
-#define _HELP_FUNCTIONS_
+#ifndef UTILITIES_H
+#define UTILITIES_H
 
     // INCLUDE
 #include <iostream>
@@ -61,4 +59,4 @@ namespace sgg {
 
 } // NAMESPACE
 
-#endif // _HELP_FUNCTIONS_
+#endif // UTILITIES_H

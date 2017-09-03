@@ -1,7 +1,5 @@
-// Dtown.h
-
-#ifndef _DOWNTOWN_MODEL_
-#define _DOWNTOWN_MODEL_
+#ifndef TOWN_MODEL_H
+#define TOWN_MODEL_H
 
 #pragma warning (disable : 4786) // Characters truncated
 #pragma warning (disable : 4715) // Not all control paths return a value
@@ -118,4 +116,4 @@ private:
     Grid<std::unique_ptr<Block>> grid_;
 };
 
-#endif // _DOWNTOWN_MODEL_
+#endif // TOWN_MODEL_H

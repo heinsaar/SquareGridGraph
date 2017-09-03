@@ -1,7 +1,5 @@
-// Grid.h
-
-#ifndef _CARTESIAN_LATTICE_
-#define _CARTESIAN_LATTICE_
+#ifndef GRID_H
+#define GRID_H
 
 #include <vector>
 #include <cmath> // abs()
@@ -232,4 +230,4 @@ private:
     Imp   grid_;
 };
 
-#endif // _CARTESIAN_LATTICE_
+#endif // GRID_H

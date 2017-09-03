@@ -1,7 +1,5 @@
-// HashDot.h
-
-#ifndef _HASH_DOT_
-#define _HASH_DOT_
+#ifndef HASH_DOT_H
+#define HASH_DOT_H
 
 #pragma warning (disable : 4786)
 
@@ -30,5 +28,4 @@ private:
     int                 length_ = 0;
 };
 
-
-#endif // _HASH_DOT_
+#endif // HASH_DOT_H
