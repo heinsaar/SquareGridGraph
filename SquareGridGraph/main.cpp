@@ -4,10 +4,10 @@ using namespace sgg;
 
 struct Random { int X, Y, D; };
 
-Random sec_5_d  = { 150, 20, 40 }; // about 5  seconds in debug mode
+Random sec__5_d = { 150, 20, 40 }; // about 5  seconds in debug mode
 Random sec_15_d = { 150, 40, 40 }; // about 12 seconds in debug mode
 
-auto package = sec_5_d;
+auto package = sec__5_d;
 
 int X = package.X;
 int Y = package.Y;

@@ -108,9 +108,6 @@ public:
         Coord x()           const { return x_; }
         Coord y()           const { return y_; }
         
-    // OPERATORS
-        bool operator==(const const_walker& w) const { return nodeit_ == w.nodeit_; }
-        bool operator!=(const const_walker& w) const { return !(*this == w); }
     protected:
         Impit nodeit_;
         Coord x_;
