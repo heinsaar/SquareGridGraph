@@ -3,9 +3,8 @@
 #ifndef _CARTESIAN_LATTICE_
 #define _CARTESIAN_LATTICE_
 
-#include <cmath> // abs()
 #include <vector>
-#include <utility>
+#include <cmath> // abs()
 
 extern int X;
 extern int Y;
@@ -15,9 +14,10 @@ template<class Ker>
 protected:
     struct Node;
 
+    using Location = std::pair<int, int>;
+    using Coord    = int;
     using Imp      = std::vector<Node>;
     using Impit    = typename Imp::iterator;
-    using Location = std::pair<int, int>;
 
     struct Node {
         Node() = default;
@@ -34,11 +34,12 @@ protected:
         using Impitref  = Impit&;
         using Kernelref = Ker&;
 
-        static Impitref  left(  Impit p) { return ((Impitref) p->left);   }
-        static Impitref  right( Impit p) { return ((Impitref) p->right);  }
-        static Impitref  up(    Impit p) { return ((Impitref) p->up);     }
-        static Impitref  down(  Impit p) { return ((Impitref) p->down);   }
-        static Kernelref kernel(Impit p) { return ((Kernelref)p->kernel); }
+        static Impitref  to(Coord x, Coord y) { return ((Impitref) n->left);   }
+        static Impitref  left(  Impit n)      { return ((Impitref) n->left);   }
+        static Impitref  right( Impit n)      { return ((Impitref) n->right);  }
+        static Impitref  up(    Impit n)      { return ((Impitref) n->up);     }
+        static Impitref  down(  Impit n)      { return ((Impitref) n->down);   }
+        static Kernelref kernel(Impit n)      { return ((Kernelref)n->kernel); }
     };
 
 public:
@@ -46,7 +47,6 @@ public:
     using Ckptr           = const Ker*;
     using reference       =       Ker&;
     using const_reference = const Ker&;
-    using Coord           = int;
 
            class       walker;
            class const_walker;
@@ -54,7 +54,7 @@ public:
 
     class const_walker {
     public:
-        const_walker() {}
+        const_walker() = default;
         const_walker(Impit p, Coord x, Coord y) { nodeit_ = p; x_ = x; y_ = y; }
         const_walker(const walker& w) : nodeit_(w.nodeit_), x_(w.x_), y_(w.y_){}
         const_reference operator*() const { return (Acc::kernel(nodeit_)); }
@@ -118,7 +118,7 @@ public:
     class walker : public const_walker {
     public:
         walker() {}
-        walker(Impit p, Coord x, Coord y) { nodeit_ = p; x_ = x; y_ = y; }
+        walker(Impit n, Coord x, Coord y) { nodeit_ = n; x_ = x; y_ = y; }
         reference operator*() const       { return (Acc::kernel(nodeit_)); }
         Kptr operator->()     const       { return (&**this); }
 
