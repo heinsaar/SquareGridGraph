@@ -12,8 +12,10 @@ Town::Direction Town::first_from_external_corner(const Block& b)
     // (for the main algorithm using the
     // current get_building_location method)
 
-        if (!b.left && !b.up && b.right)
-            return Direction::RIGHT;
+    if (!b.left && !b.up && b.right)
+        return Direction::RIGHT;
+
+    return Direction::NONE;
 
     // other types of EXTERNAL_CORNER
     // (present here for extensibility)
@@ -38,6 +40,7 @@ Town::Direction Town::external_corner_direction(const Direction from)
         case Direction::RIGHT: return Direction::UP;
         case Direction::DOWN:  return Direction::RIGHT;
         case Direction::LEFT:  return Direction::DOWN;
+        default: return Direction::NONE;
     }
 }
 
@@ -48,6 +51,7 @@ Town::Direction Town::internal_corner_direction(const Direction from)
         case Direction::RIGHT: return Direction::DOWN;
         case Direction::DOWN:  return Direction::LEFT;
         case Direction::LEFT:  return Direction::UP;
+        default: return Direction::NONE;
     }
 }
 
@@ -58,6 +62,7 @@ Town::Direction Town::flat_wall_direction(const Direction from)
         case Direction::RIGHT: return Direction::LEFT;
         case Direction::DOWN:  return Direction::UP;
         case Direction::LEFT:  return Direction::RIGHT;
+        default: return Direction::NONE;
     }
 }
 
@@ -70,6 +75,7 @@ Town::Direction Town::orient(const Block& b, Direction& from)
         case WallShape::EXTERNAL_CORNER: return external_corner_direction(from);
         case WallShape::INTERNAL_CORNER: return internal_corner_direction(from);
         case WallShape::FLAT_WALL:       return flat_wall_direction(from);
+        default: return Direction::NONE;
     }
 }
 
