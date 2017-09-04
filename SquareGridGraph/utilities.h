@@ -1,8 +1,8 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
-    // INCLUDE
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <sstream>
 #include <random>
@@ -46,7 +46,7 @@ namespace sgg {
     template<class Displayable>
     inline void display_line(const Displayable info)
     {
-        cout_synchronized() << std::endl << info;
+        cout_synchronized() << std::endl << std::setw(4) << std::left << info;
     }
     
     inline void border(int size = 23)
