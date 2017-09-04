@@ -1,9 +1,6 @@
 #ifndef TOWN_MODEL_H
 #define TOWN_MODEL_H
 
-#pragma warning (disable : 4786) // Characters truncated
-#pragma warning (disable : 4715) // Not all control paths return a value
-
 #include "rich_containers.h"
 #include "hash_dot.h"
 #include "grid.h"

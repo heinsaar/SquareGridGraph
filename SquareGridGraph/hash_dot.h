@@ -1,8 +1,6 @@
 #ifndef HASH_DOT_H
 #define HASH_DOT_H
 
-#pragma warning (disable : 4786)
-
 #include "rich_containers.h"
 #include "utilities.h"
 
