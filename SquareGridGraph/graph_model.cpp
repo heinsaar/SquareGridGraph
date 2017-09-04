@@ -59,11 +59,9 @@ void Town::place_panels_clockwise(Walker w)
 
 void Town::create_model(const HashDot& buildings)
 {
-    Walker w;
-
     for (int n = 0; n < buildings.height(); ++n)
     {
-        grid_.locate(w, 0, n);
+        Walker w = grid_.at(0, n);
         const std::string line = buildings.get_line(n);
 
         for (const auto& c : line)

@@ -28,19 +28,14 @@ void Town::display_model()
 {
     ISOLATE;
 
-    Walker s;
-
     NEW_LINE;
     for (int y = 0; y < grid_.max_y(); ++y) {
-        grid_.locate(s, 0, y);
+        Walker s = grid_.at(0, y);
         SGL_SPACE;
         for (int x = 0; x < grid_.max_x(); ++x) {
-            if (is_free(*s))
-                display(" ");
-            else if (is_on_building(s))
-                display("o");
-            else // is on a bridge
-                display(".");
+            if (is_free(*s))            display(" ");
+            else if (is_on_building(s)) display("o");
+            else /* is on a bridge */   display(".");
             s.move_right();
         }
         NEW_LINE;
@@ -53,10 +48,8 @@ void Town::write_to(std::string fileName, bool withStats)
     if (!file)
         throw std::exception(("Error: Unable to open file " + quote(fileName) + ".").c_str());
 
-    Walker s;
-
     for (int y = 0; y < grid_.max_y(); ++y) {
-        grid_.locate(s, 0, y);
+        Walker s = grid_.at(0, y);
         file << " ";
         for (int x = 0; x < grid_.max_x(); ++x) {
             if (is_free(*s))

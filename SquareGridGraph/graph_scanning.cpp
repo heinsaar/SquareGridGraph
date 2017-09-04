@@ -47,10 +47,9 @@ void Town::set_contour_id(const Walker& s, const ID& id)
 
 void Town::enumerate_buildings()
 {
-    Walker s;
     ID id = 1;
     for (int y = 0; y < grid_.max_y(); ++y) {
-        grid_.locate(s, 0, y);
+        Walker s = grid_.at(0, y);
         while (!s.is_rightmost()) {
             if (is_on_contour(s)) {                        
                 set_contour_id(s, id);
@@ -63,10 +62,8 @@ void Town::enumerate_buildings()
 
 Town::BuildingPos Town::get_building_location(const ID& n)
 {
-    Walker s;
-            
     for (int y = 0; y < grid_.max_y(); ++y) {
-        grid_.locate(s, 0, y);
+        Walker s = grid_.at(0, y);
         while (!s.is_rightmost()) {
             if (!is_free(*s))
                 if ((**s).b_id_ == n)
@@ -163,6 +160,7 @@ Town::BlockShape Town::block_shape(const Block& b)
         case 0:
             return BlockShape::CROSS;
     }
+    return BlockShape::NONE;
 }
 
 // Determines the block type for a builder moving clockwise

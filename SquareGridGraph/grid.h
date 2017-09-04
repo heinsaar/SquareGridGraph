@@ -190,9 +190,6 @@ public:
         return (dx != 0) ? abs(dx) : abs(dy);
     }
 
-    void locate(const_walker& w, Coord x, Coord y) { w = at(x, y); }
-    void locate(      walker& w, Coord x, Coord y) { w = at(x, y); }
-
 protected:
 
 // CONNECTING THE NODES

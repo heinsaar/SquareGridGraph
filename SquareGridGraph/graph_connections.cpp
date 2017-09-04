@@ -16,6 +16,7 @@ void Town::record_connection(const ID b_id)
     unvisited_.remove(b_id);
 }
 
+inline
 Town::Directions Town::seek_directions(const Block& b)
 {
     Directions directions;
