@@ -38,9 +38,9 @@ private:
     using ID          = int;
 
     struct Block {
-        enum { INVALID };
+        enum { NONE, INVALID };
 
-        ID b_id_   = INVALID;
+        ID   b_id_ = NONE;
         bool up    = false;
         bool right = false;
         bool down  = false;
