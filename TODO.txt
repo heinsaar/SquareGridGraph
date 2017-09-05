@@ -1,1 +1,2 @@
+- Make way faster than the following reference example (production results): 20 GB loading and rendering in 20 minutes with a 4GB RAM and probably SSD.
 - Optimize all seek_* functions that do a lot of recurring work and are the bottleneck of the algorithm.
