@@ -168,7 +168,7 @@ Town::WallShape Town::scanner_view(const Block& b, Direction from)
             
     switch (block_shape(b)) {
 
-        case BlockShape::LINE_SEGMENT: // [[fallthrough]]
+        case BlockShape::LINE_SEGMENT: [[fallthrough]];
         case BlockShape::T_SHAPE: {
             shape = WallShape::FLAT_WALL;
             if (is_bridge_start(b, from))
