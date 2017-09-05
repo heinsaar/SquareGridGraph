@@ -38,9 +38,9 @@ private:
     using ID          = int;
 
     struct Block {
-        Block(ID id = 0) { b_id_ = id; }
+        enum { INVALID };
 
-        ID b_id_;
+        ID b_id_   = INVALID;
         bool up    = false;
         bool right = false;
         bool down  = false;
@@ -110,7 +110,8 @@ private:
     List<ID> unvisited_;
 
 // IMPLEMENTATION
-    Grid<std::unique_ptr<Block>> grid_;
+    Grid<std::unique_ptr<Block>> grid_; 
+//  Grid<Block> grid_; // TODO: Try. May be faster than with x64 pointers.
 };
 
 #endif // TOWN_MODEL_H
