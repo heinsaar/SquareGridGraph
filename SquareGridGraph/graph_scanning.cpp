@@ -153,14 +153,10 @@ bool Town::is_bridge_start(const Block& b, Direction from)
 Town::BlockShape Town::block_shape(const Block& b)
 {
     switch (count_free_directions(b)) {
-        case 2:
-            if (is_line_segment(b))
-                return BlockShape::LINE_SEGMENT;
-            return BlockShape::CORNER;
-        case 1:
-            return BlockShape::T_SHAPE;
-        case 0:
-            return BlockShape::CROSS;
+        case 2: if (is_line_segment(b)) return BlockShape::LINE_SEGMENT;
+                return BlockShape::CORNER;
+        case 1: return BlockShape::T_SHAPE;
+        case 0: return BlockShape::CROSS;
     }
     return BlockShape::NONE;
 }
