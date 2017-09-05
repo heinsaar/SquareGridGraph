@@ -71,6 +71,7 @@ Town::BuildingPos Town::get_building_location(const ID& n)
             s.move_right();
         }
     }
+    // TODO: Return an invalid position (define one first).
 }
 
 Town::BuildingPos Town::seek_up(const Walker& s, int n)
@@ -145,6 +146,7 @@ bool Town::is_bridge_start(const Block& b, Direction from)
         case Direction::RIGHT: return b.down;  // bridge on down?
         case Direction::DOWN:  return b.left;  // bridge on left?
         case Direction::LEFT:  return b.up;    // bridge on up?
+        default: throw std::exception("Error: Unexpected 'NONE' direction 'from'.");
     }
 }
 
