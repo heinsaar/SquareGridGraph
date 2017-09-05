@@ -128,7 +128,7 @@ bool Town::connect_isolated(const Walker& w, int depth)
 {
     bool found = false;
 
-    for (const auto& d : seek_directions(**w))
+    for (const auto& d : seek_directions(**w)) // TODO: seek_directions() is currently the program's (algorithmic) bottleneck (by far).
     {
         BuildingPos c; // closest at depth distance
 
