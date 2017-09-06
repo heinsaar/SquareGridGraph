@@ -46,7 +46,7 @@ void Town::write_to(std::string fileName, bool withStats)
 {
     std::ofstream file(fileName);
     if (!file)
-        throw std::exception(("Error: Unable to open file " + quote(fileName) + ".").c_str());
+        throw Error("Unable to open file " + quote(fileName) + ".");
 
     for (int y = 0; y < grid_.max_y(); ++y) {
         Walker s = grid_.at(0, y);

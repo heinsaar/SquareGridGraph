@@ -59,5 +59,8 @@
     <ClInclude Include="rich_containers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="diagnostics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

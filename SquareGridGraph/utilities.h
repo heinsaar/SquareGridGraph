@@ -1,6 +1,8 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
+#include "diagnostics.h"
+
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -56,7 +58,7 @@ namespace sgg {
     {
         cout_synchronized() << std::endl << std::setw(4) << std::left << info;
     }
-    
+        
     inline void border(int size = 23)
     {
         for (int j = 0; j < size; ++j)
