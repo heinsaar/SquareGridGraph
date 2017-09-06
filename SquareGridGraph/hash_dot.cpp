@@ -47,17 +47,18 @@ void HashDot::read_from(std::string fileName)
     if (!hashdotFile)
         throw std::exception(("Error: Expected hashdot file " + quote(fileName) + " does not exist.\n").c_str());
 
-    std::string line;
+    std::string line = "";
     while (std::getline(hashdotFile, line))
+    {
+        if (!lines_.empty() && lines_.back().length() != line.length())
+            // TODO: Never been caught, fix.
+            throw std::exception(("Error: Not all lines of hashdot file " + quote(fileName) + " have equal size.\n").c_str());
+
         lines_.push_back(line);
+    }
 
     X = length_ = line.length();
     Y = height_ = lines_.size();
-
-    // TODO: Do a more rigorous file integrity check. Checking just final two lines is not enough.
-    if ((lines_.end() - 1)->length() !=
-        (lines_.end() - 2)->length())
-        throw std::exception(("Error: Final lines of hashdot file " + quote(fileName) + " have different size.\n").c_str());
 }
 
 std::string HashDot::get_line(int n)        const { return lines_[n]; }
