@@ -10,13 +10,15 @@ using namespace sgg;
 int X = 70;
 int Y = 30;
 
+static std::exception_ptr threx = nullptr;
+
 const std::string dirHDGold        = "../../Tests/Hashdots_gold/";
 const std::string dirConnected     = "../../Tests/Connected/";
 const std::string dirConnectedGold = "../../Tests/Connected_gold/";
 
-int test_range(int a, int b)
+int test_range(int a, int b) try
 {
-     static std::mutex m; // 44 seconds (all tests)
+    static std::mutex m; // 44 seconds (all tests)
 
     int failedTestsInRange = 0;
     for (int i = a; i < b; i++)
@@ -45,22 +47,28 @@ int test_range(int a, int b)
     }
     return failedTestsInRange;
 }
+catch (...)
+{
+    threx = std::current_exception();
+}
 
-int main() try  // Tests duration improvement (seconds): 44 > 26
+int main() try
 {
     DO
     {{
-        Timer<> time("All tests");
+        Timer<> time("All tests"); // Tests duration improvement (seconds): 44 > 26
 
         auto f1 = std::async(std::launch::async, test_range,    0,  500);
         auto f2 = std::async(std::launch::async, test_range,  500, 1000);
         auto f3 = std::async(std::launch::async, test_range, 1000, 1500);
         auto f4 = std::async(std::launch::async, test_range, 1500, 2000);
 
-        int failedTestsTotal = f1.get() + f2.get() + f3.get() + f4.get();
+        int totalFails = f1.get() + f2.get() + f3.get() + f4.get();
+
+        if (threx) std::rethrow_exception(threx);
 
         display_line("-------------------");
-        display_line(failedTestsTotal ? "FAIL: " + std::to_string(failedTestsTotal) + " tests." : "PASS: All tests.");
+        display_line(totalFails ? "FAIL: " + std::to_string(totalFails) + " tests." : "PASS: All tests.");
         display_line("-------------------\n");
     }}
     CONTINUE_ON_ENTER
