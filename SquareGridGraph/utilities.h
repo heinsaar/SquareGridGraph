@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <fstream>
 #include <sstream>
+#include <chrono>
 #include <random>
 #include <string>
 #include <mutex>
@@ -56,6 +57,29 @@ namespace sgg {
     }
 
     bool files_identical(std::string fileNameA, std::string fileNameB);
+
+    template <class Resolution>
+    struct Timer
+    {
+        Timer() = delete;
+        Timer(const std::string& msg = "") : what_(msg), start_(std::chrono::steady_clock::now()) {}
+       ~Timer()
+        {
+           // TODO: Log the measurement into a file also.
+           display("Time for: " + what_ + ": " + std::to_string(elapsed().count()) + "\n");
+        }
+
+    private:
+        auto now() { return std::chrono::steady_clock::now(); }
+        auto elapsed()
+        {
+            return std::chrono::duration_cast<Resolution>(now() - start_);
+        }
+
+    private:
+        std::chrono::steady_clock::time_point start_;
+        std::string what_;
+    };
 
 } // NAMESPACE
 
