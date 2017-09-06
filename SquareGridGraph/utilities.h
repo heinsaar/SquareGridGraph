@@ -66,7 +66,7 @@ namespace sgg {
        ~Timer()
         {
            // TODO: Log the measurement into a file also.
-           display("Time for: " + what_ + ": " + std::to_string(elapsed().count()) + "\n");
+           display(" Time for: " + what_ + ": " + std::to_string(elapsed().count()) + "\n");
         }
 
     private:

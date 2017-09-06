@@ -9,7 +9,7 @@ Random d_sec_15 = { 150,  40, 40 }; // about 12 sec in debug   mode > 12 sec
 Random r_sec_7  = { 200, 200, 40 }; // about  7 sec in release mode >  6 sec
 Random r_sec_28 = { 250, 250, 40 }; // about 28 sec in release mode > 25 sec
 
-auto timepack = r_sec_7;
+auto timepack = d_sec_5;
 
 int X = timepack.X;
 int Y = timepack.Y;
@@ -21,6 +21,7 @@ int main() try
         HashDot hashdot;
         hashdot.random(timepack.X, timepack.Y, timepack.D);
         Town town(hashdot);
+        Timer<> t("d_sec_5");
         town.connect_all(true, true);
     }
     CONTINUE_ON_ENTER
