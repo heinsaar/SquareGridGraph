@@ -51,8 +51,7 @@ void HashDot::read_from(std::string fileName)
     while (std::getline(hashdotFile, line))
     {
         if (!lines_.empty() && lines_.back().length() != line.length())
-            // TODO: Never been caught, fix.
-            throw std::exception(("Error: Not all lines of hashdot file " + quote(fileName) + " have equal size.\n").c_str());
+            throw std::exception(("Error: Not all lines of hashdot file " + quote(fileName) + " have equal length.\n").c_str());
 
         lines_.push_back(line);
     }

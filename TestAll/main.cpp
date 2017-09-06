@@ -63,10 +63,10 @@ int main() try
         auto f3 = std::async(std::launch::async, test_range, 1000, 1500);
         auto f4 = std::async(std::launch::async, test_range, 1500, 2000);
 
-        if (threx) std::rethrow_exception(threx); // TODO: Not catching properly, fix.
-        
         int totalFails = f1.get() + f2.get() + f3.get() + f4.get();
-        
+
+        if (threx) std::rethrow_exception(threx);
+                
         display_line("-------------------");
         display_line(totalFails ? "FAIL: " + std::to_string(totalFails) + " tests." : "PASS: All tests.");
         display_line("-------------------\n");
