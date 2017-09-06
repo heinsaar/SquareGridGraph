@@ -1,6 +1,7 @@
 // Main.cpp
 
 #include "../SquareGridGraph/graph.h"
+
 #include <future>
 #include <chrono>
 
@@ -9,9 +10,9 @@ using namespace sgg;
 int X = 70;
 int Y = 30;
 
-const std::string dirHashdotGold        = "../../Tests/Hashdots_gold/";
-const std::string dirModelConnected     = "../../Tests/Connected/";
-const std::string dirModelConnectedGold = "../../Tests/Connected_gold/";
+const std::string dirHDGold        = "../../Tests/Hashdots_gold/";
+const std::string dirConnected     = "../../Tests/Connected/";
+const std::string dirConnectedGold = "../../Tests/Connected_gold/";
 
 int test_range(int a, int b)
 {
@@ -23,22 +24,22 @@ int test_range(int a, int b)
         HashDot hashdot;
 
         const std::string fileModelHashdot     = "model_hashdot_" + std::to_string(i) + ".txt";
-        const std::string fileModelHashdotPath = dirHashdotGold + fileModelHashdot;
+        const std::string fileModelHashdotPath = dirHDGold + fileModelHashdot;
         hashdot.read_from(fileModelHashdotPath);
 
         Town town(hashdot); m.lock();   // 44 seconds (all tests)
         display_line(i);
         town.connect_all(); m.unlock(); // 44 seconds (all tests)
 
-        const std::string fileModelConnected     = "model_connected_" + std::to_string(i) + ".txt";
-        const std::string fileConnectedPath      = dirModelConnected     + fileModelConnected;
-        const std::string fileModelConnectedGold = dirModelConnectedGold + fileModelConnected;
+        const std::string fileConnected     = "model_connected_" + std::to_string(i) + ".txt";
+        const std::string fileConnectedPath = dirConnected       + fileConnected;
+        const std::string fileConnectedGold = dirConnectedGold   + fileConnected;
 
         town.write_to(fileConnectedPath);
 
-        if (!files_identical(fileConnectedPath, fileModelConnectedGold))
+        if (!files_identical(fileConnectedPath, fileConnectedGold))
         {
-            display_line("FAIL: Files " + quote(fileConnectedPath) + " and " + quote(fileModelConnectedGold) + " differ.");
+            display_line("FAIL: Files " + quote(fileConnectedPath) + " and " + quote(fileConnectedGold) + " differ.");
             failedTestsInRange++;
         }
     }
