@@ -35,7 +35,7 @@ void Town::display_model()
         for (int x = 0; x < grid_.max_x(); ++x) {
             if (is_free(*s))            display(" ");
             else if (is_on_building(s)) display("o");
-            else /* is on a bridge */   display(".");
+            else  /* is on bridge */    display(".");
             s.move_right();
         }
         NEW_LINE;
@@ -52,12 +52,9 @@ void Town::write_to(std::string fileName, bool withStats)
         Walker s = grid_.at(0, y);
         file << " ";
         for (int x = 0; x < grid_.max_x(); ++x) {
-            if (is_free(*s))
-                file << " ";
-            else if (is_on_building(s))
-                file << "o";
-            else // is on a bridge
-                file << ".";
+            if (is_free(*s))            file << " ";
+            else if (is_on_building(s)) file << "o";
+            else  /* is on bridge */    file << ".";
             s.move_right();
         }
         file << std::endl;
@@ -70,12 +67,9 @@ void Town::write_to(std::string fileName, bool withStats)
         for (int j = 0; j < 23; ++j)
             file << "-";
 
-        file << "\n Number of bridges....";
-        file << stats_.bridges_;
-        file << "\n Total length.........";
-        file << stats_.bridges_total_length_;
-        file << "\n Disconnected groups..";
-        file << stats_.disconnected_groups_;
+        file << "\n Number of bridges...." << stats_.bridges_;
+        file << "\n Total length........." << stats_.bridges_total_length_;
+        file << "\n Disconnected groups.." << stats_.disconnected_groups_;
 
         if (stats_.bridges_ == 0) {
             file << "\n\n";
@@ -96,12 +90,9 @@ void Town::display_statistics()
     ISOLATE;
     SGL_SPACE; border();
 
-    display("\n Number of bridges....");
-    display(stats_.bridges_);
-    display("\n Total length.........");
-    display(stats_.bridges_total_length_);
-    display("\n Disconnected groups..");
-    display(stats_.disconnected_groups_);
+    display(" Number of bridges....", stats_.bridges_);
+    display(" Total length.........", stats_.bridges_total_length_);
+    display(" Disconnected groups..", stats_.disconnected_groups_);
 
     if (stats_.bridges_ == 0) {
         ISOLATE;

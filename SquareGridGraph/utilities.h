@@ -46,6 +46,12 @@ namespace sgg {
     }
 
     template<class Displayable>
+    inline void display(const std::string& title, const Displayable info)
+    {
+        cout_synchronized() << std::endl << title << info;
+    }
+
+    template<class Displayable>
     inline void display_line(const Displayable info)
     {
         cout_synchronized() << std::endl << std::setw(4) << std::left << info;
