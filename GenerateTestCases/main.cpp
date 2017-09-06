@@ -58,7 +58,7 @@ int main() try
 
     if (threx) std::rethrow_exception(threx);
 }
-catch (const std::exception& e) // TODO: Catch exceptions from threads also.
+catch (const std::exception& e)
 {
     display(e.what());
 }
