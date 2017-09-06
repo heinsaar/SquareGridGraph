@@ -71,15 +71,15 @@ void Town::write_to(std::string fileName, bool withStats)
             file << "-";
 
         file << "\n Number of bridges....";
-        file << bridges_;
+        file << stats_.bridges_;
         file << "\n Total length.........";
-        file << bridges_total_length_;
+        file << stats_.bridges_total_length_;
         file << "\n Disconnected groups..";
-        file << disconnected_groups_;
+        file << stats_.disconnected_groups_;
 
-        if (bridges_ == 0) {
+        if (stats_.bridges_ == 0) {
             file << "\n\n";
-            if (disconnected_groups_ > 1)
+            if (stats_.disconnected_groups_ > 1)
                 display(" No bridges are possible.");
             else
                 display(" No bridges are needed.");
@@ -97,15 +97,15 @@ void Town::display_statistics()
     SGL_SPACE; border();
 
     display("\n Number of bridges....");
-    display(bridges_);
+    display(stats_.bridges_);
     display("\n Total length.........");
-    display(bridges_total_length_);
+    display(stats_.bridges_total_length_);
     display("\n Disconnected groups..");
-    display(disconnected_groups_);
+    display(stats_.disconnected_groups_);
 
-    if (bridges_ == 0) {
+    if (stats_.bridges_ == 0) {
         ISOLATE;
-        if (disconnected_groups_ > 1)
+        if (stats_.disconnected_groups_ > 1)
             display(" No bridges are possible.");
         else
             display(" No bridges are needed.");

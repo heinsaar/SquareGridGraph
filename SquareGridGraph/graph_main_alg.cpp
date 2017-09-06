@@ -38,6 +38,6 @@ void Town::connect()
     while (!unvisited_.empty()) {
         BuildingPos b = get_building_location(unvisited_.front());
         connect_group(b);
-        ++disconnected_groups_;
+        stats_.disconnected_groups_++;
     }
 }

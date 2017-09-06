@@ -9,6 +9,12 @@
 #include <memory>
 #include <queue>
 
+struct Stats {
+    int bridges_              = 0;
+    int bridges_total_length_ = 0;
+    int disconnected_groups_  = 0;
+};
+
     class Town {
 public:
      Town(const HashDot&);
@@ -100,9 +106,7 @@ private:
          void create_model(const HashDot&);    
 
 // OUTPUT INFO
-    int bridges_              = 0;
-    int bridges_total_length_ = 0;
-    int disconnected_groups_  = 0;
+    Stats stats_;
     const HashDot& h_d_;
 
 // DYNAMIC STATISTICS FOR THE MAIN ALGORITHM
