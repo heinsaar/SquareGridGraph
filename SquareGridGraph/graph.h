@@ -105,10 +105,6 @@ private:
          void place_panels_clockwise(Walker);
          void create_model(const HashDot&);    
 
-// OUTPUT INFO
-    Stats stats_;
-    const HashDot& h_d_;
-
 // DYNAMIC STATISTICS FOR THE MAIN ALGORITHM
     List<ID> connected_;
     List<ID> unvisited_;
@@ -116,6 +112,10 @@ private:
 // IMPLEMENTATION
     Grid<std::unique_ptr<Block>> grid_; 
 //  Grid<Block> grid_; // TODO: Try. May be faster than with x64 pointers.
+
+// STATS
+    Stats stats_;
+    const HashDot& h_d_;
 };
 
 #endif // TOWN_MODEL_H
