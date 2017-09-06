@@ -12,10 +12,12 @@ using namespace sgg;
 int X = 70;
 int Y = 30;
 
+static std::exception_ptr threx = nullptr;
+
 int n = 0;
 std::mutex m;
 
-void create_examples(int N)
+void create_examples(int N) try
 {
     TIMES(N)
     {
@@ -42,6 +44,10 @@ void create_examples(int N)
         n++;
     }
 }
+catch (...)
+{
+    threx = std::current_exception();
+}
 
 int main() try
 {
@@ -49,6 +55,8 @@ int main() try
     std::async(std::launch::async, create_examples, 500);
     std::async(std::launch::async, create_examples, 500);
     std::async(std::launch::async, create_examples, 500);
+
+    if (threx) std::rethrow_exception(threx);
 }
 catch (const std::exception& e) // TODO: Catch exceptions from threads also.
 {
