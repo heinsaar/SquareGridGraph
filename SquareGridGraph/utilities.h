@@ -18,6 +18,7 @@
 #define DO do
 #define CONTINUE_ON_ENTER while (std::cin.get() != '0');
 #define TIMES(N) for (int i=0; i<(N); i++)
+#define VARNAME(var) (#var)
 
 namespace sgg {
 
