@@ -47,7 +47,7 @@ int test_range(int a, int b)
 
 int main() try  // Tests duration improvement (seconds): 44 > 26
 {
-    Timer<std::chrono::seconds> time("All tests");
+    Timer<> time("All tests");
 
     auto f1 = std::async(std::launch::async, test_range,    0,  500);
     auto f2 = std::async(std::launch::async, test_range,  500, 1000);

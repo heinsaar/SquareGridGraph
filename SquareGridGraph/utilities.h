@@ -58,7 +58,7 @@ namespace sgg {
 
     bool files_identical(std::string fileNameA, std::string fileNameB);
 
-    template <class Resolution>
+    template <class Resolution = std::chrono::seconds>
     struct Timer
     {
         Timer() = delete;
