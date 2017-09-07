@@ -32,7 +32,7 @@ protected:
         using Impitref  = Impit&;
         using Kernelref = Ker&;
 
-        static Impitref  to(Coord x, Coord y) { return ((Impitref) n->left);   }
+        static Impitref  to(Coord x, Coord y) { return ((Impitref) it->left);   }
         static Impitref  left(  Impit n)      { return ((Impitref) n->left);   }
         static Impitref  right( Impit n)      { return ((Impitref) n->right);  }
         static Impitref  up(    Impit n)      { return ((Impitref) n->up);     }
@@ -116,9 +116,9 @@ public:
     class walker : public const_walker {
     public:
         walker() {}
-        walker(Impit n, Coord x, Coord y) { nodeit_ = n; x_ = x; y_ = y; }
-        reference operator*() const       { return (Acc::kernel(nodeit_)); }
-        Kptr operator->()     const       { return (&**this); }
+        walker(Impit it, Coord x, Coord y) { nodeit_ = it; x_ = x; y_ = y;  }
+        reference operator*() const        { return (Acc::kernel(nodeit_)); }
+        Kptr operator->()     const        { return (&**this); }
 
     // HORIZONTAL / VERTICAL MOVE
         walker& move_left(int n = 1)
@@ -162,7 +162,7 @@ public:
         bool operator!=(const walker& w) const { return (!(*this == w)); }
     };
 
-    Grid(int x, int y) : max_x_(x), max_y_(y), grid_(x * y)
+    Grid(int x, int y) : max_x_(x), max_y_(y), data_(x * y)
     {
         connect_horizontally();
         connect_vertically();
@@ -173,8 +173,8 @@ public:
     int max_y() const { return max_y_; }
 
 // LOCATION RELATED
-    const_walker at(Coord x, Coord y) const { return const_walker(grid_.begin() + y + (max_x_-1) * y, x, y); }
-          walker at(Coord x, Coord y)       { return       walker(grid_.begin() + y + (max_x_-1) * y, x, y); }
+    const_walker at(Coord x, Coord y) const { return const_walker(data_.begin() + y + (max_x_-1) * y, x, y); }
+          walker at(Coord x, Coord y)       { return       walker(data_.begin() + y + (max_x_-1) * y, x, y); }
 
     int distance(const_walker& a, const_walker& b)
     {
@@ -209,14 +209,14 @@ protected:
 
     void connect_horizontally()
     {
-        for (Impit y = grid_.begin(); y < grid_.end(); y += max_x_)
+        for (Impit y = data_.begin(); y < data_.end(); y += max_x_)
             for (Impit x = y; x < y + max_x_ - 1; ++x)
                 connect_right(x);
     }
 
     void connect_vertically()
     {
-        for (Impit y = grid_.begin(); y < grid_.end() - max_x_; y += max_x_)
+        for (Impit y = data_.begin(); y < data_.end() - max_x_; y += max_x_)
             for (Impit x = y; x < y + max_x_; ++x)
                 connect_down(x);
     }
@@ -224,7 +224,7 @@ protected:
 private:
     const Coord max_x_;
     const Coord max_y_;
-          Imp   grid_;
+          Imp   data_;
 };
 
 #endif // GRID_H
