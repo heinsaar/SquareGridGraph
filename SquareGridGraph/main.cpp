@@ -11,9 +11,6 @@ Random r_sec_28 = { 250, 250, 40, "r_sec_28" }; // about 28 sec in release mode 
 
 auto timepack = d_sec_5;
 
-int X = timepack.X;
-int Y = timepack.Y;
-
 int main() try
 {
     DO

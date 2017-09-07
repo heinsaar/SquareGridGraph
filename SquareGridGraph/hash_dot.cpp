@@ -4,9 +4,6 @@
 
 using namespace sgg;
 
-extern int X;
-extern int Y;
-
 HashDot::HashDot(std::string fileName)
 {
     if (!fileName.empty())
@@ -56,8 +53,8 @@ void HashDot::read_from(std::string fileName)
         lines_.push_back(line);
     }
 
-    X = length_ = line.length();
-    Y = height_ = lines_.size();
+    length_ = line.length();
+    height_ = lines_.size();
 }
 
 std::string HashDot::get_line(int n)        const { return lines_[n]; }
