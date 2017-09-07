@@ -7,9 +7,6 @@
 
 using namespace sgg;
 
-int X = 70;
-int Y = 30;
-
 static std::exception_ptr threx = nullptr;
 
 const std::string dirHDGold        = "../../Tests/Hashdots_gold/";

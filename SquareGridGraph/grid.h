@@ -4,9 +4,6 @@
 #include <vector>
 #include <cmath> // abs()
 
-extern int X;
-extern int Y;
-
 template<class Ker>
     class Grid {
 protected:

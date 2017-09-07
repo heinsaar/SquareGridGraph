@@ -9,9 +9,6 @@
 
 using namespace sgg;
 
-int X = 70;
-int Y = 30;
-
 static std::exception_ptr threx = nullptr;
 
 int n = 0;
@@ -25,9 +22,11 @@ void create_examples(int N) try
 
         HashDot hashdot;
 
-        const int density = rand(0, 2);
+        const int X = 70;
+        const int Y = 30;
+        const int D = rand(0, 2); // density
 
-        switch (density)
+        switch (D)
         {
         case 0: hashdot.random(X, Y,  10); break;
         case 1: hashdot.random(X, Y,  40); break;
