@@ -32,8 +32,8 @@ void HashDot::random(int n, int m, int d)
     lines_.resize(m);
 
     for (int y = 0; y < m; ++y)
-        for (int x = 0; x < n; ++x)
-            lines_[y] += random_hash_dot(d);
+    for (int x = 0; x < n; ++x)
+        lines_[y] += random_hash_dot(d);
 
     length_ = n;
     height_ = m;
