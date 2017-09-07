@@ -87,7 +87,7 @@ namespace sgg {
 
     private:
         std::chrono::steady_clock::time_point start_;
-        std::string what_;
+        const std::string what_;
     };
 
 } // namespace sgg

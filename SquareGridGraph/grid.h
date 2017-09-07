@@ -222,9 +222,9 @@ protected:
     }
 
 private:
-    Coord max_x_;
-    Coord max_y_;
-    Imp   grid_;
+    const Coord max_x_;
+    const Coord max_y_;
+          Imp   grid_;
 };
 
 #endif // GRID_H
