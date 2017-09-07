@@ -107,9 +107,11 @@ public:
         Coord y()           const { return y_; }
         
     protected:
+        enum { INVALID = -1 };
+
         Impit nodeit_;
-        Coord x_;
-        Coord y_;
+        Coord x_ = INVALID;
+        Coord y_ = INVALID;
     };
 
     friend class walker;

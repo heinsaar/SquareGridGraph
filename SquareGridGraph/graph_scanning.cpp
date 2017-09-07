@@ -71,7 +71,7 @@ Town::BuildingPos Town::get_building_location(const ID& n)
             s.move_right();
         }
     }
-    // TODO: Return an invalid position (define one first).
+    return BuildingPos();
 }
 
 Town::BuildingPos Town::seek_up(const Walker& s, int n)
