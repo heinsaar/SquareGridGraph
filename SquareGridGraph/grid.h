@@ -32,7 +32,7 @@ protected:
         using Impitref  = Impit&;
         using Kernelref = Ker&;
 
-        static Impitref  to(Coord x, Coord y) { return ((Impitref) it->left);   }
+        static Impitref  to(Coord x, Coord y) { return ((Impitref) it->left);  }
         static Impitref  left(  Impit n)      { return ((Impitref) n->left);   }
         static Impitref  right( Impit n)      { return ((Impitref) n->right);  }
         static Impitref  up(    Impit n)      { return ((Impitref) n->up);     }
