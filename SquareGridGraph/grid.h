@@ -96,12 +96,6 @@ public:
             return *this;;
         }
 
-    // LOCATION
-        bool is_upmost()    const { return y_ == 0; }
-        bool is_rightmost() const { return x_ == X; } // max_x(); } // TODO: make work with max_x() (remove global X and Y)
-        bool is_downmost()  const { return y_ == Y; } // max_y(); } // TODO: make work with max_y() (remove global X and Y)
-        bool is_leftmost()  const { return x_ == 0; }
-        bool is_at_edge()   const { return (is_upmost() || is_leftmost() || is_rightmost() || is_downmost()); }
         Location location() const { return { x_, y_ }; }
         Coord x()           const { return x_; }
         Coord y()           const { return y_; }
@@ -175,6 +169,11 @@ public:
     int max_y() const { return max_y_; }
 
 // LOCATION RELATED
+    bool is_rightmost(const const_walker& w) { return w.x() == max_x_- 1; }
+    bool is_leftmost( const const_walker& w) { return w.x() == 0;         }
+    bool is_upmost(   const const_walker& w) { return w.y() == 0;         }
+    bool is_downmost( const const_walker& w) { return w.y() == max_y_- 1; }
+
     const_walker at(Coord x, Coord y) const { return const_walker(data_.begin() + y + (max_x_-1) * y, x, y); }
           walker at(Coord x, Coord y)       { return       walker(data_.begin() + y + (max_x_-1) * y, x, y); }
 

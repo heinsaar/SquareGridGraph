@@ -50,7 +50,7 @@ void Town::enumerate_buildings()
     ID id = 1;
     for (int y = 0; y < grid_.max_y(); ++y) {
         Walker s = grid_.at(0, y);
-        while (!s.is_rightmost()) {
+        while (s.x() != grid_.max_x()-1) {
             if (is_on_contour(s)) {                        
                 set_contour_id(s, id);
                 unvisited_.push_back(id++);
@@ -64,7 +64,7 @@ Town::BuildingPos Town::get_building_location(const ID& n)
 {
     for (int y = 0; y < grid_.max_y(); ++y) {
         Walker s = grid_.at(0, y);
-        while (!s.is_rightmost()) {
+        while (s.x() != grid_.max_x()-1) {
             if (!is_free(*s))
                 if ((**s).b_id_ == n)
                     return s; // upper leftmost corner
@@ -78,7 +78,7 @@ Town::BuildingPos Town::seek_up(const Walker& s, int n)
 {
     Walker sk = s;
 
-    while (!sk.is_upmost() && n > 0) {
+    while (!grid_.is_upmost(sk) && n > 0) {
         sk.move_up(); --n;
         if (!is_free(*sk))
             if (found_building(sk, s))
@@ -91,7 +91,7 @@ Town::BuildingPos Town::seek_right(const Walker& s, int n)
 {
     Walker sk = s;
 
-    while (!sk.is_rightmost() && n > 0) {
+    while (!grid_.is_rightmost(sk) && n > 0) {
         sk.move_right(); --n;                // TODO: Try to optimize with move_right(n)
         if (!is_free(*sk))                            
             if (found_building(sk, s))
@@ -104,7 +104,7 @@ Town::BuildingPos Town::seek_down(const Walker& s, int n)
 {
     Walker sk = s;
 
-    while (!sk.is_downmost() && n > 0) {
+    while (!grid_.is_downmost(sk) && n > 0) {
         sk.move_down(); --n;
         if (!is_free(*sk))
             if (found_building(sk, s))
@@ -117,7 +117,7 @@ Town::BuildingPos Town::seek_left(const Walker& s, int n)
 {
     Walker sk = s;
 
-    while (!sk.is_leftmost() && n > 0) {
+    while (!grid_.is_leftmost(sk) && n > 0) {
         sk.move_left(); --n;
         if (!is_free(*sk))
             if (found_building(sk, s))
