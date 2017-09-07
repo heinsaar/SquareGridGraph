@@ -13,6 +13,6 @@ namespace sgg {
         Error(const std::string& what) : std::exception(("Error: " + what).c_str()) {}
     };
 
-} // NAMESPACE
+} // namespace sgg
 
 #endif // DIAGNOSTICS_H

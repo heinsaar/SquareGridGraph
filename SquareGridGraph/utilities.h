@@ -90,6 +90,6 @@ namespace sgg {
         std::string what_;
     };
 
-} // NAMESPACE
+} // namespace sgg
 
 #endif // UTILITIES_H
