@@ -59,7 +59,8 @@ void Town::build_bridge(PanelPlacer a, const int length, const Direction from_a)
             for (int i = 0; i < length; ++i) {
                 put_panel_at(a->up);
                 put_panel_at(b->down);
-                a.move_up(); b.move_up();
+                a.move_up();
+                b.move_up();
             }
         } break;
         case Direction::RIGHT: {
@@ -67,7 +68,8 @@ void Town::build_bridge(PanelPlacer a, const int length, const Direction from_a)
             for (int i = 0; i < length; ++i) {
                 put_panel_at(a->right);
                 put_panel_at(b->left);
-                a.move_right(); b.move_right();
+                a.move_right();
+                b.move_right();
             }
         } break;
         case Direction::DOWN: {
@@ -75,7 +77,8 @@ void Town::build_bridge(PanelPlacer a, const int length, const Direction from_a)
             for (int i = 0; i < length; ++i) {
                 put_panel_at(a->down);
                 put_panel_at(b->up);
-                a.move_down(); b.move_down();
+                a.move_down();
+                b.move_down();
             }
         } break;
         case Direction::LEFT: {
@@ -83,7 +86,8 @@ void Town::build_bridge(PanelPlacer a, const int length, const Direction from_a)
             for (int i = 0; i < length; ++i) {
                 put_panel_at(a->left);
                 put_panel_at(b->right);
-                a.move_left(); b.move_left();
+                a.move_left();
+                b.move_left();
             }
         } break;
     }
