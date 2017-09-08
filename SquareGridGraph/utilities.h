@@ -74,7 +74,6 @@ namespace sgg {
         Timer(const std::string& msg = "") : what_(msg), start_(std::chrono::steady_clock::now()) {}
        ~Timer()
         {
-           // TODO: Log the measurement into a file also.
            display(" Time for: " + what_ + ": " + std::to_string(elapsed().count()) + "\n");
         }
 
