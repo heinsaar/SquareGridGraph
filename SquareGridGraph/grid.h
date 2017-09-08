@@ -171,8 +171,8 @@ public:
     bool is_upmost(   const const_walker& w) { return w.y() == 0;         }
     bool is_downmost( const const_walker& w) { return w.y() == max_y_- 1; }
 
-    const_walker at(Coord x, Coord y) const { return const_walker(data_.begin() + y + (max_x_-1) * y, x, y); }
-          walker at(Coord x, Coord y)       { return       walker(data_.begin() + y + (max_x_-1) * y, x, y); }
+    const_walker at(Coord x, Coord y) const { return const_walker(data_.begin() + y + (max_x_- 1) * y, x, y); }
+          walker at(Coord x, Coord y)       { return       walker(data_.begin() + y + (max_x_- 1) * y, x, y); }
 
     int distance(const_walker& a, const_walker& b)
     {
