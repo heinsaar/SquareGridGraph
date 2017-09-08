@@ -115,7 +115,7 @@ Town::BuildingPos Town::seek_down(const Walker& s, int n)
             if (found_building(sk, s))
                 return sk;
     }
-    return s;    // did not find
+    return s; // did not find
 }
 
 Town::BuildingPos Town::seek_left(const Walker& s, int n)
@@ -128,7 +128,7 @@ Town::BuildingPos Town::seek_left(const Walker& s, int n)
             if (found_building(sk, s))
                 return sk;
     }
-    return s;    // did not find
+    return s; // did not find
 }
 
 int Town::count_free_directions(const Block& b)

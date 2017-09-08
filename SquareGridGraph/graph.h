@@ -110,7 +110,7 @@ private:
     List<ID> unvisited_;
 
 // IMPLEMENTATION
-    Grid<std::unique_ptr<Block>> grid_; 
+    Grid<std::unique_ptr<Block>> grid_;
 //  Grid<Block> grid_; // TODO: Try. May be faster than with x64 pointers.
 
 // STATS
