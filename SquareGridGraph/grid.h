@@ -93,7 +93,9 @@ public:
             return *this;;
         }
 
-        bool is_valid()     const { return x_!= INVALID && y_!= INVALID; }
+        bool is_valid_x()   const { return x_ != INVALID; }
+        bool is_valid_y()   const { return y_ != INVALID; }
+        bool is_valid()     const { return is_valid_x() && is_valid_y(); }
         Location location() const { return { x_, y_ }; }
         Coord x()           const { return x_; }
         Coord y()           const { return y_; }
