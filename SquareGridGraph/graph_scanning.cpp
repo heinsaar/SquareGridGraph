@@ -1,20 +1,9 @@
 #include "graph.h"
 
 // SCANNING THE DOWNTOWN
-bool Town::is_free(const BlockSite& b_s)
-{
-    return b_s.used == false;
-}
-
-bool Town::is_cross_point(const Block& b)
-{
-    return b.b_id_ == 0;
-}
-
-bool Town::is_on_building(const Walker& s)
-{
-    return (*s).b_id_ != 0;
-}
+bool Town::is_free(const BlockSite& b_s)   { return b_s.used == false; }
+bool Town::is_cross_point(const Block& b)  { return b.b_id_ == 0;      }
+bool Town::is_on_building(const Walker& s) { return (*s).b_id_ != 0;   }
 
 bool Town::on_different_buildings(const Walker& a, const Walker& b)
 {

@@ -1,14 +1,7 @@
 #include "graph.h"
 
-void Town::reset(int& depth)
-{
-    depth = 1;
-}
-
-bool Town::is_connected(ID id)
-{
-    return connected_.contains(id);
-}
+void Town::reset(int& depth)   { depth = 1; }
+bool Town::is_connected(ID id) { return connected_.contains(id); }
 
 void Town::record_connection(const ID b_id)
 {
