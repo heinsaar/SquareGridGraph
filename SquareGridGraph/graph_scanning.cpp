@@ -49,7 +49,7 @@ void Town::enumerate_buildings()
 {
     ID id = 1;
     for (int y = 0; y < grid_.max_y(); ++y) {
-        Walker s = grid_.at(0, y);
+        Walker s = grid_.cell(0, y);
         while (s.x() != grid_.max_x()-1) {
             if (is_on_contour(s)) {                        
                 set_contour_id(s, id);
@@ -63,7 +63,7 @@ void Town::enumerate_buildings()
 Town::BuildingPos Town::get_building_location(const ID& n)
 {
     for (int y = 0; y < grid_.max_y(); ++y) {
-        Walker s = grid_.at(0, y);
+        Walker s = grid_.cell(0, y);
         while (s.x() != grid_.max_x()-1) {
             if (!is_free(*s))
                 if ((**s).b_id_ == n)
@@ -76,8 +76,13 @@ Town::BuildingPos Town::get_building_location(const ID& n)
 
 Town::BuildingPos Town::seek_up(const Walker& s, int n)
 {
-    Walker sk = s;
+    // TODO: Make this code work for it to replace the while loop below.
+    //Walker sk = grid_.at(s.x(), s.y() - n);
+    //if (sk.is_valid() && !grid_.is_upmost(sk))
+    //    if (!is_free(*sk) && found_building(sk, s))
+    //        return sk;
 
+    Walker sk = s;
     while (!grid_.is_upmost(sk) && n > 0) {
         sk.move_up(); --n;
         if (!is_free(*sk))

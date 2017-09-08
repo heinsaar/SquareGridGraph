@@ -61,7 +61,7 @@ void Town::create_model(const HashDot& buildings)
 {
     for (int n = 0; n < buildings.height(); ++n)
     {
-        Walker w = grid_.at(0, n);
+        Walker w = grid_.cell(0, n);
         const std::string line = buildings.get_line(n);
 
         for (const auto& c : line)

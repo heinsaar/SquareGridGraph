@@ -93,6 +93,7 @@ public:
             return *this;;
         }
 
+        bool is_valid()     const { return x_!= INVALID && y_!= INVALID; }
         Location location() const { return { x_, y_ }; }
         Coord x()           const { return x_; }
         Coord y()           const { return y_; }
@@ -109,7 +110,7 @@ public:
     class walker : public const_walker {
     public:
         walker() {}
-        walker(Impit it, Coord x, Coord y) { nodeit_ = it; x_ = x; y_ = y;  }
+        walker(Impit it, Coord x = INVALID, Coord y = INVALID) { nodeit_ = it; x_ = x; y_ = y;  }
         reference operator*() const        { return (Acc::kernel(nodeit_)); }
         Kptr operator->()     const        { return (&**this); }
 
@@ -171,8 +172,17 @@ public:
     bool is_upmost(   const const_walker& w) { return w.y() == 0;         }
     bool is_downmost( const const_walker& w) { return w.y() == max_y_- 1; }
 
-    const_walker at(Coord x, Coord y) const { return const_walker(data_.begin() + y + (max_x_- 1) * y, x, y); }
-          walker at(Coord x, Coord y)       { return       walker(data_.begin() + y + (max_x_- 1) * y, x, y); }
+    walker at(Coord x, Coord y)
+    {
+        // TODO: Or  max_*_- 1 ? Investigate.
+        if (x < 0 || max_x_- 1 < x) return walker(data_.end()); // return invalid
+        if (y < 0 || max_y_- 1 < y) return walker(data_.end()); // return invalid
+
+        return cell(x, y);
+    }
+
+    const_walker cell(Coord x, Coord y) const { return const_walker(data_.begin() + y + (max_x_- 1) * y, x, y); }
+          walker cell(Coord x, Coord y)       { return       walker(data_.begin() + y + (max_x_- 1) * y, x, y); }
 
     int distance(const_walker& a, const_walker& b)
     {

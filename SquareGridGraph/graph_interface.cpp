@@ -30,7 +30,7 @@ void Town::display_model()
 
     NEW_LINE;
     for (int y = 0; y < grid_.max_y(); ++y) {
-        Walker s = grid_.at(0, y);
+        Walker s = grid_.cell(0, y);
         SGL_SPACE;
         for (int x = 0; x < grid_.max_x(); ++x) {
             if (is_free(*s))            display(" ");
@@ -49,7 +49,7 @@ void Town::write_to(std::string fileName, bool withStats)
         throw Error("Unable to open file " + quote(fileName) + ".");
 
     for (int y = 0; y < grid_.max_y(); ++y) {
-        Walker s = grid_.at(0, y);
+        Walker s = grid_.cell(0, y);
         file << " ";
         for (int x = 0; x < grid_.max_x(); ++x) {
             if (is_free(*s))            file << " ";
