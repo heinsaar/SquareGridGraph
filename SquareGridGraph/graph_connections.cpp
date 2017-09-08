@@ -52,32 +52,28 @@ void Town::place_blocks_between(BuildingPos a, BuildingPos b, const Direction ab
         case Direction::UP: {
             a.move_up();
             while (a != b) {
-                if (is_free(*a))
-                    put_block(*a);
+                put_block_at(*a);
                 a.move_up();
             }
         } break;
         case Direction::RIGHT: {
             a.move_right();
             while (a != b) {
-                if (is_free(*a))
-                    put_block(*a);
+                put_block_at(*a);
                 a.move_right();
             }
         } break;
         case Direction::DOWN: {
             a.move_down();
             while (a != b) {
-                if (is_free(*a))
-                    put_block(*a);
+                put_block_at(*a);
                 a.move_down();
             }
         } break;
         case Direction::LEFT: {
             a.move_left();
             while (a != b) {
-                if (is_free(*a))
-                    put_block(*a);
+                put_block_at(*a);
                 a.move_left();
             }
         } break;
