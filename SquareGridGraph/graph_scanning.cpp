@@ -26,36 +26,36 @@ bool Town::is_line_segment(const Block& b)
     return (!b.up   && !b.down)
         || (!b.left && !b.right);
 }
-bool Town::found_building(const Walker& sk, const Walker& s)
+bool Town::found_building(const Walker& sk, const Walker& w)
 {
-    return is_on_building(sk) && on_different_buildings(sk, s);
+    return is_on_building(sk) && on_different_buildings(sk, w);
 }
-bool Town::is_on_contour(const Walker& s)
+bool Town::is_on_contour(const Walker& w)
 {
-    return !is_free(*s) && (**s).b_id_ == 0 && count_free_directions(**s) > 0;
+    return !is_free(*w) && (**w).b_id_ == 0 && count_free_directions(**w) > 0;
 }
 
-void Town::set_contour_id(const Walker& s, const ID& id)
+void Town::set_contour_id(const Walker& w, const ID& id)
 {
-    Walker e = s;
+    Walker e = w;
     Direction from = Direction::NONE;
     do {
         set_building_id(**e, id);
         move_clockwise(e, from);
-    } while (e != s);
+    } while (e != w);
 }
 
 void Town::enumerate_buildings()
 {
     ID id = 1;
     for (int y = 0; y < grid_.max_y(); ++y) {
-        Walker s = grid_.cell(0, y);
-        while (s.x() != grid_.max_x()-1) {
-            if (is_on_contour(s)) {                        
-                set_contour_id(s, id);
+        Walker w = grid_.cell(0, y);
+        while (w.x() != grid_.max_x()-1) {
+            if (is_on_contour(w)) {                        
+                set_contour_id(w, id);
                 unvisited_.push_back(id++);
             }
-            s.move_right();
+            w.move_right();
         }
     }
 }
@@ -63,72 +63,72 @@ void Town::enumerate_buildings()
 Town::BuildingPos Town::get_building_location(const ID& n)
 {
     for (int y = 0; y < grid_.max_y(); ++y) {
-        Walker s = grid_.cell(0, y);
-        while (s.x() != grid_.max_x()-1) {
-            if (!is_free(*s))
-                if ((**s).b_id_ == n)
-                    return s; // upper leftmost corner
-            s.move_right();
+        Walker w = grid_.cell(0, y);
+        while (w.x() != grid_.max_x()-1) {
+            if (!is_free(*w))
+                if ((**w).b_id_ == n)
+                    return w; // upper leftmost corner
+            w.move_right();
         }
     }
     return BuildingPos();
 }
 
-Town::BuildingPos Town::seek_up(const Walker& s, int n)
+Town::BuildingPos Town::seek_up(const Walker& w, int n)
 {
     // TODO: Make this code work for it to replace the while loop below.
-    //Walker sk = grid_.at(s.x(), s.y() - n);
+    //Walker sk = grid_.at(w.x(), w.y() - n);
     //if (sk.is_valid() && !grid_.is_upmost(sk))
-    //    if (!is_free(*sk) && found_building(sk, s))
+    //    if (!is_free(*sk) && found_building(sk, w))
     //        return sk;
 
-    Walker sk = s;
+    Walker sk = w;
     while (!grid_.is_upmost(sk) && n > 0) {
         sk.move_up(); --n;
         if (!is_free(*sk))
-            if (found_building(sk, s))
+            if (found_building(sk, w))
                 return sk;
     }
-    return s; // did not find
+    return w; // did not find
 }
 
-Town::BuildingPos Town::seek_right(const Walker& s, int n)
+Town::BuildingPos Town::seek_right(const Walker& w, int n)
 {
-    Walker sk = s;
+    Walker sk = w;
 
     while (!grid_.is_rightmost(sk) && n > 0) {
         sk.move_right(); --n;                // TODO: Try to optimize with move_right(n)
         if (!is_free(*sk))                            
-            if (found_building(sk, s))
+            if (found_building(sk, w))
                 return sk;
     }
-    return s; // did not find
+    return w; // did not find
 }
 
-Town::BuildingPos Town::seek_down(const Walker& s, int n)
+Town::BuildingPos Town::seek_down(const Walker& w, int n)
 {
-    Walker sk = s;
+    Walker sk = w;
 
     while (!grid_.is_downmost(sk) && n > 0) {
         sk.move_down(); --n;
         if (!is_free(*sk))
-            if (found_building(sk, s))
+            if (found_building(sk, w))
                 return sk;
     }
-    return s; // did not find
+    return w; // did not find
 }
 
-Town::BuildingPos Town::seek_left(const Walker& s, int n)
+Town::BuildingPos Town::seek_left(const Walker& w, int n)
 {
-    Walker sk = s;
+    Walker sk = w;
 
     while (!grid_.is_leftmost(sk) && n > 0) {
         sk.move_left(); --n;
         if (!is_free(*sk))
-            if (found_building(sk, s))
+            if (found_building(sk, w))
                 return sk;
     }
-    return s; // did not find
+    return w; // did not find
 }
 
 int Town::count_free_directions(const Block& b)

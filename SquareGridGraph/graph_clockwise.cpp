@@ -79,20 +79,20 @@ Town::Direction Town::orient(const Block& b, Direction& from)
     }
 }
 
-void Town::move(Walker& s, Direction& to)
+void Town::move(Walker& w, Direction& to)
 {
     Direction& from = to;
     switch (to) {
-        case Direction::UP:    { s.move_up();    from = Direction::DOWN;  } break;
-        case Direction::RIGHT: { s.move_right(); from = Direction::LEFT;  } break;
-        case Direction::DOWN:  { s.move_down();  from = Direction::UP;    } break;
-        case Direction::LEFT:  { s.move_left();  from = Direction::RIGHT; } break;
+        case Direction::UP:    { w.move_up();    from = Direction::DOWN;  } break;
+        case Direction::RIGHT: { w.move_right(); from = Direction::LEFT;  } break;
+        case Direction::DOWN:  { w.move_down();  from = Direction::UP;    } break;
+        case Direction::LEFT:  { w.move_left();  from = Direction::RIGHT; } break;
     }
 }
 
-void Town::move_clockwise(Walker& s, Direction& from)
+void Town::move_clockwise(Walker& w, Direction& from)
 {
     Direction& to = from;
-               to = orient(**s, from);
-     move(s,   to);
+               to = orient(**w, from);
+     move(w,   to);
 }
