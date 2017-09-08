@@ -14,7 +14,7 @@ void Town::set_building_id(Block& b, ID id)
 
 void Town::put_block(BlockSite& s)
 {
-    s = std::make_unique<Block>();
+    s.used = true;
 }
 
 void Town::put_panel_at(PanelSite& s)
@@ -38,23 +38,23 @@ void Town::place_blocks_clockwise(Walker w)
 
 void Town::place_panels_clockwise(Walker w)
 {
-    put_panel_at((*w)->down);
-    put_panel_at((*w)->right);
+    put_panel_at(w->down);
+    put_panel_at(w->right);
 
     w.move_right();
 
-    put_panel_at((*w)->left);
-    put_panel_at((*w)->down);
+    put_panel_at(w->left);
+    put_panel_at(w->down);
 
     w.move_down();
 
-    put_panel_at((*w)->up);
-    put_panel_at((*w)->left);
+    put_panel_at(w->up);
+    put_panel_at(w->left);
 
     w.move_left();
 
-    put_panel_at((*w)->right);
-    put_panel_at((*w)->up);
+    put_panel_at(w->right);
+    put_panel_at(w->up);
 }
 
 void Town::create_model(const HashDot& buildings)

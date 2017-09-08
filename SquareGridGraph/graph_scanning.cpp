@@ -3,7 +3,7 @@
 // SCANNING THE DOWNTOWN
 bool Town::is_free(const BlockSite& b_s)
 {
-    return b_s == nullptr;
+    return b_s.used == false;
 }
 
 bool Town::is_cross_point(const Block& b)
@@ -13,12 +13,12 @@ bool Town::is_cross_point(const Block& b)
 
 bool Town::is_on_building(const Walker& s)
 {
-    return (**s).b_id_ != 0;
+    return (*s).b_id_ != 0;
 }
 
 bool Town::on_different_buildings(const Walker& a, const Walker& b)
 {
-    return (**a).b_id_ != (**b).b_id_;
+    return (*a).b_id_ != (*b).b_id_;
 }
 
 bool Town::is_line_segment(const Block& b)
@@ -32,7 +32,7 @@ bool Town::found_building(const Walker& sk, const Walker& w)
 }
 bool Town::is_on_contour(const Walker& w)
 {
-    return !is_free(*w) && (**w).b_id_ == 0 && count_free_directions(**w) > 0;
+    return !is_free(*w) && w->b_id_ == 0 && count_free_directions(*w) > 0;
 }
 
 void Town::set_contour_id(const Walker& w, const ID& id)
@@ -40,7 +40,7 @@ void Town::set_contour_id(const Walker& w, const ID& id)
     Walker e = w;
     Direction from = Direction::NONE;
     do {
-        set_building_id(**e, id);
+        set_building_id(*e, id);
         move_clockwise(e, from);
     } while (e != w);
 }
@@ -66,7 +66,7 @@ Town::BuildingPos Town::get_building_location(const ID& n)
         Walker w = grid_.cell(0, y);
         while (w.x() != grid_.max_x()-1) {
             if (!is_free(*w))
-                if ((**w).b_id_ == n)
+                if (w->b_id_ == n)
                     return w; // upper leftmost corner
             w.move_right();
         }

@@ -93,6 +93,6 @@ void Town::move(Walker& w, Direction& to)
 void Town::move_clockwise(Walker& w, Direction& from)
 {
     Direction& to = from;
-               to = orient(**w, from);
+               to = orient(*w, from);
      move(w,   to);
 }

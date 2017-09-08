@@ -3,7 +3,7 @@
 // THE CONNECTING ALGORITHM
 void Town::connect_group(Walker w)
 {
-    record_connection((**w).b_id_);
+    record_connection(w->b_id_);
 
     int depth = 1; // seek depth
     int max_depth = std::max(grid_.max_x(), grid_.max_y());

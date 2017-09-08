@@ -34,17 +34,19 @@ private:
     enum class BlockShape { NONE, LINE_SEGMENT, CORNER, T_SHAPE, CROSS };
     enum class WallShape  { NONE, FLAT_WALL, EXTERNAL_CORNER, INTERNAL_CORNER };
 
-    using Walker      = Grid<std::unique_ptr<Block>>::walker;
-    using BlockPlacer = Grid<std::unique_ptr<Block>>::walker;
-    using PanelPlacer = Grid<std::unique_ptr<Block>>::walker;
-    using BuildingPos = Grid<std::unique_ptr<Block>>::walker;
+    using Walker      = Grid<Block>::walker;
+    using BlockPlacer = Grid<Block>::walker;
+    using PanelPlacer = Grid<Block>::walker;
+    using BuildingPos = Grid<Block>::walker;
     using Directions  = std::vector<Direction>;
-    using BlockSite   = std::unique_ptr<Block>;
+    using BlockSite   = Block;
     using PanelSite   = bool;
     using ID          = int;
 
     struct Block {
         enum { NONE, INVALID };
+
+        bool used  = false;
 
         ID   b_id_ = NONE;
         bool up    = false;
@@ -110,8 +112,7 @@ private:
     List<ID> unvisited_;
 
 // IMPLEMENTATION
-    Grid<std::unique_ptr<Block>> grid_;
-//  Grid<Block> grid_; // TODO: Try. May be faster than with x64 pointers.
+    Grid<Block> grid_;
 
 // STATS
     Stats stats_;
