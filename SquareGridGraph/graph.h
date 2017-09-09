@@ -46,13 +46,13 @@ private:
     struct Block {
         enum { NONE, INVALID };
 
-        bool used  = false;
-
         ID   b_id_ = NONE;
         bool up    = false;
         bool right = false;
         bool down  = false;
         bool left  = false;
+        
+        bool used  = false;
     };
 
 // BUILDING BRIDGES
