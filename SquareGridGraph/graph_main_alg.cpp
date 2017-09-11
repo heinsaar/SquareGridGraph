@@ -19,8 +19,8 @@ void Town::connect_group(Walker w)
 
             if (is_on_building(w))    // may be on a bridge!
             {
-                bool found = connect_isolated(w, depth);
-                if (found)
+                bool didConnect = connect_isolated(w, depth);
+                if (didConnect)
                     reset(depth);     // reset seek depth
             }
             move_clockwise(w, from);
