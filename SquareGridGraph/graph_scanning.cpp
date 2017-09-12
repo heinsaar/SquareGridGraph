@@ -65,7 +65,7 @@ Town::BuildingPos Town::get_building_location(const ID& n)
 
 Town::BuildingPos Town::seek_up(const Walker& w, int n)
 {
-    // TODO: Make this code work for it to replace the while loop below.
+    // TODO: NEXT Make this code work for it to replace the while loop below.
     //Walker sk = grid_.at(w.x(), w.y() - n);
     //if (sk.is_valid() && !grid_.is_upmost(sk))
     //    if (!is_free(*sk) && found_building(sk, w))
