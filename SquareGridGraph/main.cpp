@@ -19,7 +19,7 @@ int main() try
     {
         HashDot hashdot;
         hashdot.random(timepack.X, timepack.Y, timepack.D);
-//        hashdot.read_from("town_fast_seek.txt");
+//      hashdot.read_from("town_fast_seek.txt");
         Town town(hashdot);
         Timer<> t(timepack.name);
         town.connect_all(true, true);
