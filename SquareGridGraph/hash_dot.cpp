@@ -53,7 +53,7 @@ void HashDot::read_from(std::string fileName)
         lines_.push_back(line);
     }
 
-    length_ = lines_.back().length();
+    length_ = line.length();
     height_ = lines_.size();
 }
 
