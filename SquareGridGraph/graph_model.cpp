@@ -4,14 +4,8 @@
 
 bool Town::is_hash(const char c)            { return c == '#'; }
 void Town::set_building_id(Block& b, ID id) { b.b_id_ = id;    }
-void Town::put_block(   BlockSite& s)       { s.used = true;   }
 void Town::put_panel_at(PanelSite& s)       { s = true;        }
-
-void Town::put_block_at(BlockSite& s)
-{
-    if (is_free(s))
-        put_block(s);
-}
+void Town::put_block_at(BlockSite& s)       { s.used = true;   }
 
 void Town::place_blocks_clockwise(Walker w)
 {

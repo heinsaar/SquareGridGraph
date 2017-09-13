@@ -100,7 +100,6 @@ private:
 // CREATING THE DOWNTOWN MODEL
          bool is_hash(const char);
          void put_panel_at(PanelSite&);
-         void put_block(   BlockSite&);
          void put_block_at(BlockSite&);
          void set_building_id(Block&, ID);    
          void place_blocks_clockwise(Walker);
