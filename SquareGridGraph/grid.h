@@ -161,7 +161,7 @@ public:
             return *this;;
         }
 
-        bool operator==(const walker& w) const { return nodeit_ == w.nodeit_; }
+        bool operator==(const walker& w) const { return nodeit_ == w.nodeit_; } // TODO: location() == w.location(); works, introduce later.
         bool operator!=(const walker& w) const { return !(*this == w); }
     };
 
