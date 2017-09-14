@@ -56,10 +56,10 @@ public:
     class const_walker {
     public:
         const_walker() = default;
-        const_walker(Impit p, Coord x = INVALID, Coord y = INVALID) { nodeit_ = p; x_ = x; y_ = y; }
+        const_walker(Impit p, Coord x = INVALID, Coord y = INVALID) : nodeit_(p), x_(x), y_(y) {}
         const_walker(const walker& w) : nodeit_(w.nodeit_), x_(w.x_), y_(w.y_) {}
-        const_reference operator*() const { return Acc::kernel(nodeit_); }
-        Ckptr operator->()          const { return &**this; }
+        const_reference operator*()  const { return Acc::kernel(nodeit_); }
+        Ckptr           operator->() const { return &**this; }
 
     // HORIZONTAL / VERTICAL MOVE
         const_walker& move_left(int n = 1)
@@ -118,10 +118,10 @@ public:
     class walker : public const_walker {
     public:
         walker() = default;
-        walker(Impit it, Coord x = INVALID, Coord y = INVALID) { nodeit_ = it; x_ = x; y_ = y; }
+        walker(Impit it, Coord x = INVALID, Coord y = INVALID) : const_walker(it, x, y) {}
         walker(const walker& w) : const_walker(w) {}
-        reference operator*() const { return Acc::kernel(nodeit_); }
-        Kptr operator->()     const { return &**this; }
+        reference operator*()  const { return Acc::kernel(nodeit_); }
+        Kptr      operator->() const { return &**this; }
 
     // HORIZONTAL / VERTICAL MOVE
         walker& move_left(int n = 1)
