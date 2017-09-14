@@ -6,6 +6,13 @@
 
 template<class Ker>
     class Grid {
+public:
+    Grid(int x, int y) : max_x_(x), max_y_(y), data_(x * y)
+    {
+        connect_horizontally();
+        connect_vertically();
+    }
+
 protected:
     struct Node;
 
@@ -156,12 +163,6 @@ public:
         bool operator==(const walker& w) const { return (nodeit_ == w.nodeit_); }
         bool operator!=(const walker& w) const { return (!(*this == w)); }
     };
-
-    Grid(int x, int y) : max_x_(x), max_y_(y), data_(x * y)
-    {
-        connect_horizontally();
-        connect_vertically();
-    }
 
 // ACCESSORS
     int max_x() const { return max_x_; }
