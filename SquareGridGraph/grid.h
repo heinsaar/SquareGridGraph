@@ -164,7 +164,6 @@ public:
         bool operator!=(const walker& w) const { return !(*this == w); }
     };
 
-// ACCESSORS
     int max_x() const { return max_x_; }
     int max_y() const { return max_y_; }
 
