@@ -102,7 +102,7 @@ public:
     protected:
         enum { INVALID = -1 };
 
-        Impit nodeit_;
+        Impit nodeit_;  // TODO: Probably unnecessary, (x_, y_) pair already has all the info.
         Coord x_ = INVALID;
         Coord y_ = INVALID;
     };
