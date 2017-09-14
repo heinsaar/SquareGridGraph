@@ -69,7 +69,7 @@ public:
                 nodeit_ = Acc::left(nodeit_);
                 --x_;
             }
-            return *this;;
+            return *this;
         }
         const_walker& move_right(int n = 1)
         {
