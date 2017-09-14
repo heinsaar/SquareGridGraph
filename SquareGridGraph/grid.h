@@ -36,10 +36,10 @@ private:
         using Impitref  = Impit&;
         using Kernelref = Ker&;
 
-        static Impitref  left(  Impit n) { return (Impitref) n->left;   }
-        static Impitref  right( Impit n) { return (Impitref) n->right;  }
-        static Impitref  up(    Impit n) { return (Impitref) n->up;     }
-        static Impitref  down(  Impit n) { return (Impitref) n->down;   }
+        static Impitref    left(Impit n) { return  (Impitref)n->left;   }
+        static Impitref   right(Impit n) { return  (Impitref)n->right;  }
+        static Impitref      up(Impit n) { return  (Impitref)n->up;     }
+        static Impitref    down(Impit n) { return  (Impitref)n->down;   }
         static Kernelref kernel(Impit n) { return (Kernelref)n->kernel; }
     };
 
