@@ -56,7 +56,7 @@ public:
     class const_walker {
     public:
         const_walker() = default;
-        const_walker(Impit p, Coord x, Coord y) { nodeit_ = p; x_ = x; y_ = y; }
+        const_walker(Impit p, Coord x = INVALID, Coord y = INVALID) { nodeit_ = p; x_ = x; y_ = y; }
         const_walker(const walker& w) : nodeit_(w.nodeit_), x_(w.x_), y_(w.y_){}
         const_reference operator*() const { return Acc::kernel(nodeit_); }
         Ckptr operator->()          const { return &**this; }
