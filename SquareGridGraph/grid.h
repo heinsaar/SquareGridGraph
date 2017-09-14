@@ -13,7 +13,7 @@ public:
         connect_vertically();
     }
 
-protected:
+private:
     struct Node;
 
     using Location = std::pair<int, int>;
@@ -200,7 +200,7 @@ public:
         return (dx != 0) ? abs(dx) : abs(dy);
     }
 
-protected:
+private:
 
 // CONNECTING THE NODES
     void connect_right(Impit curr)
