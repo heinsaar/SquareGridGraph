@@ -58,8 +58,8 @@ public:
         const_walker() = default;
         const_walker(Impit p, Coord x, Coord y) { nodeit_ = p; x_ = x; y_ = y; }
         const_walker(const walker& w) : nodeit_(w.nodeit_), x_(w.x_), y_(w.y_){}
-        const_reference operator*() const { return (Acc::kernel(nodeit_)); }
-        Ckptr operator->()          const { return (&**this); }
+        const_reference operator*() const { return Acc::kernel(nodeit_); }
+        Ckptr operator->()          const { return &**this; }
 
     // HORIZONTAL / VERTICAL MOVE
         const_walker& move_left(int n = 1)
@@ -119,8 +119,8 @@ public:
     public:
         walker() {}
         walker(Impit it, Coord x = INVALID, Coord y = INVALID) { nodeit_ = it; x_ = x; y_ = y;  }
-        reference operator*() const        { return (Acc::kernel(nodeit_)); }
-        Kptr operator->()     const        { return (&**this); }
+        reference operator*() const        { return Acc::kernel(nodeit_); }
+        Kptr operator->()     const        { return &**this; }
 
     // HORIZONTAL / VERTICAL MOVE
         walker& move_left(int n = 1)
@@ -160,8 +160,8 @@ public:
             return *this;;
         }
 
-        bool operator==(const walker& w) const { return (nodeit_ == w.nodeit_); }
-        bool operator!=(const walker& w) const { return (!(*this == w)); }
+        bool operator==(const walker& w) const { return nodeit_ == w.nodeit_; }
+        bool operator!=(const walker& w) const { return !(*this == w); }
     };
 
 // ACCESSORS
