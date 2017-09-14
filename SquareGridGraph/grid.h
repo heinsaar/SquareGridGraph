@@ -78,7 +78,7 @@ public:
                 nodeit_ = Acc::right(nodeit_);
                 ++x_;
             }
-            return *this;;
+            return *this;
         }
         const_walker& move_up(int n = 1)
         {
@@ -96,7 +96,7 @@ public:
                 nodeit_ = Acc::down(nodeit_);
                 ++y_;
             }
-            return *this;;
+            return *this;
         }
 
         bool is_valid_x()   const { return x_ != INVALID; }
