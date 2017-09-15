@@ -11,7 +11,11 @@ Random d_sec_15 = { 150,  40, 40, "d_sec_15" }; // about 12 sec in debug   mode 
 Random r_sec_7  = { 200, 200, 40, "r_sec_7"  }; // about  7 sec in release mode >  6 sec (no viz)
 Random r_sec_28 = { 250, 250, 40, "r_sec_28" }; // about 28 sec in release mode > 25 sec
 
+#ifdef _DEBUG
+Random timepack = d_sec_5;
+#else
 Random timepack = r_sec_7;
+#endif
 
 int main() try
 {
