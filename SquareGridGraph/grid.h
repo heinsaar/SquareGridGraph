@@ -18,13 +18,13 @@ private:
 
     using Location = std::pair<int, int>;
     using Coord    = int;
-    using Imp      = std::vector<Node>;
-    using Impit    = typename Imp::iterator;
+    using Vec      = std::vector<Node>;
+    using Impit    = typename Vec::iterator;
 
     struct Node {
         Node() = default;
         Node(const Ker& k) : kernel(k)
-        { up = right = down = left = Imp::iterator(); }
+        { up = right = down = left = Vec::iterator(); }
 
         Impit up, right, down, left;
         Ker kernel;
@@ -231,7 +231,7 @@ private:
 private:
     const Coord max_x_;
     const Coord max_y_;
-          Imp   data_;
+          Vec   data_;
 };
 
 #endif // GRID_H
