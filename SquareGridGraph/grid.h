@@ -30,16 +30,6 @@ private:
         Ker kernel;
     };
 
-    friend struct Acc;
-
-    struct Acc {
-        static Impit&   left(Impit n) { return n->left;   }
-        static Impit&  right(Impit n) { return n->right;  }
-        static Impit&     up(Impit n) { return n->up;     }
-        static Impit&   down(Impit n) { return n->down;   }
-        static   Ker& kernel(Impit n) { return n->kernel; }
-    };
-
 public:
     using Kptr            =       Ker*;
     using Ckptr           = const Ker*;
@@ -55,7 +45,7 @@ public:
         const_walker() = default;
         const_walker(Impit p, Coord x = INVALID, Coord y = INVALID) : nodeit_(p), x_(x), y_(y) {}
         const_walker(const walker& w) : nodeit_(w.nodeit_), x_(w.x_), y_(w.y_) {}
-        const_reference operator*()  const { return Acc::kernel(nodeit_); }
+        const_reference operator*()  const { return nodeit_->kernel; }
         Ckptr           operator->() const { return &**this; }
 
     // HORIZONTAL / VERTICAL MOVE
@@ -63,7 +53,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                nodeit_ = Acc::left(nodeit_);
+                nodeit_ = nodeit_->left;
                 --x_;
             }
             return *this;
@@ -72,7 +62,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                nodeit_ = Acc::right(nodeit_);
+                nodeit_ = nodeit_->right;
                 ++x_;
             }
             return *this;
@@ -81,7 +71,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                nodeit_ = Acc::up(nodeit_);
+                nodeit_ = nodeit_->up;
                 --y_;
             }
             return *this;;
@@ -90,7 +80,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                nodeit_ = Acc::down(nodeit_);
+                nodeit_ = nodeit_->down;
                 ++y_;
             }
             return *this;
@@ -117,7 +107,7 @@ public:
         walker() = default;
         walker(Impit it, Coord x = INVALID, Coord y = INVALID) : const_walker(it, x, y) {}
         walker(const walker& w) : const_walker(w) {}
-        reference operator*()  const { return Acc::kernel(nodeit_); }
+        reference operator*()  const { return nodeit_->kernel; }
         Kptr      operator->() const { return &**this; }
 
     // HORIZONTAL / VERTICAL MOVE
@@ -125,7 +115,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                nodeit_ = Acc::left(nodeit_);
+                nodeit_ = nodeit_->left;
                 --x_;
             }
             return *this;;
@@ -134,7 +124,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                nodeit_ = Acc::right(nodeit_);
+                nodeit_ = nodeit_->right;
                 ++x_;
             }
             return *this;;
@@ -143,7 +133,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                nodeit_ = Acc::up(nodeit_);
+                nodeit_ = nodeit_->up;
                 --y_;
             }
             return *this;;
@@ -152,7 +142,7 @@ public:
         {
             for (; 0 < n; --n)
             {
-                nodeit_ = Acc::down(nodeit_);
+                nodeit_ = nodeit_->down;
                 ++y_;
             }
             return *this;;
