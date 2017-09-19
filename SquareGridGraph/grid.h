@@ -36,10 +36,7 @@ public:
     using reference       =       Ker&;
     using const_reference = const Ker&;
 
-           class       walker;
-           class const_walker;
-    friend class const_walker;
-
+    class walker;
     class const_walker {
     public:
         const_walker() = default;
