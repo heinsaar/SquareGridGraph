@@ -19,14 +19,14 @@ private:
     using Location = std::pair<int, int>;
     using Coord    = int;
     using Vec      = std::vector<Node>;
-    using Impit    = typename Vec::iterator;
+    using Vecit    = typename Vec::iterator;
 
     struct Node {
         Node() = default;
         Node(const Ker& k) : kernel(k)
         { up = right = down = left = Vec::iterator(); }
 
-        Impit up, right, down, left;
+        Vecit up, right, down, left;
         Ker kernel;
     };
 
@@ -36,14 +36,11 @@ public:
     using reference       =       Ker&;
     using const_reference = const Ker&;
 
-           class       walker;
-           class const_walker;
-    friend class const_walker;
-
+    class walker;
     class const_walker {
     public:
         const_walker() = default;
-        const_walker(Impit p, Coord x = INVALID, Coord y = INVALID) : nodeit_(p), x_(x), y_(y) {}
+        const_walker(Vecit p, Coord x = INVALID, Coord y = INVALID) : nodeit_(p), x_(x), y_(y) {}
         const_walker(const walker& w) : nodeit_(w.nodeit_), x_(w.x_), y_(w.y_) {}
         const_reference operator*()  const { return nodeit_->kernel; }
         Ckptr           operator->() const { return &**this; }
@@ -96,7 +93,7 @@ public:
     protected:
         enum { INVALID = -1 };
 
-        Impit nodeit_;  // TODO: Probably unnecessary, (x_, y_) pair already has all the info.
+        Vecit nodeit_;  // TODO: Probably unnecessary, (x_, y_) pair already has all the info.
         Coord x_ = INVALID;
         Coord y_ = INVALID;
     };
@@ -105,7 +102,7 @@ public:
     class walker : public const_walker {
     public:
         walker() = default;
-        walker(Impit it, Coord x = INVALID, Coord y = INVALID) : const_walker(it, x, y) {}
+        walker(Vecit it, Coord x = INVALID, Coord y = INVALID) : const_walker(it, x, y) {}
         walker(const walker& w) : const_walker(w) {}
         reference operator*()  const { return nodeit_->kernel; }
         Kptr      operator->() const { return &**this; }
@@ -190,31 +187,31 @@ public:
 private:
 
 // CONNECTING THE NODES
-    void connect_right(Impit curr)
+    void connect_right(Vecit curr)
     {
-        Impit right = curr + 1;
+        Vecit right = curr + 1;
         curr->right = right;
         right->left = curr;
     }
 
-    void connect_down(Impit curr)
+    void connect_down(Vecit curr)
     {
-        Impit down = curr + max_x_;
+        Vecit down = curr + max_x_;
         curr->down = down;
         down->up = curr;
     }
 
     void connect_horizontally()
     {
-        for (Impit y = data_.begin(); y < data_.end(); y += max_x_)
-            for (Impit x = y; x < y + max_x_ - 1; ++x)
+        for (Vecit y = data_.begin(); y < data_.end(); y += max_x_)
+            for (Vecit x = y; x < y + max_x_ - 1; ++x)
                 connect_right(x);
     }
 
     void connect_vertically()
     {
-        for (Impit y = data_.begin(); y < data_.end() - max_x_; y += max_x_)
-            for (Impit x = y; x < y + max_x_; ++x)
+        for (Vecit y = data_.begin(); y < data_.end() - max_x_; y += max_x_)
+            for (Vecit x = y; x < y + max_x_; ++x)
                 connect_down(x);
     }
 
