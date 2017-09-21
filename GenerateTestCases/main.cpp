@@ -28,7 +28,7 @@ void create_examples(int N) try
 
         switch (D)
         {
-        case 0:  hashdot.random(X, Y,  10); break;
+        case 0:  hashdot.random(X, Y,  10); break; 
         case 1:  hashdot.random(X, Y,  40); break;
         case 2:  hashdot.random(X, Y, 100); break;
         default: hashdot.random(X, Y,  70); break;
