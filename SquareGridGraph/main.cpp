@@ -26,7 +26,7 @@ int main() try
 //      hashdot.read_from("town_fast_seek.txt");
         Town town(hashdot);
         Timer<> t(timepack.name);
-        town.connect_all();// true, true);
+        town.connect_all(true, true);
     }
     CONTINUE_ON_ENTER
 }
