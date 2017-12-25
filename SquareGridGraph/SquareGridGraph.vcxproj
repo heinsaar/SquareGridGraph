@@ -23,7 +23,7 @@
     <ProjectGuid>{F93531DD-EDE4-41D1-9587-E54EE50FF415}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>BridgesLeo</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
     <ProjectName>SquareGridGraph</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

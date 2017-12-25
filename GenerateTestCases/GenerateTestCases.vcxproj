@@ -23,7 +23,7 @@
     <ProjectGuid>{E74FE6BE-58AF-4C28-9AD5-8E7FD98E4F9A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>GenerateTestCases</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
     <ProjectName>GenerateTestCases</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
